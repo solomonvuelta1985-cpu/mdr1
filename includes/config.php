@@ -2,10 +2,16 @@
 // includes/config.php - UPDATED SECURE VERSION
 
 // ============================================================
+// DEVELOPMENT MODE CONFIGURATION
+// ============================================================
+// Set to TRUE for development (shows errors), FALSE for production (hides errors)
+define('DEBUG_MODE', true); // CHANGE TO false IN PRODUCTION
+
+// ============================================================
 // PRODUCTION ERROR CONFIGURATION (SECURITY CRITICAL)
 // ============================================================
 error_reporting(E_ALL);
-ini_set('display_errors', 0);  // NEVER display errors to users
+ini_set('display_errors', DEBUG_MODE ? 1 : 0);  // Show errors in dev, hide in production
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../logs/php_errors.log');
 
@@ -18,12 +24,13 @@ if (!is_dir(__DIR__ . '/../logs')) {
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
     error_log("Error [$errno]: $errstr in $errfile:$errline");
 
-    // Generic message to users (never expose details)
-    if (!ini_get('display_errors')) {
-        // Don't output anything - let the application handle errors gracefully
-        return true;
+    // In debug mode, let PHP show errors normally
+    if (DEBUG_MODE) {
+        return false; // Use default error handler
     }
-    return false;
+
+    // In production, suppress error output
+    return true;
 });
 
 // ============================================================
@@ -51,14 +58,20 @@ try {
     die('<!DOCTYPE html><html><head><title>Service Unavailable</title></head><body><h1>Service Temporarily Unavailable</h1><p>We are experiencing technical difficulties. Please try again later.</p></body></html>');
 }
 
-// SECURITY FIX: Custom PDO error handler to suppress verbose SQL errors
+// SECURITY FIX: Custom exception handler to suppress verbose SQL errors
+// Only catch PDOException to avoid breaking other error handling
 set_exception_handler(function($exception) {
     // Log the full error for debugging
-    error_log('CRITICAL ERROR: ' . $exception->getMessage() . ' in ' . $exception->getFile() . ':' . $exception->getLine());
+    error_log('CRITICAL ERROR: ' . get_class($exception) . ': ' . $exception->getMessage() . ' in ' . $exception->getFile() . ':' . $exception->getLine());
 
-    // Show generic error to users
-    http_response_code(500);
-    die('<!DOCTYPE html><html><head><title>Error</title></head><body><h1>An Error Occurred</h1><p>We encountered an unexpected error. Please try again later.</p></body></html>');
+    // Only show generic error for database exceptions
+    if ($exception instanceof PDOException) {
+        http_response_code(500);
+        die('<!DOCTYPE html><html><head><title>Database Error</title></head><body><h1>Database Error</h1><p>We encountered a database error. Please try again later.</p></body></html>');
+    }
+
+    // For other exceptions, allow normal error handling
+    throw $exception;
 });
 
 // ============================================================

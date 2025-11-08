@@ -277,24 +277,25 @@ if (!function_exists('log_security_event')) {
 if (!function_exists('validate_session_fingerprint')) {
     /**
      * Validate session fingerprint to detect session hijacking
+     * SECURITY FIX: Match the fingerprint algorithm used in login.php
      */
     function validate_session_fingerprint() {
         if (!isset($_SESSION['fingerprint'])) {
-            // Create fingerprint on first validation
-            $_SESSION['fingerprint'] = md5(
-                $_SERVER['HTTP_USER_AGENT'] . 
-                (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '') .
+            // Create fingerprint matching login.php algorithm
+            $_SESSION['fingerprint'] = hash('sha256',
+                ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown') .
+                ($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0') .
                 session_id()
             );
             return true;
         }
-        
-        $current_fingerprint = md5(
-            $_SERVER['HTTP_USER_AGENT'] . 
-            (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '') .
+
+        $current_fingerprint = hash('sha256',
+            ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown') .
+            ($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0') .
             session_id()
         );
-        
+
         return hash_equals($_SESSION['fingerprint'], $current_fingerprint);
     }
 }

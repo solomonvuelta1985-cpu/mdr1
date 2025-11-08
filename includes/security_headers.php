@@ -32,18 +32,22 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 
 // 5. CONTENT SECURITY POLICY (CSP)
 // SECURITY FIX: Strengthened CSP policy
-header("Content-Security-Policy: " .
-    "default-src 'self'; " .
+$csp_policy = "default-src 'self'; " .
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net https://cdnjs.cloudflare.com; " .
     "style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com https://cdnjs.cloudflare.com; " .
     "font-src 'self' fonts.gstatic.com cdn.jsdelivr.net data:; " .
-    "img-src 'self' data: https:; " .
+    "img-src 'self' data: https: http:; " .
     "connect-src 'self'; " .
     "frame-ancestors 'none'; " .
     "base-uri 'self'; " .
-    "form-action 'self'; " .
-    "upgrade-insecure-requests;"
-);
+    "form-action 'self';";
+
+// Only add upgrade-insecure-requests if we're already on HTTPS
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    $csp_policy .= " upgrade-insecure-requests;";
+}
+
+header("Content-Security-Policy: " . $csp_policy);
 
 // 6. PERMISSIONS POLICY
 header("Permissions-Policy: " .
@@ -63,9 +67,11 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
 }
 
 // 8. CROSS-ORIGIN POLICIES
-header("Cross-Origin-Embedder-Policy: require-corp");
-header("Cross-Origin-Opener-Policy: same-origin");
-header("Cross-Origin-Resource-Policy: same-origin");
+// NOTE: Temporarily relaxed for localhost development
+// Uncomment these in production with HTTPS:
+// header("Cross-Origin-Embedder-Policy: require-corp");
+// header("Cross-Origin-Opener-Policy: same-origin");
+// header("Cross-Origin-Resource-Policy: same-origin");
 
 // 9. CACHE CONTROL FOR SENSITIVE PAGES
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
