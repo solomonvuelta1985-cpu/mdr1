@@ -2,6 +2,7 @@
 include '../includes/config.php';
 include '../includes/functions.php';
 include '../includes/auth.php';
+include '../includes/password_policy.php'; // SECURITY FIX: Strong password policy
 
 require_login();
 require_admin(); // Only admin can access this page
@@ -67,21 +68,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'reset_password':
                 $new_password = $_POST['new_password'];
                 $confirm_password = $_POST['confirm_password'];
-                
+
                 if ($new_password !== $confirm_password) {
                     set_flash('Passwords do not match!', 'error');
-                } elseif (strlen($new_password) < 6) {
-                    set_flash('Password must be at least 6 characters long!', 'error');
                 } else {
-                    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                    $update_stmt = db_query("UPDATE users SET password = ? WHERE id = ?", [$hashed_password, $user_id]);
-                    
-                    if ($update_stmt && $update_stmt->rowCount() > 0) {
-                        // Deactivate all active sessions for security
-                        db_query("UPDATE user_sessions SET is_active = FALSE WHERE user_id = ?", [$user_id]);
-                        set_flash('Password reset successfully! All active sessions have been terminated.', 'success');
+                    // SECURITY FIX: Enforce strong password policy
+                    $user_stmt = db_query("SELECT username FROM users WHERE id = ?", [$user_id]);
+                    $user_data = $user_stmt->fetch();
+
+                    $validation = validate_password_strength($new_password, [
+                        'username' => $user_data['username'] ?? ''
+                    ]);
+
+                    if (!$validation['valid']) {
+                        foreach ($validation['errors'] as $error) {
+                            set_flash($error, 'error');
+                        }
                     } else {
-                        set_flash('Failed to reset password', 'error');
+                        // Check password reuse
+                        if (is_password_reused($user_id, $new_password, 5)) {
+                            set_flash('Password has been used recently. Please choose a different password.', 'error');
+                        } else {
+                            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+                            $update_stmt = db_query("UPDATE users SET password = ?, password_changed_at = NOW() WHERE id = ?", [$hashed_password, $user_id]);
+
+                            if ($update_stmt && $update_stmt->rowCount() > 0) {
+                                // Save password to history
+                                save_password_to_history($user_id, $hashed_password);
+
+                                // Deactivate all active sessions for security
+                                db_query("UPDATE user_sessions SET is_active = FALSE WHERE user_id = ?", [$user_id]);
+
+                                // Log the password reset
+                                log_audit_action($current_user_id, 'password_reset_admin', "Reset password for user ID: {$user_id}");
+
+                                set_flash('Password reset successfully! All active sessions have been terminated.', 'success');
+                            } else {
+                                set_flash('Failed to reset password', 'error');
+                            }
+                        }
                     }
                 }
                 break;
@@ -94,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $user_role = sanitize($_POST['user_role']);
                 $password = $_POST['password'];
                 $confirm_password = $_POST['confirm_password'];
-                
+
                 // Validation
                 $errors = [];
                 if (empty($full_name)) $errors[] = "Full name is required";
@@ -104,21 +129,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (empty($user_role)) $errors[] = "User role is required";
                 if (empty($password)) $errors[] = "Password is required";
                 if ($password !== $confirm_password) $errors[] = "Passwords do not match";
-                
+
                 // Check if username exists
                 $check_stmt = db_query("SELECT id FROM users WHERE username = ?", [$username]);
                 if ($check_stmt->fetch()) {
                     $errors[] = "Username already exists";
                 }
-                
+
+                // SECURITY FIX: Validate password strength
+                if (empty($errors) && !empty($password)) {
+                    $validation = validate_password_strength($password, [
+                        'username' => $username
+                    ]);
+
+                    if (!$validation['valid']) {
+                        foreach ($validation['errors'] as $error) {
+                            $errors[] = $error;
+                        }
+                    }
+                }
+
                 if (empty($errors)) {
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     $insert_stmt = db_query("
-                        INSERT INTO users (full_name, barangay, contact_number, username, password, user_role, created_by) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                        INSERT INTO users (full_name, barangay, contact_number, username, password, user_role, created_by, password_changed_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
                     ", [$full_name, $barangay, $contact_number, $username, $hashed_password, $user_role, $current_user_id]);
-                    
+
                     if ($insert_stmt) {
+                        $new_user_id = $pdo->lastInsertId();
+
+                        // Save password to history
+                        save_password_to_history($new_user_id, $hashed_password);
+
+                        // Log user creation
+                        log_audit_action($current_user_id, 'user_created', "Created user: {$username} with role: {$user_role}");
+
                         set_flash('User created successfully!', 'success');
                     } else {
                         set_flash('Error creating user', 'error');

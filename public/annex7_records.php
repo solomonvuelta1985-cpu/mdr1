@@ -40,14 +40,21 @@ $pdo = $pdo;
 $user_location = get_user_location_data($_SESSION['user_id']);
 $is_admin = ($_SESSION['user_role'] === 'admin');
 
-// Ensure is_archived column exists
+// SECURITY FIX: Check is_archived column exists (DO NOT auto-create from web)
 try {
     $column_check = $pdo->query("SHOW COLUMNS FROM annex7_other_assets_damage LIKE 'is_archived'");
     if ($column_check->rowCount() == 0) {
-        $pdo->exec("ALTER TABLE annex7_other_assets_damage ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER total_damaged");
+        // SECURITY: Do NOT modify database schema from web application
+        error_log("CRITICAL: Missing is_archived column in annex7_other_assets_damage table");
+        error_log("ACTION REQUIRED: Run database migrations manually");
+        error_log("SQL: ALTER TABLE annex7_other_assets_damage ADD COLUMN is_archived TINYINT(1) DEFAULT 0;");
+
+        set_flash('Database schema error. Please contact system administrator.', 'error');
+        header('Location: dashboard.php');
+        exit;
     }
 } catch (PDOException $e) {
-    error_log("Failed to add is_archived column: " . $e->getMessage());
+    error_log("Schema check error: " . $e->getMessage());
 }
 
 // Handle record actions

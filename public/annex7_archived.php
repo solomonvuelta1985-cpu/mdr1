@@ -26,7 +26,15 @@ $is_admin = ($_SESSION['user_role'] === 'admin');
 try {
     $column_check = $pdo->query("SHOW COLUMNS FROM annex7_other_assets_damage LIKE 'is_archived'");
     if ($column_check->rowCount() == 0) {
-        $pdo->exec("ALTER TABLE annex7_other_assets_damage ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER total_damaged");
+        // SECURITY: Do NOT modify database schema from web application
+        error_log("CRITICAL: Missing is_archived column. Run migrations manually");
+        set_flash('Database schema error. Contact administrator.', 'error');
+        header('Location: dashboard.php');
+        exit;
+    }
+    if (false) { // DISABLED FOR SECURITY
+    if ($column_check->rowCount() == 0) {
+        // SECURITY FIX - DO NOT AUTO-ALTER: // $pdo->exec("ALTER TABLE annex7_other_assets_damage ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER total_damaged");
     }
 } catch (PDOException $e) {
     error_log("Failed to add is_archived column: " . $e->getMessage());

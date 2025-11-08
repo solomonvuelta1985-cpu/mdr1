@@ -20,6 +20,7 @@ header('Content-Type: application/json');
 // Load dependencies
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
+require_once '../includes/file_security.php'; // SECURITY FIX: Secure file operations
 require_once __DIR__ . '/../includes/auth.php';
 
 // Authentication check

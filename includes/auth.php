@@ -111,11 +111,60 @@ function is_logged_in() {
 }
 
 /**
+ * SECURITY FIX: Check and enforce session timeout
+ * Automatically logs out users after 60 minutes of inactivity
+ *
+ * @param int $timeout_minutes Timeout in minutes (default: 60)
+ * @return bool True if session is valid, False if timed out
+ */
+function check_session_timeout($timeout_minutes = 60) {
+    $timeout_seconds = $timeout_minutes * 60;
+
+    // Check if last_activity is set
+    if (isset($_SESSION['last_activity'])) {
+        $elapsed_time = time() - $_SESSION['last_activity'];
+
+        // If session has timed out
+        if ($elapsed_time > $timeout_seconds) {
+            // Log the timeout event
+            if (isset($_SESSION['user_id'])) {
+                log_security_event(
+                    $_SESSION['user_id'],
+                    'session_timeout',
+                    "Session timed out after {$timeout_minutes} minutes of inactivity"
+                );
+            }
+
+            // Logout and destroy session
+            logout_user();
+
+            // Set flash message for next login
+            set_flash('Your session has expired due to inactivity. Please log in again.', 'warning');
+
+            return false;
+        }
+    }
+
+    // Update last activity timestamp
+    $_SESSION['last_activity'] = time();
+
+    return true;
+}
+
+/**
  * Require user to be logged in
+ * SECURITY FIX: Also checks session timeout
  */
 function require_login() {
     if (!is_logged_in()) {
         set_flash('Please log in to access this page', 'error');
+        header('Location: login.php');
+        exit;
+    }
+
+    // SECURITY FIX: Check session timeout (60 minutes of inactivity)
+    if (!check_session_timeout(60)) {
+        // Session timed out - redirect to login
         header('Location: login.php');
         exit;
     }

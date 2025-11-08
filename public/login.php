@@ -13,9 +13,28 @@ $username = '';
 $password = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // SECURITY FIX: CSRF Token Validation on Login
+    if (!isset($_POST['csrf_token']) || !verify_token($_POST['csrf_token'])) {
+        log_security_event(0, 'csrf_failure_login', "CSRF token validation failed on login from IP: {$_SERVER['REMOTE_ADDR']}");
+        set_flash('Security validation failed. Please try again.', 'error');
+        header('Location: login.php');
+        exit;
+    }
+
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
-    
+
+    // SECURITY FIX: LOGIN RATE LIMITING (5 attempts per 15 minutes per username)
+    $rate_limit_key = "login_attempt_" . hash('sha256', strtolower($username));
+    if (!check_rate_limit(0, $rate_limit_key, 5, 900)) {
+        log_security_event(0, 'login_rate_limit_exceeded',
+            "Excessive login attempts for user: {$username} from IP: {$_SERVER['REMOTE_ADDR']}");
+
+        set_flash('Too many login attempts. Please try again in 15 minutes.', 'error');
+        header('Location: login.php');
+        exit;
+    }
+
     // IMMEDIATE BARANGAY LOCK CHECK - BEFORE ANYTHING ELSE
     if (!can_user_login($username)) {
         $lock_message = get_barangay_lock_message($username);
@@ -23,32 +42,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header('Location: login.php');
         exit;
     }
-    
-    
+
+
     // Continue with normal login...
     $stmt = db_query("SELECT * FROM users WHERE username = ? AND is_active = TRUE", [$username]);
     $user = $stmt->fetch();
-    
+
     if ($user && password_verify($password, $user['password'])) {
+        // SUCCESS - Clear rate limit for this username
+        db_query("DELETE FROM rate_limits WHERE action = ? AND user_id = 0", [$rate_limit_key]);
+
+        // SECURITY FIX: Regenerate session ID (prevents session fixation)
+        session_regenerate_id(true);
+
         // Set session variables
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['full_name'] = $user['full_name'];
         $_SESSION['user_role'] = $user['user_role'];
         $_SESSION['barangay'] = $user['barangay'];
         $_SESSION['login_time'] = time();
-        
+        $_SESSION['last_activity'] = time();
+
+        // SECURITY FIX: Create session fingerprint (anti-hijacking)
+        $_SESSION['fingerprint'] = hash('sha256',
+            ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown') .
+            ($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0') .
+            session_id()
+        );
+
         // Track session in database
         track_user_session($user['id'], 'login');
-        
+
+        // Log successful login
+        log_audit_action($user['id'], 'login_success',
+            "User logged in from IP: {$_SERVER['REMOTE_ADDR']}");
+
         // If admin, set barangay session
         if ($user['user_role'] === 'admin') {
             // Admin doesn't automatically lock their barangay - they must select one
         }
-        
+
         set_flash('Login successful! Welcome back, ' . $user['full_name'], 'success');
         header('Location: dashboard.php');
         exit;
     } else {
+        // FAILED LOGIN - Log it
+        log_security_event(0, 'failed_login_attempt',
+            "Failed login for user: {$username} from IP: {$_SERVER['REMOTE_ADDR']}");
+
         set_flash('Invalid username or password', 'error');
     }
 }
@@ -114,7 +155,7 @@ $token = generate_token();
                 <?php show_flash(); ?>
                 
                 <form method="POST">
-                    <input type="hidden" name="token" value="<?= $token ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
                     
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
@@ -130,10 +171,8 @@ $token = generate_token();
                         <i class="fas fa-sign-in-alt me-2"></i>Sign In
                     </button>
                 </form>
-                
-                <div class="text-center mt-3">
-                    <small class="text-muted">Default admin: admin / admin123</small>
-                </div>
+
+                <!-- SECURITY FIX: Default credentials removed to prevent unauthorized access -->
             </div>
         </div>
     </div>

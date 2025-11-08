@@ -2,6 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/file_security.php'; // SECURITY FIX: Secure file operations
 
 require_login();
 
@@ -157,67 +158,34 @@ try {
                 continue;
             }
             
-            // Enhanced image upload handling
+            // SECURITY FIX: Enhanced secure image upload with re-encoding
             $image_path = null;
             if (isset($_FILES['image']['name'][$index]) && $_FILES['image']['error'][$index] === UPLOAD_ERR_OK) {
-                $image_file = $_FILES['image'];
-                $file_name = $image_file['name'][$index];
-                $file_tmp = $image_file['tmp_name'][$index];
-                $file_size = $image_file['size'][$index];
-                $file_error = $image_file['error'][$index];
-                
-                // Enhanced file validation
-                $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-                $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
-                
-                $file_info = finfo_open(FILEINFO_MIME_TYPE);
-                $file_mime = finfo_file($file_info, $file_tmp);
-                finfo_close($file_info);
-                
-                $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-                
-                // Double validation: MIME type and file extension
-                if (in_array($file_mime, $allowed_types) && in_array($file_extension, $allowed_extensions) && $file_size <= 5 * 1024 * 1024) {
-                    
-                    // Additional image integrity check
-                    if ($file_mime === 'image/jpeg' || $file_mime === 'image/jpg') {
-                        if (!@imagecreatefromjpeg($file_tmp)) {
-                            log_security_event($_SESSION['user_id'], 'corrupt_image', "Corrupt JPEG image uploaded for entry index {$index}");
-                            // Continue without image but log the issue
-                        } else {
-                            $sanitized_filename = preg_replace('/[^a-zA-Z0-9\._-]/', '_', $file_name);
-                            $unique_filename = uniqid() . '_' . date('Ymd_His') . '_' . $sanitized_filename;
-                            $destination = $upload_dir . $unique_filename;
-                            
-                            if (move_uploaded_file($file_tmp, $destination)) {
-                                $image_path = 'annex8/' . $unique_filename;
-                            }
-                        }
-                    } elseif ($file_mime === 'image/png') {
-                        if (!@imagecreatefrompng($file_tmp)) {
-                            log_security_event($_SESSION['user_id'], 'corrupt_image', "Corrupt PNG image uploaded for entry index {$index}");
-                            // Continue without image but log the issue
-                        } else {
-                            $sanitized_filename = preg_replace('/[^a-zA-Z0-9\._-]/', '_', $file_name);
-                            $unique_filename = uniqid() . '_' . date('Ymd_His') . '_' . $sanitized_filename;
-                            $destination = $upload_dir . $unique_filename;
-                            
-                            if (move_uploaded_file($file_tmp, $destination)) {
-                                $image_path = 'annex8/' . $unique_filename;
-                            }
-                        }
-                    } else {
-                        // For gif and other allowed types
-                        $sanitized_filename = preg_replace('/[^a-zA-Z0-9\._-]/', '_', $file_name);
-                        $unique_filename = uniqid() . '_' . date('Ymd_His') . '_' . $sanitized_filename;
-                        $destination = $upload_dir . $unique_filename;
-                        
-                        if (move_uploaded_file($file_tmp, $destination)) {
-                            $image_path = 'annex8/' . $unique_filename;
-                        }
-                    }
+                // Reconstruct single-file array for the validator
+                $single_file = [
+                    'name' => $_FILES['image']['name'][$index],
+                    'tmp_name' => $_FILES['image']['tmp_name'][$index],
+                    'size' => $_FILES['image']['size'][$index],
+                    'error' => $_FILES['image']['error'][$index],
+                    'type' => $_FILES['image']['type'][$index] ?? ''
+                ];
+
+                // Use secure upload function (validates, re-encodes, and sanitizes)
+                $upload_result = safe_image_upload($single_file, 'annex8', "roadbridge_{$barangay}");
+
+                if ($upload_result['success']) {
+                    $image_path = $upload_result['path'];
+                    log_audit_action(
+                        $_SESSION['user_id'],
+                        'annex8_image_uploaded',
+                        "Uploaded image for entry index {$index}: {$upload_result['filename']}"
+                    );
                 } else {
-                    log_security_event($_SESSION['user_id'], 'invalid_file_upload', "Invalid file for entry index {$index}");
+                    log_security_event(
+                        $_SESSION['user_id'],
+                        'image_upload_failed',
+                        "Failed to upload image for entry index {$index}: {$upload_result['error']}"
+                    );
                 }
             }
             

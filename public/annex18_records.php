@@ -44,7 +44,15 @@ $is_admin = ($_SESSION['user_role'] === 'admin');
 try {
     $column_check = $pdo->query("SHOW COLUMNS FROM annex18_animal_evacuation LIKE 'is_archived'");
     if ($column_check->rowCount() == 0) {
-        $pdo->exec("ALTER TABLE annex18_animal_evacuation ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER remarks");
+        // SECURITY: Do NOT modify database schema from web application
+        error_log("CRITICAL: Missing is_archived column. Run migrations manually");
+        set_flash('Database schema error. Contact administrator.', 'error');
+        header('Location: dashboard.php');
+        exit;
+    }
+    if (false) { // DISABLED FOR SECURITY
+    if ($column_check->rowCount() == 0) {
+        // SECURITY FIX - DO NOT AUTO-ALTER: // $pdo->exec("ALTER TABLE annex18_animal_evacuation ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER remarks");
     }
 } catch (PDOException $e) {
     error_log("Failed to add is_archived column: " . $e->getMessage());
