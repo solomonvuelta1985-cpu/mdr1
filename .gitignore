@@ -1,0 +1,266 @@
+# ============================================================
+# NDRRMC Disaster Management System - Git Ignore Rules
+# ============================================================
+
+# ============================================================
+# SENSITIVE FILES & CREDENTIALS
+# ============================================================
+
+# Configuration files with credentials
+includes/config.php
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Database credentials and backups
+*.sql
+*.sql.gz
+*.sql.zip
+database.ini
+db_config.php
+
+# ============================================================
+# LOGS & CACHE
+# ============================================================
+
+# Log files
+logs/
+*.log
+error_log
+php_errors.log
+debug.log
+access.log
+
+# Cache directories
+cache/
+tmp/
+temp/
+sessions/
+
+# ============================================================
+# UPLOADED FILES
+# ============================================================
+
+# User uploads (images, documents)
+uploads/*
+!uploads/.htaccess
+!uploads/README.md
+
+# Backup uploads
+uploads_backup/
+
+# ============================================================
+# DEVELOPMENT & IDE
+# ============================================================
+
+# Visual Studio Code
+.vscode/
+.vscode-server/
+
+# PhpStorm / JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+.project
+.buildpath
+.settings/
+
+# NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+
+# Atom
+.atom/
+
+# ============================================================
+# OPERATING SYSTEM FILES
+# ============================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================
+# DEPENDENCY MANAGERS
+# ============================================================
+
+# Composer
+/vendor/
+composer.lock
+composer.phar
+
+# NPM / Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Bower
+bower_components/
+
+# ============================================================
+# BUILD & COMPILED FILES
+# ============================================================
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Minified files (unless you want to track them)
+*.min.js
+*.min.css
+
+# Build directories
+build/
+dist/
+out/
+
+# ============================================================
+# BACKUP FILES
+# ============================================================
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.swp
+*.swo
+*~
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ============================================================
+# TESTING & DOCUMENTATION
+# ============================================================
+
+# Test files (if you want to exclude them)
+tests/coverage/
+phpunit.xml
+
+# Generated documentation
+docs/_build/
+site/
+
+# ============================================================
+# SECURITY & TEMPORARY FILES
+# ============================================================
+
+# Security audit files (optional - remove if you want to track them)
+# COMPREHENSIVE_SECURITY_AUDIT.md
+# SECURITY_FIXES_APPLIED.md
+# COMPLETE_SECURITY_HARDENING_REPORT.md
+
+# Temporary files
+*.tmp
+*.temp
+debug_session.php
+QUICK_FIX.txt
+TROUBLESHOOTING_GUIDE.md
+
+# SSH keys (NEVER commit these!)
+*.pem
+*.key
+*.pub
+id_rsa
+id_rsa.pub
+authorized_keys
+
+# SSL certificates
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# ============================================================
+# PROJECT-SPECIFIC
+# ============================================================
+
+# Debug files
+penetration_test.php
+reset_admin.php
+test.php
+phpinfo.php
+
+# Helper files (optional)
+HELPER.txt
+TODO.md
+NOTES.md
+
+# Old/deprecated files
+deprecated/
+old/
+archive/
+
+# ============================================================
+# XAMPP / WAMP SPECIFIC
+# ============================================================
+
+# XAMPP configuration (if present)
+xampp/
+wamp/
+
+# ============================================================
+# VERSION CONTROL
+# ============================================================
+
+# SVN
+.svn/
+
+# Mercurial
+.hg/
+.hgignore
+
+# ============================================================
+# OPTIONAL: DOCUMENTATION TO EXCLUDE
+# ============================================================
+
+# Uncomment if you don't want to track these
+# README.md
+# CHANGELOG.md
+# LICENSE.md
+
+# ============================================================
+# END OF GITIGNORE
+# ============================================================

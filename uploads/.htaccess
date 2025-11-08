@@ -1,0 +1,15 @@
+# Uploads Directory - Security Configuration
+# Prevent PHP execution in uploads directory
+
+# Deny access to all PHP files
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Allow only safe file types
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|pdf|doc|docx|xls|xlsx)$">
+    Require all granted
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes

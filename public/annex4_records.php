@@ -50,12 +50,8 @@ try {
         header('Location: dashboard.php');
         exit;
     }
-    if (false) { // DISABLED FOR SECURITY
-    if ($column_check->rowCount() == 0) {
-        // SECURITY FIX - DO NOT AUTO-ALTER: // $pdo->exec("ALTER TABLE annex4_damaged_houses ADD COLUMN is_archived TINYINT(1) DEFAULT 0");
-    }
 } catch (PDOException $e) {
-    error_log("Failed to add is_archived column: " . $e->getMessage());
+    error_log("Failed to check is_archived column: " . $e->getMessage());
 }
 
 // Handle record actions

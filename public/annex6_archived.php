@@ -36,9 +36,11 @@ try {
     if ($column_check->rowCount() == 0) {
         // SECURITY FIX - DO NOT AUTO-ALTER: // $pdo->exec("ALTER TABLE annex6_infrastructure_damage ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER total_damaged");
     }
+    }
 } catch (PDOException $e) {
     error_log("Failed to add is_archived column: " . $e->getMessage());
 }
+
 
 // Handle restore and delete actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

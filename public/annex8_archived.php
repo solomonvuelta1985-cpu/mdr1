@@ -699,13 +699,13 @@ function viewRecord(recordId) {
         .then(data => {
             document.getElementById('viewRecordContent').innerHTML = data;
         })
-        .catch(error => {
-            document.getElementById('viewRecordContent').innerHTML = `
-                <div class="alert alert-danger">
-                    Error loading record: ${error.message}
-                </div>
-            `;
-        });
+    .catch(error => {
+        document.getElementById('viewRecordContent').innerHTML = `
+            <div class="alert alert-danger">
+                Error loading record: ${error.message}
+            </div>
+        `;
+    });
 }
 
 // Confirm restore function

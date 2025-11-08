@@ -35,9 +35,9 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 $csp_policy = "default-src 'self'; " .
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net https://cdnjs.cloudflare.com; " .
     "style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com https://cdnjs.cloudflare.com; " .
-    "font-src 'self' fonts.gstatic.com cdn.jsdelivr.net data:; " .
+    "font-src 'self' fonts.gstatic.com cdn.jsdelivr.net https://cdnjs.cloudflare.com data:; " .
     "img-src 'self' data: https: http:; " .
-    "connect-src 'self'; " .
+    "connect-src 'self' cdn.jsdelivr.net; " .
     "frame-ancestors 'none'; " .
     "base-uri 'self'; " .
     "form-action 'self';";
