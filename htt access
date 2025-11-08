@@ -1,0 +1,35 @@
+# ==========================================
+# 🚫 SECURITY CONFIGURATION
+# ==========================================
+
+# Disable directory listing
+Options -Indexes
+
+# Hide .htaccess and hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Deny access to sensitive file types
+<FilesMatch "\.(env|sql|ini|log|bak|conf|config\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to certain folders
+RedirectMatch 404 ^/(includes|config|backup|private|logs|uploads)/$
+
+# (Optional) Force HTTPS if you use SSL
+# RewriteEngine On
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# /uploads/.htaccess
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow image files only
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

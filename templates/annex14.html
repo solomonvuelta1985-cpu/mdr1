@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDRRMC Suspension of Work Report</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: clamp(15px, 3vw, 20px);
+            font-family: Arial, sans-serif;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            padding: clamp(20px, 4vw, 25px);
+            margin: 0 auto;
+            width: 100%;
+            max-width: 98vw;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 25px);
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: clamp(10px, 2.5vw, 15px);
+        }
+        .header-section h1 {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .header-section h2 {
+            font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+            font-weight: bold;
+            color: #333;
+        }
+        .entry-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: clamp(20px, 4vw, 25px);
+            margin-bottom: clamp(20px, 4vw, 25px);
+            background-color: #fff;
+        }
+        .section-title {
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 6px;
+        }
+        .entry-card .row {
+            row-gap: 15px;
+        }
+        .form-label {
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .form-control, .form-select {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            padding: clamp(8px, 2vw, 10px);
+            width: 100%;
+            border-radius: 6px;
+            height: 48px; /* Uniform height for inputs */
+        }
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 0.7;
+        }
+        .btn {
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
+            padding: clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 25px);
+            border-radius: 6px;
+            min-height: 48px; /* Uniform height for buttons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-add-entry {
+            background-color: #0d6efd;
+            border: none;
+        }
+        .btn-add-entry:hover {
+            background-color: #0b5ed7;
+        }
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+        .btn-submit {
+            background-color: #198754;
+            border: none;
+        }
+        .btn-submit:hover {
+            background-color: #157347;
+        }
+        .btn-technical-notes {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-technical-notes:hover {
+            background-color: #5a6268;
+        }
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: clamp(15px, 3vw, 20px);
+            gap: 15px;
+        }
+        .action-buttons > div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .action-buttons > div {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            .entry-card .row > div {
+                min-width: 0;
+            }
+        }
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            .modal-body .row {
+                flex-direction: column;
+            }
+            .modal-body .col-md-6 {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="form-container">
+            <div class="header-section">
+                <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
+                <h2>Annex 14: Suspension of Work</h2>
+            </div>
+
+            <form id="suspensionOfWorkForm">
+                <div id="entriesContainer">
+                    <!-- Initial entry -->
+                    <div class="entry-card">
+                        <div class="section-title">Location Details</div>
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="region-0" class="form-label">Region</label>
+                                <input type="text" class="form-control" id="region-0" name="region[]" placeholder="Enter region">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="province-0" class="form-label">Province</label>
+                                <input type="text" class="form-control" id="province-0" name="province[]" placeholder="Enter province">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="city-0" class="form-label">City/Municipality</label>
+                                <input type="text" class="form-control" id="city-0" name="city[]" placeholder="Enter city/municipality">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="barangay-0" class="form-label">Barangay</label>
+                                <input type="text" class="form-control" id="barangay-0" name="barangay[]" placeholder="Enter barangay">
+                            </div>
+                        </div>
+
+                        <div class="section-title mt-4">Suspension Details</div>
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="type-0" class="form-label">Type</label>
+                                <select class="form-select" id="type-0" name="type[]">
+                                    <option value="">Select Type</option>
+                                    <option value="Government">Government – Public offices only</option>
+                                    <option value="Private">Private – Private sector establishments only</option>
+                                    <option value="All">All – Both public and private sectors</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="suspensionDate-0" class="form-label">Date/Time of Suspension</label>
+                                <input type="datetime-local" class="form-control" id="suspensionDate-0" name="suspensionDate[]">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="resumptionDate-0" class="form-label">Date/Time of Resumption</label>
+                                <input type="datetime-local" class="form-control" id="resumptionDate-0" name="resumptionDate[]">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="remarks-0" class="form-label">Remarks</label>
+                                <input type="text" class="form-control" id="remarks-0" name="remarks[]" placeholder="Enter remarks">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-remove" onclick="removeEntry(this)">Remove Entry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-add-entry" id="addEntryBtn">Add Entry</button>
+                        <button type="button" class="btn btn-secondary btn-technical-notes" data-bs-toggle="modal" data-bs-target="#technicalNotesModal">
+                            View Technical Notes
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-submit">Save Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Technical Notes Modal -->
+    <div class="modal fade" id="technicalNotesModal" tabindex="-1" aria-labelledby="technicalNotesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="technicalNotesModalLabel">Technical Notes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Region, Province, City/Municipality, Barangay</strong><br>
+                            Indicate the specific geographic location where the suspension of work was implemented.</p>
+                            
+                            <p><strong>Type</strong><br>
+                            Specify the scope of the suspension:
+                            <ul>
+                                <li><strong>Government</strong> – Public offices only</li>
+                                <li><strong>Private</strong> – Private sector establishments only</li>
+                                <li><strong>All</strong> – Both public and private sectors</li>
+                            </ul>
+                            </p>
+                            
+                            <p><strong>Date / Time of Suspension</strong><br>
+                            Provide the exact date and time when work suspension took effect.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Date / Time of Resumption</strong><br>
+                            Indicate the date and time when work officially resumed.</p>
+                            
+                            <p><strong>Remarks</strong><br>
+                            Include relevant information such as:
+                            <ul>
+                                <li>Reason for suspension (e.g., typhoon, earthquake, flooding, landslide)</li>
+                                <li>Authority or issuing body (e.g., LGU Executive Order, NDRRMC Advisory)</li>
+                                <li>Coverage of the suspension (e.g., all sectors, specific industries, partial or full-day)</li>
+                                <li>Any special conditions or advisories (e.g., skeleton workforce, work-from-home arrangements)</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        let entryCount = 1;
+
+        // Add entry functionality
+        document.getElementById('addEntryBtn').addEventListener('click', function() {
+            const entriesContainer = document.getElementById('entriesContainer');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'entry-card';
+            newEntry.innerHTML = `
+                <div class="section-title">Location Details</div>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <label for="region-${entryCount}" class="form-label">Region</label>
+                        <input type="text" class="form-control" id="region-${entryCount}" name="region[]" placeholder="Enter region">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="province-${entryCount}" class="form-label">Province</label>
+                        <input type="text" class="form-control" id="province-${entryCount}" name="province[]" placeholder="Enter province">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="city-${entryCount}" class="form-label">City/Municipality</label>
+                        <input type="text" class="form-control" id="city-${entryCount}" name="city[]" placeholder="Enter city/municipality">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="barangay-${entryCount}" class="form-label">Barangay</label>
+                        <input type="text" class="form-control" id="barangay-${entryCount}" name="barangay[]" placeholder="Enter barangay">
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">Suspension Details</div>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <label for="type-${entryCount}" class="form-label">Type</label>
+                        <select class="form-select" id="type-${entryCount}" name="type[]">
+                            <option value="">Select Type</option>
+                            <option value="Government">Government – Public offices only</option>
+                            <option value="Private">Private – Private sector establishments only</option>
+                            <option value="All">All – Both public and private sectors</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="suspensionDate-${entryCount}" class="form-label">Date/Time of Suspension</label>
+                        <input type="datetime-local" class="form-control" id="suspensionDate-${entryCount}" name="suspensionDate[]">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="resumptionDate-${entryCount}" class="form-label">Date/Time of Resumption</label>
+                        <input type="datetime-local" class="form-control" id="resumptionDate-${entryCount}" name="resumptionDate[]">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="remarks-${entryCount}" class="form-label">Remarks</label>
+                        <input type="text" class="form-control" id="remarks-${entryCount}" name="remarks[]" placeholder="Enter remarks">
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-remove" onclick="removeEntry(this)">Remove Entry</button>
+                    </div>
+                </div>
+            `;
+            entriesContainer.appendChild(newEntry);
+            entryCount++;
+        });
+
+        // Remove entry functionality
+        function removeEntry(button) {
+            const entry = button.closest('.entry-card');
+            const entriesContainer = document.getElementById('entriesContainer');
+            
+            // Don't remove if it's the only entry
+            if (entriesContainer.children.length > 1) {
+                entry.remove();
+            } else {
+                alert("You need at least one entry in the form.");
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('suspensionOfWorkForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Report saved successfully! (This is a frontend demo - no data was actually sent to a server)');
+            // In a real implementation, you would send the form data to a server here
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+Store uploads outside the webroot, e.g. /var/www/uploads_private/. Serve through a script if needed.
+
+Disable script execution in the uploads directory (e.g. via .htaccess or webserver config).
+
+Apache .htaccess example:
+Validate file signature (magic bytes) — do not trust $_FILES['...']['type'] or file extension alone. Use finfo_file() and getimagesize() to confirm image type.
+
+Re-encode the image server-side (load and save a new image with GD or ImageMagick) — this strips any embedded code and normalizes format.
+
+Limit allowed MIME types and extensions (e.g., image/jpeg, image/png, image/webp) — whitelist only.
+
+Set strict file permissions (e.g., 0644) and unique randomized filenames (avoid original names).
+
+Scan files with antivirus (ClamAV or commercial) if available.
+
+Limit size and dimensions to reasonable bounds.
+
+Rate-limit uploads and require authentication for upload endpoints.
+
+Log uploads and watch suspicious patterns.
+
+Keep image libraries and web server patched and use minimal privileges for the web user.
+
+Use Content Security Policy (CSP) when serving user content to mitigate XSS if images are hosted on same origin.
+
+

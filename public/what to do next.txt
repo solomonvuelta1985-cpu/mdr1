@@ -1,0 +1,134 @@
+ADD: Security Headers
+Create security_headers.php in your includes folder:
+
+php
+<?php
+// security_headers.php
+function set_security_headers() {
+    // Prevent clickjacking
+    header('X-Frame-Options: DENY');
+    
+    // Prevent MIME type sniffing
+    header('X-Content-Type-Options: nosniff');
+    
+    // XSS protection
+    header('X-XSS-Protection: 1; mode=block');
+    
+    // Referrer policy
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    
+    // Content Security Policy
+    header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;");
+    
+    // Strict Transport Security (if using HTTPS)
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+    }
+    
+    // Permissions Policy
+    header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+}
+
+// Call this function at the start of every PHP file
+set_security_headers();
+?>
+5. UPDATE: Your Main Files
+Add this to the top of your PHP files (after session_start()):
+
+In annex14.php, annex4.php, etc:
+
+php
+<?php
+// Add security headers
+require_once '../includes/security_headers.php';
+
+// Enhanced session validation
+if (!validate_session_fingerprint()) {
+    log_security_event($_SESSION['user_id'] ?? 'unknown', 'session_hijack_attempt', 'Session fingerprint validation failed');
+    session_regenerate_id(true);
+    session_destroy();
+    set_flash('Security violation detected. Please log in again.', 'error');
+    header('Location: ../login.php');
+    exit;
+}
+?>
+6. FIX: Database Configuration
+Update your config.php with secure settings:
+
+php
+<?php
+// config.php - Secure version
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'] ?? 'localhost',
+    'secure' => isset($_SERVER['HTTPS']), // Only send over HTTPS
+    'httponly' => true, // Prevent JavaScript access
+    'samesite' => 'Strict' // CSRF protection
+]);
+
+// Database configuration
+$db_host = 'localhost';
+$db_name = 'mdr1';
+$db_user = 'your_username';
+$db_pass = 'your_secure_password';
+
+try {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false, // Security: use real prepared statements
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
+    ]);
+} catch (PDOException $e) {
+    error_log("Database connection failed: " . $e->getMessage());
+    die("Database connection failed. Please try again later.");
+}
+?>
+7. CREATE: Security Monitoring Dashboard
+Create security_dashboard.php for ongoing monitoring:
+
+php
+<?php
+// security_dashboard.php - Admin only
+require_once '../includes/auth.php';
+require_login();
+
+if (!is_admin()) {
+    die('Access denied');
+}
+
+// Security statistics
+$recent_security_events = db_query("
+    SELECT * FROM security_logs 
+    ORDER BY created_at DESC 
+    LIMIT 50
+")->fetchAll();
+
+$rate_limit_violations = db_query("
+    SELECT action, COUNT(*) as violations 
+    FROM security_logs 
+    WHERE event_type = 'rate_limit_exceeded' 
+    AND created_at > DATE_SUB(NOW(), INTERVAL 24 HOUR)
+    GROUP BY action
+")->fetchAll();
+
+echo "<h1>Security Dashboard</h1>";
+echo "<h3>Recent Security Events: " . count($recent_security_events) . "</h3>";
+echo "<h3>Rate Limit Violations (24h): " . count($rate_limit_violations) . "</h3>";
+?>
+🚀 Quick Fix Summary
+Update sanitize() function - Fix XSS vulnerability
+
+Fix session fingerprint validation - Prevent session hijacking
+
+Fix rate limiting logic - Allow proper attempts before blocking
+
+Add security headers - Prevent clickjacking, XSS, etc.
+
+Update database configuration - Use secure settings
+
+Add security monitoring - Track security events
+
+After implementing these fixes, run your security tests again to verify everything is working properly. The "VULNERABLE" status for session hijacking and missing security headers should be resolved.
+

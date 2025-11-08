@@ -1,0 +1,51 @@
+CREATING A USER 
+FULL NAME, BARANGAY,  CONTACT NUMBER, USERNAME, USER ROLE, PASSWORD, RE ENTER PASSWORD.
+
+
+
+IF THE ADMIN IS LOGGED IN HE CAN INPUT ALL ANNEX FORMS BUT IN THE BARANGAY FIELD IS ONLY SELECTABLE(DROPDOWN). 
+AND  FOR EXAMPLE IF THE ADMIN SELECTED A CERTAIN BARANGAY. IF THE USER IN THAT CERTAIN BARANGAY WILL NOT ABLE TO LOGGED IN
+WITH A MESSAGE DISPLAYING. THE ADMIN IS CURRENTLY LOGGED IN USING YOUR ACCOUNT. 
+
+AND IF THE USER IS LOGGED IN  THE FIELDS SUCH AS REGION, PROVINCE, MUNICIPALITY AND BARANGAY IS AUTO FILED UP ALREADY IT HAS ALREADY GREY OUT AND READ ONLY 
+REGION= REGION II
+PROVINCE= CAGAYAN
+MUNICIPALITY = BAGGAO
+BARANGAY= BASED ON THE LOGGED IN USER
+
+
+BUT IF THE ADMIN IS THE ONE LOGGED IN, ONLY THE BARANGAY FIELD IS SELECTABLE.
+
+
+
+
+Common Design Elements:
+
+Bootstrap 5 framework with responsive design
+ADD SKELETON LOADER/ LAZY LOADER
+
+Clean, card-based layout with consistent styling
+
+Uniform button styles and form controls
+
+Technical notes modals with guidelines
+
+Dynamic entry addition/removal functionality
+
+Mobile-responsive design with clamp() for fluid sizing
+
+Consistent color scheme and typography
+
+Structural Pattern:
+
+Header section with title and subtitle
+
+Form container with entry cards
+
+Location details section (Region, Province, City/Municipality, Barangay)
+
+Category-specific sections
+
+Action buttons (Add Entry, View Technical Notes, Save Report)
+
+JavaScript for dynamic form management

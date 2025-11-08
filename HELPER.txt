@@ -1,0 +1,161 @@
+You are helping me develop a structured PHP system that does NOT use MVC. 
+When I give you a pure HTML file (with CSS and minimal JS), you will:
+1. Analyze its fields, structure, and form elements.
+2. Generate all necessary PHP files that follow my standard folder pattern below.
+
+=========================
+📂 My Folder Structure
+=========================
+project_root/
+│
+├── public/                  
+│   ├── [HTML_FILE_NAME].html   ← original front-end form (view only)
+│   ├── [HTML_FILE_NAME].php    ← same layout but with PHP backend connection
+│   ├── assets/ (css/js/img)
+│
+├── includes/
+│   ├── config.php        ← database connection (PDO)
+│   ├── functions.php     ← sanitization, login check, csrf token, etc.
+│   ├── auth.php          ← login/session checker
+│   └── header.php/footer.php (optional)
+│
+├── api/                  ← backend handlers for AJAX if needed
+│   ├── [HTML_FILE_NAME]_save.php
+│   ├── [HTML_FILE_NAME]_update.php
+│   └── [HTML_FILE_NAME]_delete.php
+│
+├── templates/
+│   ├── layout.html       ← optional shared layout
+│
+└── uploads/
+    └── (for uploaded files)
+=========================
+
+=========================
+🧱 What I Want You To Generate
+=========================
+When I provide an HTML file (example: annex1.html), create:
+
+1️⃣ `[HTML_FILE_NAME].php` inside `/public/`  
+   - Convert form into working PHP (with POST handling)
+   - Use Bootstrap structure if applicable
+   - Include PHP code at top for insert/update using PDO
+   - Use `include '../includes/config.php';`
+   - Use `include '../includes/functions.php';`
+   - Sanitize all inputs using `sanitize()`
+   - Use `verify_token()` for CSRF validation
+   - Show feedback using `set_flash()` and `show_flash()`
+
+2️⃣ `[HTML_FILE_NAME]_save.php` inside `/api/`  
+   - Backend handler for insert/update/delete operations
+   - Use prepared statements
+   - Return JSON or redirect (depending on form)
+
+3️⃣ Add sample database table SQL suggestion  
+   - Suggest what the database table structure might look like (CREATE TABLE ...)
+
+4️⃣ If there’s a file upload, generate code using `move_uploaded_file()`
+   and point to `/uploads/` folder.
+
+=========================
+🧰 Global Files
+=========================
+Assume I already have these files and functions:
+
+- `config.php` = PDO connection
+- `functions.php` = sanitize(), db_query(), set_flash(), show_flash(), generate_token(), verify_token()
+- `auth.php` = require_login()
+
+=========================
+📌 Output Format
+=========================
+Your answer must include:
+✅ A brief explanation  
+✅ The generated PHP files (public + api) with code  
+✅ Optional SQL table suggestion  
+✅ Notes or tips for integration
+
+=========================
+🧠 Example Trigger
+=========================
+If I upload `annex1.html`, you should output:
+- `/public/annex1.php`
+- `/api/annex1_save.php`
+- Suggested `annex1` SQL table
+- Integration notes
+
+=========================
+⚠️ Important Rules
+=========================
+- Don’t use MVC or OOP framework (keep simple functional PHP)
+- Always use PDO prepared statements
+- Always sanitize inputs
+- Always add CSRF validation for POST forms
+- Maintain same design as HTML (don’t change layout)
+- Separate logic and presentation only with includes (not full MVC)
+=========================
+
+
+
+Keep all existing PHP/SQL logic, queries, and the current front-end and back-end design intact."
+
+"Preserve the current PHP and SQL structure, queries, and both front-end and back-end design elements."
+
+"Maintain the existing PHP/SQL code, database queries, and the established front-end and back-end design."
+
+"Do not alter the current PHP, SQL queries, or the front-end/back-end design; only extend or adjust as needed."
+
+"Ensure that all current PHP/SQL implementation, queries, and design elements in both front-end and back-end remain unchanged."
+
+You want the collapsed sidebar to behave like in your attached image — meaning:
+even when the sidebar is collapsed (toggled via the hamburger), hovering over an icon should show the full dropdown menu (floating overlay style).
+
+
+
+
+Cross-Browser Locking:
+Admin selects barangay → Locks in DATABASE (not just session)
+
+Database lock works across ALL browsers and devices
+
+Regular user tries to login → System checks DATABASE for locks
+
+If locked → User sees clear message and cannot login
+
+Visual Indicators:
+🔒 = Barangay locked by another admin
+
+✅ = Currently selected by you
+
+Clear admin names shown in dropdown
+
+Automatic Cleanup:
+Locks expire after 1 hour automatically
+
+Cleanup runs on every page load
+
+Prevents permanent locking
+
+
+
+Immediate Locking
+Locks trigger instantly when admin selects barangay from dropdown
+
+No need to wait for form submission
+
+✅ Cross-Browser Protection
+Database-based locking works across all browsers and devices
+
+Session-based + Database locking for maximum reliability
+
+✅ User Experience
+Clear error messages showing which admin is using which barangay
+
+Visual indicators in dropdown (🔒, ✅)
+
+Automatic cleanup after 1 hour
+
+✅ Emergency Controls
+Admin panel to manually unlock barangays if needed
+
+Force unlock capabilities

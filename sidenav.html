@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDRRMC Reporting System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #0dcaf0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --sidebar-width: 280px;
+            --sidebar-collapsed-width: 70px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fb;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            transition: all 0.3s;
+            z-index: 1000;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        #sidebar.collapsed .sidebar-header h3,
+        #sidebar.collapsed .nav-link span {
+            display: none;
+        }
+
+        #sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 15px 10px;
+        }
+
+        #sidebar.collapsed .nav-link i {
+            margin-right: 0;
+            font-size: 1.2rem;
+        }
+
+        #sidebar.collapsed .dropdown-toggle::after {
+            display: none;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-header p {
+            margin: 5px 0 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        #sidebar.collapsed .sidebar-header p {
+            display: none;
+        }
+
+        .sidebar-content {
+            padding: 20px 0;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px 20px;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--info-color);
+        }
+
+        .nav-link.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 3px solid var(--warning-color);
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-menu {
+            background: rgba(30, 60, 114, 0.95);
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-item {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px 10px 40px;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--info-color);
+        }
+
+        .dropdown-toggle::after {
+            margin-left: auto;
+        }
+
+        /* Main Content Styles */
+        #content {
+            margin-left: var(--sidebar-width);
+            transition: all 0.3s;
+            min-height: 100vh;
+            background-color: #f5f7fb;
+        }
+
+        #content.expanded {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        .top-navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sidebarCollapse {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #sidebarCollapse:hover {
+            color: var(--info-color);
+            transform: rotate(90deg);
+        }
+
+        .page-header {
+            padding: 30px;
+            background: white;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .dashboard-cards {
+            padding: 0 20px 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .card-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -var(--sidebar-width);
+            }
+            
+            #sidebar.active {
+                margin-left: 0;
+            }
+            
+            #content {
+                margin-left: 0;
+            }
+            
+            #content.expanded {
+                margin-left: 0;
+            }
+            
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .sidebar-content::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animation for sidebar items */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .nav-item {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .nav-item:nth-child(3) { animation-delay: 0.3s; }
+        .nav-item:nth-child(4) { animation-delay: 0.4s; }
+        .nav-item:nth-child(5) { animation-delay: 0.5s; }
+        .nav-item:nth-child(6) { animation-delay: 0.6s; }
+        .nav-item:nth-child(7) { animation-delay: 0.7s; }
+        .nav-item:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>NDRRMC Reports</h3>
+            <p>Memorandum Circular No. 05, s. 2025</p>
+        </div>
+
+        <div class="sidebar-content">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#incidentsSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <span>Incident Reports</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="incidentsSubmenu">
+                        <li>
+                            <a class="dropdown-item" href="annex1.html" target="contentFrame">
+                                <i class="bi bi-1-circle"></i>
+                                <span>Annex 1: Related Incident</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex2.html" target="contentFrame">
+                                <i class="bi bi-2-circle"></i>
+                                <span>Annex 2: Affected Population</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex3.html" target="contentFrame">
+                                <i class="bi bi-3-circle"></i>
+                                <span>Annex 3: Casualties</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#damageSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="bi bi-house"></i>
+                        <span>Damage Assessment</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="damageSubmenu">
+                        <li>
+                            <a class="dropdown-item" href="annex4.html" target="contentFrame">
+                                <i class="bi bi--circle"></i>
+                                <span>Annex 4: Damaged Houses</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex5.html" target="contentFrame">
+                                <i class="bi bi-5-circle"></i>
+                                <span>Annex 5: Agriculture</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex6.html" target="contentFrame">
+                                <i class="bi bi-6-circle"></i>
+                                <span>Annex 6: Infrastructure</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex7.html" target="contentFrame">
+                                <i class="bi bi-7-circle"></i>
+                                <span>Annex 7: Other Assets</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#statusSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="bi bi-clipboard-check"></i>
+                        <span>Status Reports</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="statusSubmenu">
+                        <li>
+                            <a class="dropdown-item" href="annex8.html" target="contentFrame">
+                                <i class="bi bi-8-circle"></i>
+                                <span>Annex 8: Roads & Bridges</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex9.html" target="contentFrame">
+                                <i class="bi bi-9-circle"></i>
+                                <span>Annex 9: Power Supply</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex11.html" target="contentFrame">
+                                <i class="bi bi-telephone"></i>
+                                <span>Annex 11: Communication</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex14.html" target="contentFrame">
+                                <i class="bi bi-briefcase"></i>
+                                <span>Annex 14: Work Suspension</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#assistanceSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="bi bi-heart"></i>
+                        <span>Assistance Reports</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="assistanceSubmenu">
+                        <li>
+                            <a class="dropdown-item" href="annex20.html" target="contentFrame">
+                                <i class="bi bi-people"></i>
+                                <span>Annex 20: To Families</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="annex21.html" target="contentFrame">
+                                <i class="bi bi-building"></i>
+                                <span>Annex 21: To LGUs/Agencies</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center">
+                    <button type="button" id="sidebarCollapse" class="btn">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-3">
+                        <h4 class="mb-0">NDRRMC Reporting System</h4>
+                        <small class="text-muted">Comprehensive disaster reporting platform</small>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container-fluid">
+                <h1>Dashboard</h1>
+                <p>Welcome to the NDRRMC Reporting System. Select a report from the sidebar to get started.</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-icon text-primary">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <h5 class="card-title">Incident Reports</h5>
+                                <p class="card-text">Report related incidents and casualty information for disaster monitoring.</p>
+                                <a href="#incidentsSubmenu" class="card-link" data-bs-toggle="collapse">
+                                    View Reports <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-icon text-warning">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+</svg>
+                                </div>
+                                <h5 class="card-title">Damage Assessment</h5>
+                                <p class="card-text">Document damages to houses, agriculture, infrastructure, and other assets.</p>
+                                <a href="#damageSubmenu" class="card-link" data-bs-toggle="collapse">
+                                    View Reports <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-icon text-info">
+                                    <i class="bi bi-clipboard-check"></i>
+                                </div>
+                                <h5 class="card-title">Status Reports</h5>
+                                <p class="card-text">Monitor status of roads, bridges, power, communication, and work suspension.</p>
+                                <a href="#statusSubmenu" class="card-link" data-bs-toggle="collapse">
+                                    View Reports <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-icon text-success">
+                                    <i class="bi bi-heart"></i>
+                                </div>
+                                <h5 class="card-title">Assistance Reports</h5>
+                                <p class="card-text">Track assistance provided to affected families, LGUs, and agencies.</p>
+                                <a href="#assistanceSubmenu" class="card-link" data-bs-toggle="collapse">
+                                    View Reports <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Quick Start Guide</h5>
+                                <p class="card-text">
+                                    This system follows the NDRRMC Memorandum Circular No. 05, s. 2025 reporting templates. 
+                                    To submit a report, select the appropriate annex from the sidebar navigation. Each form 
+                                    includes technical notes to guide you through the reporting process.
+                                </p>
+                                <div class="row mt-4">
+                                    <div class="col-md-4">
+                                        <h6><i class="bi bi-1-circle text-primary me-2"></i>Select Report</h6>
+                                        <p class="small text-muted">Choose the appropriate annex from the sidebar menu.</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><i class="bi bi-2-circle text-primary me-2"></i>Fill Out Form</h6>
+                                        <p class="small text-muted">Complete all required fields with accurate information.</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><i class="bi bi-3-circle text-primary me-2"></i>Submit Report</h6>
+                                        <p class="small text-muted">Review and save your report for official submission.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar toggle functionality
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content');
+            const sidebarCollapse = document.getElementById('sidebarCollapse');
+            
+            sidebarCollapse.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                content.classList.toggle('expanded');
+            });
+            
+            // Mobile sidebar toggle
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('collapsed');
+                content.classList.add('expanded');
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Close sidebar on mobile after selection
+                    if (window.innerWidth < 768) {
+                        sidebar.classList.add('collapsed');
+                        content.classList.add('expanded');
+                    }
+                });
+            });
+            
+            // Auto-expand submenus when their items are active
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const parentMenu = this.closest('.collapse');
+                    if (parentMenu) {
+                        // Close all other submenus
+                        document.querySelectorAll('.collapse').forEach(menu => {
+                            if (menu !== parentMenu) {
+                                menu.classList.remove('show');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('collapsed');
+                    content.classList.add('expanded');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    content.classList.remove('expanded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
