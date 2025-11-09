@@ -17,3 +17,5 @@
 [08-Nov-2025 23:04:53 Asia/Manila] DEBUG: Running user query for user_id: 6
 [08-Nov-2025 23:04:53 Asia/Manila] DEBUG: Found 0 records
 [08-Nov-2025 23:52:07 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 07:30:22 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 07:37:55 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6

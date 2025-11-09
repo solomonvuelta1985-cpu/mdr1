@@ -485,13 +485,15 @@
         // Define page groups for each dropdown
         $incidentPages = ['annex1.php', 'annex2.php', 'annex3.php', 'annex1_records.php'];
         $damagePages = ['annex4.php', 'annex5.php', 'annex6.php', 'annex7.php'];
-        $statusPages = ['annex8.php', 'annex9.php', 'annex11.php', 'annex14.php'];
-        $assistancePages = ['annex20.php', 'annex21.php'];
-        
+        $statusPages = ['annex8.php', 'annex9.php', 'annex11.php', 'annex14.php', 'annex15.php'];
+        $evacuationPages = ['annex17.php', 'annex18.php'];
+        $assistancePages = ['annex19.php', 'annex20.php', 'annex21.php'];
+
         // Check which section is active
         $incidentActive = in_array($currentPage, $incidentPages);
         $damageActive = in_array($currentPage, $damagePages);
         $statusActive = in_array($currentPage, $statusPages);
+        $evacuationActive = in_array($currentPage, $evacuationPages);
         $assistanceActive = in_array($currentPage, $assistancePages);
     ?>
 
@@ -636,9 +638,40 @@
                                 <span>Annex 14: Work Suspension</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex15.php' ? 'active' : ''; ?>" href="annex15.php">
+                                <i class="bi bi-backpack"></i>
+                                <span>Annex 15: Class Suspension</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                
+
+                <!-- Evacuation Reports Dropdown -->
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle <?php echo $evacuationActive ? 'active' : ''; ?>"
+                       href="#evacuationSubmenu"
+                       data-bs-toggle="collapse"
+                       aria-expanded="<?php echo $evacuationActive ? 'true' : 'false'; ?>">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Evacuation Reports</span>
+                    </a>
+                    <ul class="collapse list-unstyled <?php echo $evacuationActive ? 'show' : ''; ?>" id="evacuationSubmenu">
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex17.php' ? 'active' : ''; ?>" href="annex17.php">
+                                <i class="bi bi-person-walking"></i>
+                                <span>Annex 17: Evacuation (People)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex18.php' ? 'active' : ''; ?>" href="annex18.php">
+                                <i class="bi bi-piggy-bank"></i>
+                                <span>Annex 18: Evacuation (Animals)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Assistance Reports Dropdown -->
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle <?php echo $assistanceActive ? 'active' : ''; ?>" 
@@ -649,6 +682,12 @@
                         <span>Assistance Reports</span>
                     </a>
                     <ul class="collapse list-unstyled <?php echo $assistanceActive ? 'show' : ''; ?>" id="assistanceSubmenu">
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex19.php' ? 'active' : ''; ?>" href="annex19.php">
+                                <i class="bi bi-house-heart"></i>
+                                <span>Annex 19: Families Assisted</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex20.php' ? 'active' : ''; ?>" href="annex20.php">
                                 <i class="bi bi-people"></i>

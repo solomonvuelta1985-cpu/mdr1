@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDRRMC Suspension of Classes Report</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: clamp(15px, 3vw, 20px);
+            font-family: Arial, sans-serif;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            padding: clamp(20px, 4vw, 25px);
+            margin: 0 auto;
+            width: 100%;
+            max-width: 98vw;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 25px);
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: clamp(10px, 2.5vw, 15px);
+        }
+        .header-section h1 {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .header-section h2 {
+            font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+            font-weight: bold;
+            color: #333;
+        }
+        .entry-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: clamp(20px, 4vw, 25px);
+            margin-bottom: clamp(20px, 4vw, 25px);
+            background-color: #fff;
+        }
+        .section-title {
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 6px;
+        }
+        .entry-card .row {
+            row-gap: 15px;
+        }
+        .form-label {
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .form-control, .form-select {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            padding: clamp(8px, 2vw, 10px);
+            width: 100%;
+            border-radius: 6px;
+            height: 48px;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+            height: auto;
+        }
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 0.7;
+        }
+        .datetime-local {
+            font-size: clamp(0.85rem, 2.2vw, 0.9rem);
+        }
+        .btn {
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
+            padding: clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 25px);
+            border-radius: 6px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-add-entry {
+            background-color: #0d6efd;
+            border: none;
+        }
+        .btn-add-entry:hover {
+            background-color: #0b5ed7;
+        }
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+        .btn-submit {
+            background-color: #198754;
+            border: none;
+        }
+        .btn-submit:hover {
+            background-color: #157347;
+        }
+        .btn-technical-notes {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-technical-notes:hover {
+            background-color: #5a6268;
+        }
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: clamp(15px, 3vw, 20px);
+            gap: 15px;
+        }
+        .action-buttons > div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        /* Status indicator */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .status-active {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-resumed {
+            background-color: #d1edff;
+            color: #0c63e4;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .action-buttons > div {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            .entry-card .row > div {
+                min-width: 0;
+            }
+        }
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            .modal-body .row {
+                flex-direction: column;
+            }
+            .modal-body .col-md-6 {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="form-container">
+            <div class="header-section">
+                <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
+                <h2>Annex 15: Suspension of Classes</h2>
+            </div>
+
+            <form id="suspensionClassesForm">
+                <div id="entriesContainer">
+                    <!-- Initial entry -->
+                    <div class="entry-card">
+                        <div class="section-title">Location Details</div>
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="region-0" class="form-label">Region</label>
+                                <input type="text" class="form-control" id="region-0" name="region[]" placeholder="Enter region">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="province-0" class="form-label">Province</label>
+                                <input type="text" class="form-control" id="province-0" name="province[]" placeholder="Enter province">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="city-0" class="form-label">City/Municipality</label>
+                                <input type="text" class="form-control" id="city-0" name="city[]" placeholder="Enter city/municipality">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="barangay-0" class="form-label">Barangay</label>
+                                <input type="text" class="form-control" id="barangay-0" name="barangay[]" placeholder="Enter barangay">
+                            </div>
+                        </div>
+
+                        <div class="section-title mt-4">Suspension Details</div>
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="level-0" class="form-label">Level</label>
+                                <select class="form-select" id="level-0" name="level[]">
+                                    <option value="">Select Level</option>
+                                    <option value="Preschool / Kindergarten">Preschool / Kindergarten</option>
+                                    <option value="Elementary">Elementary</option>
+                                    <option value="Secondary / High School">Secondary / High School</option>
+                                    <option value="Senior High School">Senior High School</option>
+                                    <option value="Tertiary / College / University">Tertiary / College / University</option>
+                                    <option value="All Levels">All Levels</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="type-0" class="form-label">Type</label>
+                                <select class="form-select" id="type-0" name="type[]">
+                                    <option value="">Select Type</option>
+                                    <option value="Public">Public - Government-run schools only</option>
+                                    <option value="Private">Private - Private learning institutions only</option>
+                                    <option value="All">All - Both public and private institutions</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="suspensionDate-0" class="form-label">Date/Time of Suspension</label>
+                                <input type="datetime-local" class="form-control datetime-local" id="suspensionDate-0" name="suspensionDate[]">
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="resumptionDate-0" class="form-label">Date/Time of Resumption</label>
+                                <input type="datetime-local" class="form-control datetime-local" id="resumptionDate-0" name="resumptionDate[]">
+                            </div>
+                        </div>
+
+                        <div class="section-title mt-4">Additional Information</div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="suspensionReason-0" class="form-label">Reason for Suspension</label>
+                                <select class="form-select" id="suspensionReason-0" name="suspensionReason[]">
+                                    <option value="">Select Reason</option>
+                                    <option value="Typhoon Signal">Typhoon Signal</option>
+                                    <option value="Heavy Rainfall / Flooding">Heavy Rainfall / Flooding</option>
+                                    <option value="Earthquake">Earthquake</option>
+                                    <option value="Volcanic Activity">Volcanic Activity</option>
+                                    <option value="Transport Strike">Transport Strike</option>
+                                    <option value="Health Emergency">Health Emergency</option>
+                                    <option value="Security Concern">Security Concern</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="issuingAuthority-0" class="form-label">Issuing Authority</label>
+                                <select class="form-select" id="issuingAuthority-0" name="issuingAuthority[]">
+                                    <option value="">Select Authority</option>
+                                    <option value="LGU Executive Order">LGU Executive Order</option>
+                                    <option value="DepEd Advisory">DepEd Advisory</option>
+                                    <option value="CHED Memorandum">CHED Memorandum</option>
+                                    <option value="School Administration">School Administration</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="suspensionScope-0" class="form-label">Scope of Suspension</label>
+                                <select class="form-select" id="suspensionScope-0" name="suspensionScope[]">
+                                    <option value="">Select Scope</option>
+                                    <option value="Whole Day">Whole Day</option>
+                                    <option value="Half Day (Morning)">Half Day (Morning)</option>
+                                    <option value="Half Day (Afternoon)">Half Day (Afternoon)</option>
+                                    <option value="Specific Levels Only">Specific Levels Only</option>
+                                    <option value="All Schools in Area">All Schools in Area</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="alternativeDelivery-0" class="form-label">Alternative Delivery</label>
+                                <select class="form-select" id="alternativeDelivery-0" name="alternativeDelivery[]">
+                                    <option value="">Select Alternative</option>
+                                    <option value="None">None</option>
+                                    <option value="Modular Learning">Modular Learning</option>
+                                    <option value="Online Classes">Online Classes</option>
+                                    <option value="Asynchronous Activities">Asynchronous Activities</option>
+                                    <option value="Make-up Classes">Make-up Classes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-12">
+                                <label for="remarks-0" class="form-label">Remarks</label>
+                                <textarea class="form-control" id="remarks-0" name="remarks[]" placeholder="Enter additional details, special instructions, or other relevant information"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-remove" onclick="removeEntry(this)">Remove Entry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-add-entry" id="addEntryBtn">Add Entry</button>
+                        <button type="button" class="btn btn-secondary btn-technical-notes" data-bs-toggle="modal" data-bs-target="#technicalNotesModal">
+                            View Technical Notes
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-submit">Save Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Technical Notes Modal -->
+    <div class="modal fade" id="technicalNotesModal" tabindex="-1" aria-labelledby="technicalNotesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="technicalNotesModalLabel">Technical Notes - Suspension of Classes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Region, Province, City/Municipality, Barangay</strong><br>
+                            Specify the exact geographic area where class suspension was declared.</p>
+                            
+                            <p><strong>Level</strong><br>
+                            Indicate the educational level affected by the suspension, such as:
+                            <ul>
+                                <li>Preschool / Kindergarten</li>
+                                <li>Elementary</li>
+                                <li>Secondary / High School</li>
+                                <li>Senior High School</li>
+                                <li>Tertiary / College / University</li>
+                                <li>All Levels</li>
+                            </ul>
+                            </p>
+                            
+                            <p><strong>Type</strong><br>
+                            Indicate whether the suspension applies to:
+                            <ul>
+                                <li><strong>Public</strong> - Government-run schools only</li>
+                                <li><strong>Private</strong> - Private learning institutions only</li>
+                                <li><strong>All</strong> - Both public and private institutions</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Date / Time of Suspension</strong><br>
+                            Specify when classes were officially suspended.</p>
+                            
+                            <p><strong>Date / Time of Resumption</strong><br>
+                            Indicate when classes resumed, if applicable.</p>
+                            
+                            <p><strong>Remarks</strong><br>
+                            Provide any relevant details, such as:
+                            <ul>
+                                <li>Reason for the suspension (e.g., typhoon signal, earthquake, transport strike, flooding)</li>
+                                <li>Authority or issuing body (e.g., LGU Executive Order, DepEd Advisory, CHED Memorandum)</li>
+                                <li>Scope of suspension (e.g., specific levels only, whole-day or half-day)</li>
+                                <li>Special instructions (e.g., shift to modular/online delivery, school opening delay)</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        let entryCount = 1;
+
+        // Add entry functionality
+        document.getElementById('addEntryBtn').addEventListener('click', function() {
+            const entriesContainer = document.getElementById('entriesContainer');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'entry-card';
+            newEntry.innerHTML = `
+                <div class="section-title">Location Details</div>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <label for="region-${entryCount}" class="form-label">Region</label>
+                        <input type="text" class="form-control" id="region-${entryCount}" name="region[]" placeholder="Enter region">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="province-${entryCount}" class="form-label">Province</label>
+                        <input type="text" class="form-control" id="province-${entryCount}" name="province[]" placeholder="Enter province">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="city-${entryCount}" class="form-label">City/Municipality</label>
+                        <input type="text" class="form-control" id="city-${entryCount}" name="city[]" placeholder="Enter city/municipality">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="barangay-${entryCount}" class="form-label">Barangay</label>
+                        <input type="text" class="form-control" id="barangay-${entryCount}" name="barangay[]" placeholder="Enter barangay">
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">Suspension Details</div>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <label for="level-${entryCount}" class="form-label">Level</label>
+                        <select class="form-select" id="level-${entryCount}" name="level[]">
+                            <option value="">Select Level</option>
+                            <option value="Preschool / Kindergarten">Preschool / Kindergarten</option>
+                            <option value="Elementary">Elementary</option>
+                            <option value="Secondary / High School">Secondary / High School</option>
+                            <option value="Senior High School">Senior High School</option>
+                            <option value="Tertiary / College / University">Tertiary / College / University</option>
+                            <option value="All Levels">All Levels</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="type-${entryCount}" class="form-label">Type</label>
+                        <select class="form-select" id="type-${entryCount}" name="type[]">
+                            <option value="">Select Type</option>
+                            <option value="Public">Public - Government-run schools only</option>
+                            <option value="Private">Private - Private learning institutions only</option>
+                            <option value="All">All - Both public and private institutions</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="suspensionDate-${entryCount}" class="form-label">Date/Time of Suspension</label>
+                        <input type="datetime-local" class="form-control datetime-local" id="suspensionDate-${entryCount}" name="suspensionDate[]">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label for="resumptionDate-${entryCount}" class="form-label">Date/Time of Resumption</label>
+                        <input type="datetime-local" class="form-control datetime-local" id="resumptionDate-${entryCount}" name="resumptionDate[]">
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">Additional Information</div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="suspensionReason-${entryCount}" class="form-label">Reason for Suspension</label>
+                        <select class="form-select" id="suspensionReason-${entryCount}" name="suspensionReason[]">
+                            <option value="">Select Reason</option>
+                            <option value="Typhoon Signal">Typhoon Signal</option>
+                            <option value="Heavy Rainfall / Flooding">Heavy Rainfall / Flooding</option>
+                            <option value="Earthquake">Earthquake</option>
+                            <option value="Volcanic Activity">Volcanic Activity</option>
+                            <option value="Transport Strike">Transport Strike</option>
+                            <option value="Health Emergency">Health Emergency</option>
+                            <option value="Security Concern">Security Concern</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="issuingAuthority-${entryCount}" class="form-label">Issuing Authority</label>
+                        <select class="form-select" id="issuingAuthority-${entryCount}" name="issuingAuthority[]">
+                            <option value="">Select Authority</option>
+                            <option value="LGU Executive Order">LGU Executive Order</option>
+                            <option value="DepEd Advisory">DepEd Advisory</option>
+                            <option value="CHED Memorandum">CHED Memorandum</option>
+                            <option value="School Administration">School Administration</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="suspensionScope-${entryCount}" class="form-label">Scope of Suspension</label>
+                        <select class="form-select" id="suspensionScope-${entryCount}" name="suspensionScope[]">
+                            <option value="">Select Scope</option>
+                            <option value="Whole Day">Whole Day</option>
+                            <option value="Half Day (Morning)">Half Day (Morning)</option>
+                            <option value="Half Day (Afternoon)">Half Day (Afternoon)</option>
+                            <option value="Specific Levels Only">Specific Levels Only</option>
+                            <option value="All Schools in Area">All Schools in Area</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="alternativeDelivery-${entryCount}" class="form-label">Alternative Delivery</label>
+                        <select class="form-select" id="alternativeDelivery-${entryCount}" name="alternativeDelivery[]">
+                            <option value="">Select Alternative</option>
+                            <option value="None">None</option>
+                            <option value="Modular Learning">Modular Learning</option>
+                            <option value="Online Classes">Online Classes</option>
+                            <option value="Asynchronous Activities">Asynchronous Activities</option>
+                            <option value="Make-up Classes">Make-up Classes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3">
+                    <div class="col-12">
+                        <label for="remarks-${entryCount}" class="form-label">Remarks</label>
+                        <textarea class="form-control" id="remarks-${entryCount}" name="remarks[]" placeholder="Enter additional details, special instructions, or other relevant information"></textarea>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-remove" onclick="removeEntry(this)">Remove Entry</button>
+                    </div>
+                </div>
+            `;
+            entriesContainer.appendChild(newEntry);
+            entryCount++;
+        });
+
+        // Remove entry functionality
+        function removeEntry(button) {
+            const entry = button.closest('.entry-card');
+            const entriesContainer = document.getElementById('entriesContainer');
+            
+            // Don't remove if it's the only entry
+            if (entriesContainer.children.length > 1) {
+                entry.remove();
+            } else {
+                alert("You need at least one entry in the form.");
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('suspensionClassesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Report saved successfully! (This is a frontend demo - no data was actually sent to a server)');
+            // In a real implementation, you would send the form data to a server here
+        });
+    </script>
+</body>
+</html>
