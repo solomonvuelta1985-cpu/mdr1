@@ -357,10 +357,24 @@ background-color: #f8f9fa;
             <a href="annex1.php" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Add New Incident
             </a>
-            <div class="action-buttons">
-                <button class="btn btn-outline-secondary" onclick="exportToCSV()">
-                    <i class="fas fa-download me-2"></i>Export CSV
+            <div class="d-flex gap-2 flex-wrap">
+                <!-- Print Button -->
+                <button class="btn btn-success" onclick="openPrintPreview()">
+                    <i class="fas fa-print me-2"></i>Print
                 </button>
+
+                <!-- Export Dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-file-export me-2"></i>Export
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="exportRecords('pdf')"><i class="fas fa-file-pdf text-danger me-2"></i>PDF</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="exportRecords('excel')"><i class="fas fa-file-excel text-success me-2"></i>Excel</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="exportRecords('word')"><i class="fas fa-file-word text-primary me-2"></i>Word</a></li>
+                    </ul>
+                </div>
+
                 <a href="annex1_archived.php" class="btn btn-outline-warning">
                     <i class="fas fa-archive me-2"></i>View Archived
                 </a>
@@ -585,10 +599,10 @@ function confirmArchive(recordId) {
 function exportToCSV() {
     const records = <?php echo json_encode($records); ?>;
     let csvContent = "data:text/csv;charset=utf-8,";
-    
+
     // Headers
     csvContent += "ID,Barangay,Incident Type,Occurrence Date,Description,Actions Taken,Remarks,Created By,Created At\n";
-    
+
     // Data
     records.forEach(record => {
         const row = [
@@ -604,7 +618,7 @@ function exportToCSV() {
         ].join(',');
         csvContent += row + "\n";
     });
-    
+
     // Download
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -613,6 +627,32 @@ function exportToCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+// Open print preview
+function openPrintPreview() {
+    const printWindow = window.open('../print_templates/annex1_print_template.php', 'Print Preview', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+    if (!printWindow) {
+        alert('Please allow pop-ups to open the print preview.');
+    }
+}
+
+// Export records to specified format
+function exportRecords(format) {
+    let url = '../api/annex1_export.php?type=' + format;
+
+    if (format === 'pdf') {
+        // For PDF, open in new window
+        const pdfWindow = window.open(url, 'PDF Export', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+        if (!pdfWindow) {
+            alert('Please allow pop-ups to generate PDF.');
+        }
+    } else {
+        // For Excel and Word, trigger download
+        window.location.href = url;
+    }
+
+    return false;
 }
 </script>
 

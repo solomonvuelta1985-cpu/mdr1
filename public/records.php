@@ -1,11 +1,11 @@
 <?php
 /**
- * NDRRMC Centralized Records Management Dashboard
- * All annex records in one organized location
+ * NDRRMC Centralized Records Management Dashboard - Accordion Version
+ * Compact accordion layout for all annex records
  */
 
 // Define page title for the header
-define('PAGE_TITLE', 'Records Management Dashboard');
+define('PAGE_TITLE', 'Records Management - Accordion View');
 
 // Include required configuration and function files
 require_once '../includes/config.php';
@@ -18,8 +18,8 @@ require_login();
 // AUDIT LOG: Page access
 log_audit_action(
     $_SESSION['user_id'],
-    'records_dashboard_access',
-    'Accessed centralized records management dashboard'
+    'records_accordion_access',
+    'Accessed accordion-style records dashboard'
 );
 
 // Get user data
@@ -39,7 +39,6 @@ function tableExists($table) {
 
 // Function to get record count for each annex
 function getRecordCount($table, $user_id, $is_admin) {
-    // First check if table exists
     if (!tableExists($table)) {
         return 0;
     }
@@ -51,7 +50,6 @@ function getRecordCount($table, $user_id, $is_admin) {
             $stmt = db_query("SELECT COUNT(*) FROM {$table} WHERE created_by = ? AND (is_archived = 0 OR is_archived IS NULL)", [$user_id]);
         }
 
-        // Check if query was successful
         if ($stmt === false) {
             return 0;
         }
@@ -59,7 +57,6 @@ function getRecordCount($table, $user_id, $is_admin) {
         $count = $stmt->fetchColumn();
         return $count !== false ? $count : 0;
     } catch (Exception $e) {
-        // Table might exist but have different structure
         return 0;
     }
 }
@@ -83,19 +80,19 @@ $recordCounts = [
     'annex21' => getRecordCount('annex21_lgus_agencies', $_SESSION['user_id'], $is_admin),
 ];
 
-// Calculate totals per category
-$incidentTotal = $recordCounts['annex1'] + $recordCounts['annex2'] + $recordCounts['annex3'];
-$damageTotal = $recordCounts['annex4'] + $recordCounts['annex5'] + $recordCounts['annex6'] + $recordCounts['annex7'];
-$statusTotal = $recordCounts['annex8'] + $recordCounts['annex9'] + $recordCounts['annex11'] + $recordCounts['annex14'] + $recordCounts['annex15'];
-$evacuationTotal = $recordCounts['annex18'];
-$assistanceTotal = $recordCounts['annex19'] + $recordCounts['annex21'];
+// Calculate totals
 $grandTotal = array_sum($recordCounts);
 
 // Start output buffering
 ob_start();
 ?>
 <style>
-    .records-dashboard {
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .records-accordion-container {
         background-color: white;
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0,0,0,0.12);
@@ -106,183 +103,233 @@ ob_start();
     .header-section {
         margin-bottom: clamp(25px, 5vw, 30px);
         padding-bottom: clamp(15px, 3vw, 20px);
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 2px solid #dee2e6;
     }
 
     .header-section h1 {
-        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-size: clamp(1.5rem, 4vw, 1.75rem);
         font-weight: 600;
         color: #212529;
-        margin-bottom: clamp(5px, 1.5vw, 10px);
+        margin-bottom: clamp(5px, 1.5vw, 8px);
     }
 
-    .header-section p {
-        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    .header-section h2 {
+        font-size: clamp(1.1rem, 3vw, 1.25rem);
         color: #6c757d;
         margin: 0;
+        font-weight: 500;
     }
 
-    /* Summary Stats */
-    .summary-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        margin-bottom: 30px;
+    .view-toggle {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
-    .summary-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    .toggle-btn {
+        padding: clamp(8px, 2vw, 10px) clamp(15px, 3.5vw, 18px);
+        border: 1px solid #dee2e6;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: 500;
+        text-decoration: none;
+        color: #495057;
+        font-size: clamp(0.85rem, 2.3vw, 0.9rem);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .toggle-btn:hover {
+        border-color: #0d6efd;
+        color: #0d6efd;
+        background: #f8f9fa;
+    }
+
+    .toggle-btn.active {
+        background: #0d6efd;
+        border-color: #0d6efd;
         color: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
     }
 
-    .summary-card:hover {
-        transform: translateY(-5px);
+    /* Summary Bar - Clean, Flat Design */
+    .summary-bar {
+        background-color: #0d6efd;
+        color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 6px;
+        margin-bottom: clamp(20px, 4vw, 25px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #0b5ed7;
     }
 
-    .summary-card h3 {
-        font-size: 2.5rem;
-        margin: 10px 0;
-        font-weight: 700;
-    }
-
-    .summary-card p {
+    .summary-bar h2 {
         margin: 0;
-        opacity: 0.9;
-        font-size: 0.9rem;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 600;
     }
 
-    .summary-card i {
-        font-size: 2rem;
+    .summary-bar p {
+        margin: 5px 0 0;
+        font-size: clamp(0.85rem, 2.3vw, 0.9rem);
+        opacity: 0.95;
+    }
+
+    .summary-icon {
+        font-size: clamp(2rem, 5vw, 3rem);
         opacity: 0.8;
     }
 
-    /* Tabs */
-    .nav-tabs {
-        border-bottom: 2px solid #dee2e6;
-        margin-bottom: 25px;
+    /* Accordion Styles */
+    .accordion {
+        --bs-accordion-border-color: #dee2e6;
+        --bs-accordion-btn-focus-box-shadow: none;
     }
 
-    .nav-tabs .nav-link {
-        border: none;
-        color: #6c757d;
-        font-weight: 500;
-        padding: 12px 20px;
-        margin-right: 5px;
-        border-radius: 8px 8px 0 0;
+    .accordion-item {
+        border: 1px solid #dee2e6;
+        margin-bottom: 10px;
+        border-radius: 6px !important;
+        overflow: hidden;
         transition: all 0.2s;
     }
 
-    .nav-tabs .nav-link:hover {
+    .accordion-item:hover {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border-color: #adb5bd;
+    }
+
+    .accordion-button {
+        padding: 18px 20px;
+        font-weight: 600;
+        font-size: 1rem;
+        background-color: #f8f9fa;
+        border: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #e7f1ff;
         color: #0d6efd;
+        box-shadow: none;
+    }
+
+    .accordion-button::after {
+        margin-left: auto;
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: #dee2e6;
+    }
+
+    .category-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.3rem;
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .category-incident .category-icon { background-color: #dc3545; color: white; }
+    .category-damage .category-icon { background-color: #fd7e14; color: white; }
+    .category-status .category-icon { background-color: #0dcaf0; color: white; }
+    .category-evacuation .category-icon { background-color: #6f42c1; color: white; }
+    .category-assistance .category-icon { background-color: #198754; color: white; }
+
+    .category-badge {
+        background-color: #6c757d;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .accordion-body {
+        padding: 0;
+        background-color: #fff;
+    }
+
+    /* Annex List */
+    .annex-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .annex-item {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.2s;
+    }
+
+    .annex-item:last-child {
+        border-bottom: none;
+    }
+
+    .annex-item:hover {
         background-color: #f8f9fa;
     }
 
-    .nav-tabs .nav-link.active {
-        color: #0d6efd;
-        background-color: #e7f1ff;
-        border-bottom: 3px solid #0d6efd;
-        font-weight: 600;
-    }
-
-    /* Annex Cards Grid */
-    .annex-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-    }
-
-    .annex-card {
-        background: white;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 20px;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .annex-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: #0d6efd;
-    }
-
-    .annex-card:hover {
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        transform: translateY(-5px);
-    }
-
-    .annex-card-header {
+    .annex-info {
+        flex: 1;
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        gap: 15px;
     }
 
-    .annex-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 8px;
+    .annex-number {
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        background-color: #0d6efd;
+        color: white;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
-        margin-right: 15px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .annex-card-title {
-        flex: 1;
-    }
-
-    .annex-card-title h5 {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #6c757d;
-        font-weight: 500;
-    }
-
-    .annex-card-title h4 {
-        margin: 5px 0 0;
+        font-weight: 700;
         font-size: 1.1rem;
-        color: #212529;
+        border: 1px solid #0b5ed7;
+    }
+
+    .annex-details h5 {
+        margin: 0;
+        font-size: 1rem;
         font-weight: 600;
+        color: #212529;
+    }
+
+    .annex-details p {
+        margin: 3px 0 0;
+        font-size: 0.85rem;
+        color: #6c757d;
     }
 
     .annex-stats {
         display: flex;
-        justify-content: space-between;
-        padding: 15px 0;
-        border-top: 1px solid #e9ecef;
-        border-bottom: 1px solid #e9ecef;
-        margin-bottom: 15px;
+        align-items: center;
+        gap: 20px;
     }
 
-    .stat-item {
-        text-align: center;
-    }
-
-    .stat-item h3 {
-        font-size: 1.8rem;
-        margin: 0;
+    .stat-badge {
+        background-color: #e7f1ff;
         color: #0d6efd;
-        font-weight: 700;
-    }
-
-    .stat-item p {
-        margin: 5px 0 0;
-        font-size: 0.8rem;
-        color: #6c757d;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
     }
 
     .annex-actions {
@@ -290,92 +337,82 @@ ob_start();
         gap: 8px;
     }
 
-    .btn-annex {
-        flex: 1;
-        padding: 10px;
-        border: none;
+    .btn-action {
+        padding: 8px 16px;
         border-radius: 6px;
         font-size: 0.85rem;
         font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
         text-decoration: none;
+        transition: all 0.2s;
         display: inline-flex;
         align-items: center;
-        justify-content: center;
         gap: 5px;
+        border: none;
+        cursor: pointer;
     }
 
-    .btn-view-records {
+    .btn-view {
         background-color: #0d6efd;
         color: white;
+        border: 1px solid #0b5ed7;
     }
 
-    .btn-view-records:hover {
+    .btn-view:hover {
         background-color: #0b5ed7;
         color: white;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     }
 
-    .btn-add-new {
+    .btn-add {
         background-color: #198754;
         color: white;
+        border: 1px solid #157347;
     }
 
-    .btn-add-new:hover {
+    .btn-add:hover {
         background-color: #157347;
         color: white;
-    }
-
-    /* Color variations for different categories */
-    .category-incident .annex-card::before { background: #dc3545; }
-    .category-incident .annex-icon { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); }
-
-    .category-damage .annex-card::before { background: #fd7e14; }
-    .category-damage .annex-icon { background: linear-gradient(135deg, #fd7e14 0%, #e8590c 100%); }
-
-    .category-status .annex-card::before { background: #0dcaf0; }
-    .category-status .annex-icon { background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%); }
-
-    .category-evacuation .annex-card::before { background: #6f42c1; }
-    .category-evacuation .annex-icon { background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); }
-
-    .category-assistance .annex-card::before { background: #198754; }
-    .category-assistance .annex-icon { background: linear-gradient(135deg, #198754 0%, #146c43 100%); }
-
-    /* Empty state */
-    .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: #6c757d;
-    }
-
-    .empty-state i {
-        font-size: 4rem;
-        margin-bottom: 20px;
-        opacity: 0.3;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     }
 
     @media (max-width: 768px) {
-        .summary-stats {
-            grid-template-columns: 1fr;
+        .annex-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
         }
 
-        .annex-cards {
-            grid-template-columns: 1fr;
+        .annex-stats {
+            width: 100%;
+            justify-content: space-between;
         }
 
-        .nav-tabs .nav-link {
-            font-size: 0.85rem;
-            padding: 10px 15px;
+        .annex-actions {
+            width: 100%;
+        }
+
+        .btn-action {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .summary-bar {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
         }
     }
 </style>
 
-<div class="records-dashboard">
+<div class="records-accordion-container">
     <!-- Header -->
     <div class="header-section">
-        <h1><i class="bi bi-folder2-open"></i> Records Management Dashboard</h1>
-        <p>Centralized access to all NDRRMC reporting records</p>
+        <h1>
+            <i class="bi bi-list-nested"></i>
+            Records Management
+            <span style="font-size: 0.5em; color: #6c757d; font-weight: 400;">(Accordion View)</span>
+        </h1>
+        <p>Compact view of all NDRRMC reporting records organized by category</p>
         <?php if ($is_admin): ?>
             <div class="alert alert-info mt-3 mb-0">
                 <i class="bi bi-shield-check"></i> <strong>Admin Mode:</strong> Viewing all records from all barangays
@@ -385,490 +422,452 @@ ob_start();
 
     <?php show_flash(); ?>
 
-    <!-- Summary Stats -->
-    <div class="summary-stats">
-        <div class="summary-card">
-            <i class="bi bi-files"></i>
-            <h3><?php echo number_format($grandTotal); ?></h3>
-            <p>Total Records</p>
-        </div>
+    <!-- View Toggle -->
+    <div class="view-toggle">
+        <a href="records.php" class="toggle-btn">
+            <i class="bi bi-grid-3x3"></i> Tab View
+        </a>
+        <a href="records_accordion.php" class="toggle-btn active">
+            <i class="bi bi-list-nested"></i> Accordion View
+        </a>
     </div>
 
-    <!-- Tabs Navigation -->
-    <ul class="nav nav-tabs" id="recordsTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="incident-tab" data-bs-toggle="tab" data-bs-target="#incident" type="button" role="tab">
-                <i class="bi bi-exclamation-triangle"></i> Incident Reports
-                <span class="badge bg-danger ms-2"><?php echo $incidentTotal; ?></span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="damage-tab" data-bs-toggle="tab" data-bs-target="#damage" type="button" role="tab">
-                <i class="bi bi-house"></i> Damage Assessment
-                <span class="badge bg-warning ms-2"><?php echo $damageTotal; ?></span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="status-tab" data-bs-toggle="tab" data-bs-target="#status" type="button" role="tab">
-                <i class="bi bi-clipboard-check"></i> Status Reports
-                <span class="badge bg-info ms-2"><?php echo $statusTotal; ?></span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="evacuation-tab" data-bs-toggle="tab" data-bs-target="#evacuation" type="button" role="tab">
-                <i class="bi bi-people-fill"></i> Evacuation
-                <span class="badge bg-secondary ms-2"><?php echo $evacuationTotal; ?></span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="assistance-tab" data-bs-toggle="tab" data-bs-target="#assistance" type="button" role="tab">
-                <i class="bi bi-heart"></i> Assistance
-                <span class="badge bg-success ms-2"><?php echo $assistanceTotal; ?></span>
-            </button>
-        </li>
-    </ul>
+    <!-- Summary Bar -->
+    <div class="summary-bar">
+        <div>
+            <h2><?php echo number_format($grandTotal); ?></h2>
+            <p>Total Records Across All Categories</p>
+        </div>
+        <i class="bi bi-folder2-open" style="font-size: 3rem; opacity: 0.7;"></i>
+    </div>
 
-    <!-- Tab Content -->
-    <div class="tab-content" id="recordsTabContent">
+    <!-- Accordion -->
+    <div class="accordion" id="recordsAccordion">
 
-        <!-- Incident Reports Tab -->
-        <div class="tab-pane fade show active" id="incident" role="tabpanel">
-            <div class="annex-cards category-incident">
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-1-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 1</h5>
-                            <h4>Related Incident</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex1']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex1_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex1.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-2-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 2</h5>
-                            <h4>Affected Population</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex2']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex2_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex2.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-3-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 3</h5>
-                            <h4>Casualties</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex3']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex3_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex3.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
+        <!-- Incident Reports -->
+        <div class="accordion-item category-incident">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIncident">
+                    <span class="category-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </span>
+                    <span>Incident Reports</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex1'] + $recordCounts['annex2'] + $recordCounts['annex3']; ?> Records</span>
+                </button>
+            </h2>
+            <div id="collapseIncident" class="accordion-collapse collapse show" data-bs-parent="#recordsAccordion">
+                <div class="accordion-body">
+                    <ul class="annex-list">
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A1</div>
+                                <div class="annex-details">
+                                    <h5>Related Incident</h5>
+                                    <p>Disaster incident information and classification</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex1']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex1_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex1.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A2</div>
+                                <div class="annex-details">
+                                    <h5>Affected Population</h5>
+                                    <p>Population affected by the disaster</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex2']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex2_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex2.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A3</div>
+                                <div class="annex-details">
+                                    <h5>Casualties</h5>
+                                    <p>Casualties from the disaster incident</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex3']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex3_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex3.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Damage Assessment Tab -->
-        <div class="tab-pane fade" id="damage" role="tabpanel">
-            <div class="annex-cards category-damage">
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-4-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 4</h5>
-                            <h4>Damaged Houses</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex4']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex4_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex4.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-5-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 5</h5>
-                            <h4>Agriculture</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex5']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex5_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex5.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-6-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 6</h5>
-                            <h4>Infrastructure</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex6']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex6_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex6.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-7-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 7</h5>
-                            <h4>Other Assets</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex7']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex7_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex7.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
+        <!-- Damage Assessment -->
+        <div class="accordion-item category-damage">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDamage">
+                    <span class="category-icon">
+                        <i class="bi bi-house"></i>
+                    </span>
+                    <span>Damage Assessment</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex4'] + $recordCounts['annex5'] + $recordCounts['annex6'] + $recordCounts['annex7']; ?> Records</span>
+                </button>
+            </h2>
+            <div id="collapseDamage" class="accordion-collapse collapse" data-bs-parent="#recordsAccordion">
+                <div class="accordion-body">
+                    <ul class="annex-list">
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A4</div>
+                                <div class="annex-details">
+                                    <h5>Damaged Houses</h5>
+                                    <p>Houses damaged or destroyed</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex4']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex4_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex4.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A5</div>
+                                <div class="annex-details">
+                                    <h5>Agriculture</h5>
+                                    <p>Damage and losses to agriculture</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex5']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex5_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex5.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A6</div>
+                                <div class="annex-details">
+                                    <h5>Infrastructure</h5>
+                                    <p>Damage to infrastructure facilities</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex6']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex6_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex6.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A7</div>
+                                <div class="annex-details">
+                                    <h5>Other Assets</h5>
+                                    <p>Damage to other properties and assets</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex7']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex7_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex7.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Status Reports Tab -->
-        <div class="tab-pane fade" id="status" role="tabpanel">
-            <div class="annex-cards category-status">
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-8-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 8</h5>
-                            <h4>Roads & Bridges</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex8']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex8_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex8.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-9-circle"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 9</h5>
-                            <h4>Power Supply</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex9']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex9_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex9.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-telephone"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 11</h5>
-                            <h4>Communication</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex11']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex11_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex11.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-briefcase"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 14</h5>
-                            <h4>Work Suspension</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex14']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex14_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex14.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-backpack"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 15</h5>
-                            <h4>Class Suspension</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex15']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex15_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex15.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
+        <!-- Status Reports -->
+        <div class="accordion-item category-status">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStatus">
+                    <span class="category-icon">
+                        <i class="bi bi-clipboard-check"></i>
+                    </span>
+                    <span>Status Reports</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex8'] + $recordCounts['annex9'] + $recordCounts['annex11'] + $recordCounts['annex14'] + $recordCounts['annex15']; ?> Records</span>
+                </button>
+            </h2>
+            <div id="collapseStatus" class="accordion-collapse collapse" data-bs-parent="#recordsAccordion">
+                <div class="accordion-body">
+                    <ul class="annex-list">
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A8</div>
+                                <div class="annex-details">
+                                    <h5>Roads & Bridges</h5>
+                                    <p>Status of roads and bridges</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex8']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex8_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex8.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A9</div>
+                                <div class="annex-details">
+                                    <h5>Power Supply</h5>
+                                    <p>Electric power supply status</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex9']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex9_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex9.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A11</div>
+                                <div class="annex-details">
+                                    <h5>Communication</h5>
+                                    <p>Status of communication lines</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex11']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex11_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex11.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A14</div>
+                                <div class="annex-details">
+                                    <h5>Work Suspension</h5>
+                                    <p>Work suspension due to disaster</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex14']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex14_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex14.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A15</div>
+                                <div class="annex-details">
+                                    <h5>Class Suspension</h5>
+                                    <p>Class suspension in schools</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex15']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex15_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex15.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Evacuation Reports Tab -->
-        <div class="tab-pane fade" id="evacuation" role="tabpanel">
-            <div class="annex-cards category-evacuation">
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-piggy-bank"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 18</h5>
-                            <h4>Evacuation (Animals)</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex18']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex18_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex18.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
+        <!-- Evacuation Reports -->
+        <div class="accordion-item category-evacuation">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvacuation">
+                    <span class="category-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </span>
+                    <span>Evacuation Reports</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex18']; ?> Records</span>
+                </button>
+            </h2>
+            <div id="collapseEvacuation" class="accordion-collapse collapse" data-bs-parent="#recordsAccordion">
+                <div class="accordion-body">
+                    <ul class="annex-list">
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A18</div>
+                                <div class="annex-details">
+                                    <h5>Evacuation (Animals)</h5>
+                                    <p>Pre-emptive evacuation of animals</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex18']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex18_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex18.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Assistance Reports Tab -->
-        <div class="tab-pane fade" id="assistance" role="tabpanel">
-            <div class="annex-cards category-assistance">
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-house-heart"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 19</h5>
-                            <h4>Families Assisted</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex19']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex19_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex19.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
-                </div>
-
-                <div class="annex-card">
-                    <div class="annex-card-header">
-                        <div class="annex-icon">
-                            <i class="bi bi-building"></i>
-                        </div>
-                        <div class="annex-card-title">
-                            <h5>Annex 21</h5>
-                            <h4>To LGUs/Agencies</h4>
-                        </div>
-                    </div>
-                    <div class="annex-stats">
-                        <div class="stat-item">
-                            <h3><?php echo $recordCounts['annex21']; ?></h3>
-                            <p>Records</p>
-                        </div>
-                    </div>
-                    <div class="annex-actions">
-                        <a href="annex21_records.php" class="btn-annex btn-view-records">
-                            <i class="bi bi-eye"></i> View Records
-                        </a>
-                        <a href="annex21.php" class="btn-annex btn-add-new">
-                            <i class="bi bi-plus-lg"></i> Add New
-                        </a>
-                    </div>
+        <!-- Assistance Reports -->
+        <div class="accordion-item category-assistance">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssistance">
+                    <span class="category-icon">
+                        <i class="bi bi-heart"></i>
+                    </span>
+                    <span>Assistance Reports</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex19'] + $recordCounts['annex21']; ?> Records</span>
+                </button>
+            </h2>
+            <div id="collapseAssistance" class="accordion-collapse collapse" data-bs-parent="#recordsAccordion">
+                <div class="accordion-body">
+                    <ul class="annex-list">
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A19</div>
+                                <div class="annex-details">
+                                    <h5>Families Assisted</h5>
+                                    <p>Assistance provided to families</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex19']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex19_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex19.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A21</div>
+                                <div class="annex-details">
+                                    <h5>To LGUs/Agencies</h5>
+                                    <p>Assistance to local government units and agencies</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex21']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex21_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex21.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
 <script>
-// Smooth tab transitions
+// Smooth accordion animations
 document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+    const accordionButtons = document.querySelectorAll('.accordion-button');
 
-    tabButtons.forEach(button => {
-        button.addEventListener('shown.bs.tab', function(event) {
-            // Animate cards when tab is shown
-            const targetPane = document.querySelector(event.target.getAttribute('data-bs-target'));
-            const cards = targetPane.querySelectorAll('.annex-card');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Animate items when accordion opens
+            const targetId = this.getAttribute('data-bs-target');
+            const targetAccordion = document.querySelector(targetId);
 
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-
+            if (!this.classList.contains('collapsed')) {
                 setTimeout(() => {
-                    card.style.transition = 'all 0.3s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
+                    const items = targetAccordion.querySelectorAll('.annex-item');
+                    items.forEach((item, index) => {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateX(-20px)';
+
+                        setTimeout(() => {
+                            item.style.transition = 'all 0.3s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateX(0)';
+                        }, index * 50);
+                    });
+                }, 100);
+            }
         });
     });
 });

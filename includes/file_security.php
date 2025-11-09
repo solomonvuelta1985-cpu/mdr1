@@ -399,25 +399,27 @@ function get_safe_file_info($file_path) {
     ];
 }
 
-/**
- * Sanitize filename for safe storage
- *
- * @param string $filename Original filename
- * @return string Sanitized filename
- */
-function sanitize_filename($filename) {
-    // Remove path information
-    $filename = basename($filename);
+if (!function_exists('sanitize_filename')) {
+    /**
+     * Sanitize filename for safe storage
+     *
+     * @param string $filename Original filename
+     * @return string Sanitized filename
+     */
+    function sanitize_filename($filename) {
+        // Remove path information
+        $filename = basename($filename);
 
-    // Get extension
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    $name = pathinfo($filename, PATHINFO_FILENAME);
+        // Get extension
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $name = pathinfo($filename, PATHINFO_FILENAME);
 
-    // Remove special characters
-    $name = preg_replace('/[^a-zA-Z0-9_-]/', '_', $name);
+        // Remove special characters
+        $name = preg_replace('/[^a-zA-Z0-9_-]/', '_', $name);
 
-    // Limit length
-    $name = substr($name, 0, 50);
+        // Limit length
+        $name = substr($name, 0, 50);
 
-    return $name . '.' . $extension;
+        return $name . '.' . $extension;
+    }
 }

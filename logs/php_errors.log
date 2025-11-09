@@ -50,3 +50,195 @@ Stack trace:
   thrown in C:\xampp\htdocs\mdr1\public\annex19_records.php on line 225
 [09-Nov-2025 09:35:27 Asia/Manila] Error [2]: Undefined array key "user_name" in C:\xampp\htdocs\mdr1\public\annex1_print.php:255
 [09-Nov-2025 09:35:27 Asia/Manila] PHP Warning:  Undefined array key "user_name" in C:\xampp\htdocs\mdr1\public\annex1_print.php on line 255
+[09-Nov-2025 09:44:30 Asia/Manila] CRITICAL ERROR: Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+[09-Nov-2025 09:44:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 10
+[09-Nov-2025 09:45:11 Asia/Manila] CRITICAL ERROR: Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+[09-Nov-2025 09:45:11 Asia/Manila] PHP Fatal error:  Uncaught Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 10
+[09-Nov-2025 09:45:12 Asia/Manila] CRITICAL ERROR: Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+[09-Nov-2025 09:45:12 Asia/Manila] PHP Fatal error:  Uncaught Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 10
+[09-Nov-2025 09:46:30 Asia/Manila] CRITICAL ERROR: Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+[09-Nov-2025 09:46:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Class "Auth" not found in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:10
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 10
+[09-Nov-2025 09:50:52 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:284
+[09-Nov-2025 09:50:52 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 284
+[09-Nov-2025 09:52:11 Asia/Manila] Error [2]: Undefined array key "full_name" in C:\xampp\htdocs\mdr1\api\annex1_export.php:252
+[09-Nov-2025 09:52:11 Asia/Manila] PHP Warning:  Undefined array key "full_name" in C:\xampp\htdocs\mdr1\api\annex1_export.php on line 252
+[09-Nov-2025 09:52:11 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\api\annex1_export.php:252
+[09-Nov-2025 09:52:11 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\api\annex1_export.php on line 252
+[09-Nov-2025 09:52:27 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\public\annex1_print_template.php:284
+[09-Nov-2025 09:52:27 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\public\annex1_print_template.php on line 284
+[09-Nov-2025 09:56:39 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php:284
+[09-Nov-2025 09:56:39 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php on line 284
+[09-Nov-2025 10:48:09 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php:284
+[09-Nov-2025 10:48:09 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php on line 284
+[09-Nov-2025 12:21:46 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 12:22:26 Asia/Manila] Error [2]: Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php:284
+[09-Nov-2025 12:22:26 Asia/Manila] PHP Warning:  Undefined array key "username" in C:\xampp\htdocs\mdr1\print_templates\annex1_print_template.php on line 284
+[09-Nov-2025 12:23:24 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 12:23:24 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 12:23:24 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 12:23:24 Asia/Manila] DEBUG: Found 1 records
+[09-Nov-2025 12:23:24 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 2
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-10-16 12:29:00
+    [restored_datetime] => 2025-10-16 12:29:00
+    [remarks] => 
+    [image_path] => 68f074acb7038_20251016_122932_flood-pictures-9g7ob3wnw4p1ark5.jpg
+    [created_by] => 5
+    [created_at] => 2025-10-15 21:29:32
+    [updated_at] => 2025-10-15 21:29:49
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 12:36:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:36:02 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\sitrep\index.php:35
+[09-Nov-2025 12:36:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\sitrep\index.php:35
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\sitrep\index.php on line 35
+[09-Nov-2025 12:36:18 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:36:18 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\sitrep\index.php:35
+[09-Nov-2025 12:36:18 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\sitrep\index.php:35
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\sitrep\index.php on line 35
+[09-Nov-2025 12:37:10 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:37:10 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex14_preemptive_evacuation' doesn't exist
+[09-Nov-2025 12:37:10 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex18_preemptive_evacuation_animals' doesn't exist
+[09-Nov-2025 12:40:13 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:40:13 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex14_preemptive_evacuation' doesn't exist
+[09-Nov-2025 12:40:13 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex18_preemptive_evacuation_animals' doesn't exist
+[09-Nov-2025 12:40:17 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:40:17 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex14_preemptive_evacuation' doesn't exist
+[09-Nov-2025 12:40:17 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex18_preemptive_evacuation_animals' doesn't exist
+[09-Nov-2025 12:40:53 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:40:53 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex14_preemptive_evacuation' doesn't exist
+[09-Nov-2025 12:40:53 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex18_preemptive_evacuation_animals' doesn't exist
+[09-Nov-2025 12:40:57 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:40:57 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:41:44 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:41:44 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex14_preemptive_evacuation' doesn't exist
+[09-Nov-2025 12:41:44 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex18_preemptive_evacuation_animals' doesn't exist
+[09-Nov-2025 12:42:03 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:42:08 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:08 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:42:09 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:09 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:42:14 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:18 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:18 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:42:24 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:24 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:42:34 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:42:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:44:15 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 12:44:15 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 12:44:15 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 12:44:15 Asia/Manila] DEBUG: Found 1 records
+[09-Nov-2025 12:44:15 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 2
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-10-16 12:29:00
+    [restored_datetime] => 2025-10-16 12:29:00
+    [remarks] => 
+    [image_path] => 68f074acb7038_20251016_122932_flood-pictures-9g7ob3wnw4p1ark5.jpg
+    [created_by] => 5
+    [created_at] => 2025-10-15 21:29:32
+    [updated_at] => 2025-10-15 21:29:49
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 12:44:19 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:44:19 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:45:03 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:45:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:45:56 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:45:56 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:46:03 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:46:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:47:39 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:47:39 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:48:16 Asia/Manila] PHP Fatal error:  Cannot redeclare sanitize_filename() (previously declared in C:\xampp\htdocs\mdr1\includes\functions.php:416) in C:\xampp\htdocs\mdr1\includes\file_security.php on line 408
+[09-Nov-2025 12:48:34 Asia/Manila] PHP Fatal error:  Cannot redeclare sanitize_filename() (previously declared in C:\xampp\htdocs\mdr1\includes\functions.php:416) in C:\xampp\htdocs\mdr1\includes\file_security.php on line 408
+[09-Nov-2025 12:49:08 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:49:08 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:49:39 Asia/Manila] No file uploaded for entry 0 or file upload not set
+[09-Nov-2025 12:49:39 Asia/Manila] Annex9 - Entry 1 inserted with ID: 3
+[09-Nov-2025 12:49:39 Asia/Manila] Annex9 - Total inserted: 1, IDs: 3
+[09-Nov-2025 12:49:39 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 12:49:39 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 12:49:39 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 12:49:39 Asia/Manila] DEBUG: Found 2 records
+[09-Nov-2025 12:49:39 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 3
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-08 20:48:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 5
+    [created_at] => 2025-11-08 20:49:39
+    [updated_at] => 2025-11-08 20:49:39
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 12:49:43 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:49:43 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:49:47 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:49:47 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:50:19 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:50:19 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:53:10 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:53:10 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:53:12 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:53:12 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:53:31 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:53:31 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:54:22 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:54:22 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:54:59 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:54:59 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:55:05 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:55:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:55:05 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:55:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:55:06 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:55:06 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:55:42 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:55:42 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
+[09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
