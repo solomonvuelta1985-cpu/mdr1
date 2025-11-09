@@ -242,3 +242,4 @@ Stack trace:
 [09-Nov-2025 12:55:42 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
 [09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
 [09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
+[09-Nov-2025 16:59:04 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6

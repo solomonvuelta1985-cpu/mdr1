@@ -65,15 +65,71 @@ function getWorkSuspension($pdo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getAgricultureDamage($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, classification, type, affected_people, damage_value, production_loss_volume FROM annex5_agriculture_damage WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getInfrastructureDamage($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, type, classification, name, totally_damaged, partially_damaged, total_damaged, cost FROM annex6_infrastructure_damage WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getOtherAssetsDamage($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, classification, particulars, unit, quantity, cost FROM annex7_other_assets_damage WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getClassesSuspension($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, level, type, suspension_date, resumption_date, suspension_reason FROM annex15_suspension_classes WHERE is_archived = 0 ORDER BY suspension_date DESC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getAnimalEvacuation($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, classification, type, quantity, evacuation_reason, shelter_location FROM annex18_animal_evacuation WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getFamiliesAssisted($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, families_requiring_assistance, families_assisted, percentage_assisted, assistance_type, assistance_provider FROM annex19_families_assisted WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getAssistanceProvided($pdo) {
+    $stmt = $pdo->prepare("SELECT cluster, type, quantity, unit, cost_per_unit, amount FROM annex20_assistance_provided WHERE is_archived = 0 ORDER BY cluster");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getAssistanceLGU($pdo) {
+    $stmt = $pdo->prepare("SELECT barangay, recipient, cluster, type, quantity, unit, cost_per_unit, amount, source FROM annex21_assistance_lgu WHERE is_archived = 0 ORDER BY barangay");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Get ACTUAL data
 $incidents = getLatestIncidents($pdo);
 $affectedPopulation = getAffectedPopulation($pdo);
 $casualties = getCasualtiesSummary($pdo);
 $damagedHouses = getDamagedHouses($pdo);
+$agricultureDamage = getAgricultureDamage($pdo);
+$infrastructureDamage = getInfrastructureDamage($pdo);
+$otherAssetsDamage = getOtherAssetsDamage($pdo);
 $roadBridgeStatus = getRoadBridgeStatus($pdo);
 $powerStatus = getPowerSupplyStatus($pdo);
 $communicationStatus = getCommunicationStatus($pdo);
 $workSuspension = getWorkSuspension($pdo);
+$classesSuspension = getClassesSuspension($pdo);
+$animalEvacuation = getAnimalEvacuation($pdo);
+$familiesAssisted = getFamiliesAssisted($pdo);
+$assistanceProvided = getAssistanceProvided($pdo);
+$assistanceLGU = getAssistanceLGU($pdo);
 
 // Calculate totals
 $totalIncidents = count($incidents);
@@ -254,6 +310,68 @@ $currentDate = date('F d, Y g:i A');
             align-items: center;
             border-top: 1px solid #bdc3c7;
         }
+
+        .header-actions {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-print, .btn-export {
+            background: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-print:hover, .btn-export:hover {
+            background: #ecf0f1;
+        }
+
+        .export-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .export-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .export-menu.show {
+            display: block;
+        }
+
+        .export-menu a {
+            color: #2c3e50;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .export-menu a:hover {
+            background: #ecf0f1;
+        }
+
+        @media print {
+            .header-actions, .action-bar, .no-print {
+                display: none !important;
+            }
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -282,9 +400,29 @@ $currentDate = date('F d, Y g:i A');
 <body>
     <div class="container">
         <!-- Header -->
-        <div class="header">
+        <div class="header" style="position: relative;">
             <h1>MDRRMO LGU-BAGGAO</h1>
             <p>Public Situational Report - Live Database Data</p>
+
+            <!-- Action Buttons -->
+            <div class="header-actions">
+                <button class="btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <div class="export-dropdown">
+                    <button class="btn-export" onclick="toggleExportMenu()">
+                        <i class="fas fa-download"></i> Export <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="export-menu" id="exportMenu">
+                        <a href="sitrep_export.php?format=pdf" target="_blank">
+                            <i class="fas fa-file-pdf"></i> Export as PDF
+                        </a>
+                        <a href="sitrep_export.php?format=word" target="_blank">
+                            <i class="fas fa-file-word"></i> Export as Word
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Metadata -->
@@ -347,7 +485,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="4" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -380,7 +518,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="5" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -411,7 +549,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="4" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -442,7 +580,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="4" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -485,7 +623,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="4" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -522,7 +660,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="5" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -559,7 +697,7 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="5" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -596,13 +734,301 @@ $currentDate = date('F d, Y g:i A');
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="no-data">- NO REPORTED YET -</td>
+                            <td colspan="5" class="no-data">- NO SUBMITTED REPORT YET -</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
-        
+
+        <!-- A.5 Agriculture Damage -->
+        <div class="section">
+            <div class="section-title">A.5 Damage to Agriculture</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Classification</th>
+                        <th>Type</th>
+                        <th>Affected People</th>
+                        <th>Damage Value (PHP)</th>
+                        <th>Production Loss Volume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($agricultureDamage) > 0): ?>
+                        <?php foreach ($agricultureDamage as $agri): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($agri['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($agri['classification']); ?></td>
+                                <td><?php echo !empty($agri['type']) ? htmlspecialchars($agri['type']) : '-'; ?></td>
+                                <td><?php echo $agri['affected_people'] > 0 ? $agri['affected_people'] : '0'; ?></td>
+                                <td><?php echo number_format($agri['damage_value'], 2); ?></td>
+                                <td><?php echo $agri['production_loss_volume'] > 0 ? number_format($agri['production_loss_volume'], 2) : '-'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.6 Infrastructure Damage -->
+        <div class="section">
+            <div class="section-title">A.6 Damage to Infrastructure</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Type</th>
+                        <th>Classification</th>
+                        <th>Name</th>
+                        <th>Totally Damaged</th>
+                        <th>Partially Damaged</th>
+                        <th>Cost (PHP)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($infrastructureDamage) > 0): ?>
+                        <?php foreach ($infrastructureDamage as $infra): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($infra['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($infra['type']); ?></td>
+                                <td><?php echo htmlspecialchars($infra['classification']); ?></td>
+                                <td><?php echo !empty($infra['name']) ? htmlspecialchars($infra['name']) : '-'; ?></td>
+                                <td><?php echo $infra['totally_damaged'] > 0 ? $infra['totally_damaged'] : '0'; ?></td>
+                                <td><?php echo $infra['partially_damaged'] > 0 ? $infra['partially_damaged'] : '0'; ?></td>
+                                <td><?php echo !empty($infra['cost']) ? htmlspecialchars($infra['cost']) : '-'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.7 Other Assets Damage -->
+        <div class="section">
+            <div class="section-title">A.7 Damage to Other Assets</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Classification</th>
+                        <th>Particulars</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Cost (PHP)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($otherAssetsDamage) > 0): ?>
+                        <?php foreach ($otherAssetsDamage as $asset): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($asset['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($asset['classification']); ?></td>
+                                <td><?php echo !empty($asset['particulars']) ? htmlspecialchars($asset['particulars']) : '-'; ?></td>
+                                <td><?php echo !empty($asset['unit']) ? htmlspecialchars($asset['unit']) : '-'; ?></td>
+                                <td><?php echo $asset['quantity'] > 0 ? number_format($asset['quantity'], 2) : '0'; ?></td>
+                                <td><?php echo !empty($asset['cost']) ? htmlspecialchars($asset['cost']) : '-'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.15 Suspension of Classes -->
+        <div class="section">
+            <div class="section-title">A.15 Suspension of Classes</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Level</th>
+                        <th>Type</th>
+                        <th>Suspension Date</th>
+                        <th>Resumption Date</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($classesSuspension) > 0): ?>
+                        <?php foreach ($classesSuspension as $classes): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($classes['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($classes['level']); ?></td>
+                                <td><?php echo htmlspecialchars($classes['type']); ?></td>
+                                <td><?php echo date('M j, Y g:i A', strtotime($classes['suspension_date'])); ?></td>
+                                <td><?php echo $classes['resumption_date'] ? date('M j, Y g:i A', strtotime($classes['resumption_date'])) : '-'; ?></td>
+                                <td><?php echo htmlspecialchars($classes['suspension_reason']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.18 Pre-emptive Evacuation of Animals -->
+        <div class="section">
+            <div class="section-title">A.18 Pre-emptive Evacuation of Animals</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Classification</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Reason</th>
+                        <th>Shelter Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($animalEvacuation) > 0): ?>
+                        <?php foreach ($animalEvacuation as $animal): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($animal['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($animal['classification']); ?></td>
+                                <td><?php echo htmlspecialchars($animal['type']); ?></td>
+                                <td><?php echo $animal['quantity']; ?></td>
+                                <td><?php echo htmlspecialchars($animal['evacuation_reason']); ?></td>
+                                <td><?php echo !empty($animal['shelter_location']) ? htmlspecialchars($animal['shelter_location']) : '-'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.19 Families Assisted -->
+        <div class="section">
+            <div class="section-title">A.19 Status of Assistance to Affected Families</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Families Requiring Assistance</th>
+                        <th>Families Assisted</th>
+                        <th>Percentage (%)</th>
+                        <th>Assistance Type</th>
+                        <th>Provider</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($familiesAssisted) > 0): ?>
+                        <?php foreach ($familiesAssisted as $family): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($family['barangay']); ?></strong></td>
+                                <td><?php echo $family['families_requiring_assistance']; ?></td>
+                                <td><?php echo $family['families_assisted']; ?></td>
+                                <td><?php echo number_format($family['percentage_assisted'], 2); ?>%</td>
+                                <td><?php echo htmlspecialchars($family['assistance_type']); ?></td>
+                                <td><?php echo htmlspecialchars($family['assistance_provider']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.20 Assistance Provided (LGU and NGO) -->
+        <div class="section">
+            <div class="section-title">A.20 Assistance Provided (LGU and NGO)</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Cluster</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Cost per Unit (PHP)</th>
+                        <th>Amount (PHP)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($assistanceProvided) > 0): ?>
+                        <?php foreach ($assistanceProvided as $assistance): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($assistance['cluster']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($assistance['type']); ?></td>
+                                <td><?php echo number_format($assistance['quantity'], 2); ?></td>
+                                <td><?php echo htmlspecialchars($assistance['unit']); ?></td>
+                                <td><?php echo number_format($assistance['cost_per_unit'], 2); ?></td>
+                                <td><?php echo number_format($assistance['amount'], 2); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- A.21 Assistance Provided by LGU -->
+        <div class="section">
+            <div class="section-title">A.21 Assistance Provided by LGU</div>
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Barangay</th>
+                        <th>Recipient</th>
+                        <th>Cluster</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Cost per Unit (PHP)</th>
+                        <th>Amount (PHP)</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($assistanceLGU) > 0): ?>
+                        <?php foreach ($assistanceLGU as $lgu): ?>
+                            <tr>
+                                <td><strong><?php echo htmlspecialchars($lgu['barangay']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($lgu['recipient']); ?></td>
+                                <td><?php echo htmlspecialchars($lgu['cluster']); ?></td>
+                                <td><?php echo htmlspecialchars($lgu['type']); ?></td>
+                                <td><?php echo $lgu['quantity']; ?></td>
+                                <td><?php echo htmlspecialchars($lgu['unit']); ?></td>
+                                <td><?php echo number_format($lgu['cost_per_unit'], 2); ?></td>
+                                <td><?php echo number_format($lgu['amount'], 2); ?></td>
+                                <td><?php echo htmlspecialchars($lgu['source']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="9" class="no-data">- NO SUBMITTED REPORT YET -</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
         <!-- Action Bar -->
         <div class="action-bar">
             <div>
@@ -622,6 +1048,25 @@ $currentDate = date('F d, Y g:i A');
     </div>
 
     <script>
+        // Toggle export dropdown menu
+        function toggleExportMenu() {
+            const menu = document.getElementById('exportMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn-export')) {
+                const dropdowns = document.getElementsByClassName('export-menu');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
         // Auto-refresh every 5 minutes
         setTimeout(function() {
             window.location.reload();
