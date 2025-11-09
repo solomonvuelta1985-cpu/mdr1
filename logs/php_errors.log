@@ -243,3 +243,8 @@ Stack trace:
 [09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.sitrep_settings' doesn't exist
 [09-Nov-2025 12:59:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_families' in 'field list'
 [09-Nov-2025 16:59:04 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 17:51:38 Asia/Manila] Annex21 - Entry 1 inserted with ID: 2
+[09-Nov-2025 17:51:38 Asia/Manila] Annex21 - Total inserted: 1, IDs: 2
+[09-Nov-2025 17:52:47 Asia/Manila] Annex19 - Entry 1 inserted with ID: 1
+[09-Nov-2025 17:52:47 Asia/Manila] Annex19 - Total inserted: 1, IDs: 1
+[09-Nov-2025 17:59:03 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6

@@ -113,6 +113,32 @@ function getAssistanceLGU($pdo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getSitrepMetadata($pdo) {
+    $stmt = $pdo->prepare("SELECT * FROM sitrep_metadata WHERE is_active = 1 ORDER BY created_at DESC LIMIT 1");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Return default values if no metadata exists
+    if (!$result) {
+        return [
+            'report_number' => 1,
+            'weather_system' => null,
+            'weather_clouds' => 'CLEAR SKY',
+            'weather_rains' => 'NONE',
+            'weather_winds' => 'NORMAL',
+            'mayor_status' => 'In',
+            'vice_mayor_status' => 'In',
+            'report_date' => date('Y-m-d H:i:s'),
+            'update_interval_hours' => 1
+        ];
+    }
+
+    return $result;
+}
+
+// Get SITREP metadata
+$sitrepMetadata = getSitrepMetadata($pdo);
+
 // Get ACTUAL data
 $incidents = getLatestIncidents($pdo);
 $affectedPopulation = getAffectedPopulation($pdo);
@@ -402,7 +428,10 @@ $currentDate = date('F d, Y g:i A');
         <!-- Header -->
         <div class="header" style="position: relative;">
             <h1>MDRRMO LGU-BAGGAO</h1>
-            <p>Public Situational Report - Live Database Data</p>
+            <p style="font-size: 1.1rem; margin: 0.3rem 0;">Situational Report No. <?php echo $sitrepMetadata['report_number']; ?></p>
+            <?php if (!empty($sitrepMetadata['weather_system'])): ?>
+                <p style="margin: 0.3rem 0;">Weather System: <strong><?php echo htmlspecialchars($sitrepMetadata['weather_system']); ?></strong></p>
+            <?php endif; ?>
 
             <!-- Action Buttons -->
             <div class="header-actions">
@@ -428,11 +457,21 @@ $currentDate = date('F d, Y g:i A');
         <!-- Metadata -->
         <div class="meta-info">
             <div class="row">
-                <div class="col-md-6">
-                    <strong>Report Date:</strong> <?php echo $currentDate; ?>
+                <div class="col-md-4">
+                    <strong>Report ID:</strong> SITREP-<?php echo str_pad($sitrepMetadata['report_number'], 4, '0', STR_PAD_LEFT); ?><br>
+                    <strong>Report Date:</strong> <?php echo $currentDate; ?><br>
+                    <strong>Update Interval:</strong> Every <?php echo $sitrepMetadata['update_interval_hours']; ?> hour(s)
                 </div>
-                <div class="col-md-6">
-                    <strong>Data Source:</strong> Live Database System
+                <div class="col-md-4">
+                    <strong>Data Source:</strong> Live Database System<br>
+                    <strong>Mayor:</strong> <?php echo $sitrepMetadata['mayor_status']; ?><br>
+                    <strong>Vice Mayor:</strong> <?php echo $sitrepMetadata['vice_mayor_status']; ?>
+                </div>
+                <div class="col-md-4">
+                    <strong>Weather Condition:</strong><br>
+                    - Clouds: <strong><?php echo htmlspecialchars($sitrepMetadata['weather_clouds']); ?></strong><br>
+                    - Rains: <strong><?php echo htmlspecialchars($sitrepMetadata['weather_rains']); ?></strong><br>
+                    - Winds: <strong><?php echo htmlspecialchars($sitrepMetadata['weather_winds']); ?></strong>
                 </div>
             </div>
         </div>
@@ -1067,10 +1106,10 @@ $currentDate = date('F d, Y g:i A');
             }
         }
 
-        // Auto-refresh every 5 minutes
+        // Auto-refresh based on update interval from database
         setTimeout(function() {
             window.location.reload();
-        }, 300000);
+        }, <?php echo $sitrepMetadata['update_interval_hours'] * 3600000; ?>); // Convert hours to milliseconds
     </script>
 </body>
 </html>

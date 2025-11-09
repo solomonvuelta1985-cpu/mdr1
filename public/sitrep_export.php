@@ -113,6 +113,32 @@ function getAssistanceLGU($pdo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getSitrepMetadata($pdo) {
+    $stmt = $pdo->prepare("SELECT * FROM sitrep_metadata WHERE is_active = 1 ORDER BY created_at DESC LIMIT 1");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Return default values if no metadata exists
+    if (!$result) {
+        return [
+            'report_number' => 1,
+            'weather_system' => null,
+            'weather_clouds' => 'CLEAR SKY',
+            'weather_rains' => 'NONE',
+            'weather_winds' => 'NORMAL',
+            'mayor_status' => 'In',
+            'vice_mayor_status' => 'In',
+            'report_date' => date('Y-m-d H:i:s'),
+            'update_interval_hours' => 1
+        ];
+    }
+
+    return $result;
+}
+
+// Get SITREP metadata
+$sitrepMetadata = getSitrepMetadata($pdo);
+
 // Get ACTUAL data
 $incidents = getLatestIncidents($pdo);
 $affectedPopulation = getAffectedPopulation($pdo);
@@ -264,10 +290,23 @@ if ($format === 'word') {
 </head>
 <body>
     <h1>MDRRMO LGU-BAGGAO</h1>
-    <h2>Public Situational Report</h2>
+    <h2>Situational Report No. <?php echo $sitrepMetadata['report_number']; ?></h2>
+    <?php if (!empty($sitrepMetadata['weather_system'])): ?>
+        <div style="text-align: center; margin: 5px 0;">
+            <strong>Weather System:</strong> <?php echo htmlspecialchars($sitrepMetadata['weather_system']); ?>
+        </div>
+    <?php endif; ?>
     <div class="meta-info">
-        <strong>Report Date:</strong> <?php echo $currentDate; ?><br>
-        <strong>Data Source:</strong> Live Database System
+        <strong>Report ID:</strong> SITREP-<?php echo str_pad($sitrepMetadata['report_number'], 4, '0', STR_PAD_LEFT); ?> |
+        <strong>Report Date:</strong> <?php echo $currentDate; ?> |
+        <strong>Update Interval:</strong> Every <?php echo $sitrepMetadata['update_interval_hours']; ?> hour(s)<br>
+        <strong>Data Source:</strong> Live Database System |
+        <strong>Mayor:</strong> <?php echo $sitrepMetadata['mayor_status']; ?> |
+        <strong>Vice Mayor:</strong> <?php echo $sitrepMetadata['vice_mayor_status']; ?><br>
+        <strong>Weather Condition:</strong>
+        Clouds: <?php echo htmlspecialchars($sitrepMetadata['weather_clouds']); ?> |
+        Rains: <?php echo htmlspecialchars($sitrepMetadata['weather_rains']); ?> |
+        Winds: <?php echo htmlspecialchars($sitrepMetadata['weather_winds']); ?>
     </div>
 
     <!-- Summary Statistics -->
