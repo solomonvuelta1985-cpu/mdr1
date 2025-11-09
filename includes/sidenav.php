@@ -529,7 +529,15 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
+
+                <!-- Records Management Link -->
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $currentPage == 'records.php' ? 'active' : ''; ?>" href="records.php">
+                        <i class="bi bi-folder2-open"></i>
+                        <span>Records Management</span>
+                    </a>
+                </li>
+
                 <!-- Incident Reports Dropdown -->
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle <?php echo $incidentActive ? 'active' : ''; ?>" 

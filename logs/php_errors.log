@@ -19,3 +19,34 @@
 [08-Nov-2025 23:52:07 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
 [09-Nov-2025 07:30:22 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
 [09-Nov-2025 07:37:55 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 08:21:05 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 08:23:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex7_other_assets' doesn't exist
+[09-Nov-2025 08:23:01 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+[09-Nov-2025 08:23:01 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\public\records.php(51): getRecordCount('annex7_other_as...', 5, false)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\records.php on line 37
+[09-Nov-2025 08:23:17 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex7_other_assets' doesn't exist
+[09-Nov-2025 08:23:17 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+[09-Nov-2025 08:23:17 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\public\records.php(51): getRecordCount('annex7_other_as...', 5, false)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\records.php on line 37
+[09-Nov-2025 08:23:45 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex7_other_assets' doesn't exist
+[09-Nov-2025 08:23:45 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+[09-Nov-2025 08:23:45 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetchColumn() on bool in C:\xampp\htdocs\mdr1\public\records.php:37
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\public\records.php(51): getRecordCount('annex7_other_as...', 5, false)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\records.php on line 37
+[09-Nov-2025 08:31:47 Asia/Manila] Failed to add is_archived column: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex19_families_assisted' doesn't exist
+[09-Nov-2025 08:31:47 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex19_families_assisted' doesn't exist
+[09-Nov-2025 08:31:47 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetchAll() on bool in C:\xampp\htdocs\mdr1\public\annex19_records.php:225
+[09-Nov-2025 08:31:47 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in C:\xampp\htdocs\mdr1\public\annex19_records.php:225
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex19_records.php on line 225
+[09-Nov-2025 09:35:27 Asia/Manila] Error [2]: Undefined array key "user_name" in C:\xampp\htdocs\mdr1\public\annex1_print.php:255
+[09-Nov-2025 09:35:27 Asia/Manila] PHP Warning:  Undefined array key "user_name" in C:\xampp\htdocs\mdr1\public\annex1_print.php on line 255
