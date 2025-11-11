@@ -230,13 +230,27 @@ $records = $stmt->fetchAll();
 
 // Calculate total statistics
 $total_records = count($records);
+
+// For cumulative data, we need to get the LATEST record per barangay to avoid double-counting
+// Group records by barangay and get the most recent cumulative values
+$latest_by_barangay = [];
+foreach ($records as $record) {
+    $barangay_key = $record['barangay'];
+    // If this barangay doesn't exist yet, or this record is newer, use it
+    if (!isset($latest_by_barangay[$barangay_key]) ||
+        strtotime($record['created_at']) > strtotime($latest_by_barangay[$barangay_key]['created_at'])) {
+        $latest_by_barangay[$barangay_key] = $record;
+    }
+}
+
+// Now sum up the latest cumulative values from each barangay
 $total_affected_families_cumulative = 0;
 $total_affected_persons_cumulative = 0;
 $total_ecs_cumulative = 0;
 $total_displaced_families = 0;
 $total_displaced_persons = 0;
 
-foreach ($records as $record) {
+foreach ($latest_by_barangay as $record) {
     $total_affected_families_cumulative += $record['affected_families_cumulative'] ?? 0;
     $total_affected_persons_cumulative += $record['affected_persons_cumulative'] ?? 0;
     $total_ecs_cumulative += $record['num_ecs_cumulative'] ?? 0;
@@ -615,6 +629,16 @@ ob_start();
     </div>
 
     <?php show_flash(); ?>
+
+    <?php if ($is_admin): ?>
+    <!-- Cumulative Data Info Alert -->
+    <div class="alert alert-info" style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Cumulative Data Calculation:</strong> The totals below show the <strong>latest cumulative values from each barangay</strong>.
+        This prevents double-counting when multiple reports are submitted by the same barangay.
+        Only the most recent report from each barangay is used to calculate municipality-wide totals.
+    </div>
+    <?php endif; ?>
 
     <!-- Statistics Cards -->
 <!-- Statistics Cards -->

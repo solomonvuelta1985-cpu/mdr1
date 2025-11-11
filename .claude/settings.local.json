@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(touch:*)",
-      "Bash(move:*)"
+      "Bash(move:*)",
+      "Bash(\"/c/xampp/php/php.exe\" create_barangay_users.php)"
     ],
     "deny": [],
     "ask": []

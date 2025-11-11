@@ -661,3 +661,1240 @@ Stack trace:
 [11-Nov-2025 13:24:51 Asia/Manila] Tokens match: YES
 [11-Nov-2025 13:24:51 Asia/Manila] === CSRF DEBUG END ===
 [11-Nov-2025 13:24:51 Asia/Manila] CSRF SUCCESS: Token validated
+[11-Nov-2025 14:17:32 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 14:27:09 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 14:28:36 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:100
+[11-Nov-2025 14:28:38 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:100
+[11-Nov-2025 14:29:05 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:100
+[11-Nov-2025 14:29:06 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:100
+[11-Nov-2025 14:29:07 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:100
+[11-Nov-2025 14:29:33 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex2_cumulative_settings' doesn't exist in C:\xampp\htdocs\mdr1\public\annex2.php:47
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Asassi" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Asassi" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:30:48 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:30:48 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:03 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:03 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:31:04 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:31:04 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:32:30 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:32:30 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:39:31 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:31 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:31 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:31 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:32 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:32 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:32 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:32 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:33 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:33 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:33 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:33 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:33 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:34 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:35 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:36 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:37 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:39:38 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:43:14 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:43:14 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:51:00 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:00 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:00 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:01 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:02 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:03 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:04 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:05 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:51:06 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password_changed_at' in 'field list'
+[11-Nov-2025 14:55:23 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:55:33 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:225
+[11-Nov-2025 14:55:33 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 225
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Adaoag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Agaman (Proper)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Agaman Norte" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Agaman Sur" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Alba" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Annayatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Asinga-Via" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Awallan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Bacagan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Bagunot" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Barsat East" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Barsat West" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Bitag Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Bitag Pequeño" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Bunugan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "C. Verzosa (Valley Cove)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Canagatan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Carupian" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Catugay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Dabbac Grande" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Dalin" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Dalla" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Hacienda Intal" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Ibulo" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Immurung" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "J. Pallagao" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Lasilat" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Mabini" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Masical" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Mocag" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Nangalinan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Poblacion (Centro)" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Remus" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Antonio" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Francisco" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Isidro" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Jose" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Miguel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "San Vicente" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Santa Margarita" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Santor" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Taguing" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Taguntungan" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Tallang" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Taytay" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Temblique" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
+[11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227

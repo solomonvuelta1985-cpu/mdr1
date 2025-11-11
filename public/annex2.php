@@ -41,6 +41,14 @@ if (is_admin()) {
     $user_barangay = $user_data['barangay'] ?? '';
 }
 
+// Get cumulative settings for the current barangay
+$cumulative_settings = [];
+if ($user_barangay) {
+    $stmt = $pdo->prepare("SELECT * FROM annex2_cumulative_settings WHERE barangay = ?");
+    $stmt->execute([$user_barangay]);
+    $cumulative_settings = $stmt->fetch(PDO::FETCH_ASSOC) ?? [];
+}
+
 // Input validation and sanitization functions
 function validate_annex2_entry($entry) {
     $errors = [];
@@ -690,8 +698,8 @@ ob_start();
                         <div class="row g-3">
                             <div class="col-md-6 col-lg-3">
                                 <label for="affected_families_cumulative-0" class="form-label">Affected Families (Cumulative)</label>
-                                <input type="number" class="form-control number-input bg-light" id="affected_families_cumulative-0" name="affected_families_cumulative[]" value="1250" readonly min="0" max="999999999">
-                                <div class="auto-calc-indicator">Predefined data</div>
+                                <input type="number" class="form-control number-input bg-light" id="affected_families_cumulative-0" name="affected_families_cumulative[]" value="<?php echo $cumulative_settings['affected_families_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                <div class="auto-calc-indicator">From settings</div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <label for="affected_families_current-0" class="form-label">Affected Families (Current)</label>
@@ -699,8 +707,8 @@ ob_start();
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <label for="affected_persons_cumulative-0" class="form-label">Affected Persons (Cumulative)</label>
-                                <input type="number" class="form-control number-input bg-light" id="affected_persons_cumulative-0" name="affected_persons_cumulative[]" value="5840" readonly min="0" max="999999999">
-                                <div class="auto-calc-indicator">Predefined data</div>
+                                <input type="number" class="form-control number-input bg-light" id="affected_persons_cumulative-0" name="affected_persons_cumulative[]" value="<?php echo $cumulative_settings['affected_persons_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                <div class="auto-calc-indicator">From settings</div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <label for="affected_persons_current-0" class="form-label">Affected Persons (Current)</label>
@@ -710,11 +718,11 @@ ob_start();
 
                         <div class="section-title mt-4">Evacuation Centers (ECs)</div>
                         <div class="row g-3">
-                            <div class="col-md-6 col-lg-6">
-                                <label for="num_ecs_cumulative-0" class="form-label">Number of ECs (Cumulative)</label>
-                                <input type="number" class="form-control number-input bg-light" id="num_ecs_cumulative-0" name="num_ecs_cumulative[]" value="15" readonly min="0" max="999999999">
-                                <div class="auto-calc-indicator">Predefined data</div>
-                            </div>
+                        <div class="col-md-6 col-lg-6">
+                            <label for="num_ecs_cumulative-0" class="form-label">Number of ECs (Cumulative)</label>
+                            <input type="number" class="form-control number-input bg-light" id="num_ecs_cumulative-0" name="num_ecs_cumulative[]" value="<?php echo $cumulative_settings['num_ecs_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                            <div class="auto-calc-indicator">From settings</div>
+                        </div>
                             <div class="col-md-6 col-lg-6">
                                 <label for="num_ecs_current-0" class="form-label">Number of ECs (Current)</label>
                                 <input type="number" class="form-control number-input" id="num_ecs_current-0" name="num_ecs_current[]" placeholder="0" min="0" max="999999999">
@@ -728,8 +736,8 @@ ob_start();
                                 <div class="row g-3">
                                     <div class="col-md-6 col-lg-3">
                                         <label for="inside_families_cumulative-0" class="form-label">Families (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="inside_families_cumulative-0" name="inside_families_cumulative[]" value="850" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Predefined data</div>
+                                        <input type="number" class="form-control number-input bg-light" id="inside_families_cumulative-0" name="inside_families_cumulative[]" value="<?php echo $cumulative_settings['inside_families_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="inside_families_current-0" class="form-label">Families (Current)</label>
@@ -737,8 +745,8 @@ ob_start();
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="inside_persons_cumulative-0" class="form-label">Persons (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="inside_persons_cumulative-0" name="inside_persons_cumulative[]" value="3980" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Predefined data</div>
+                                        <input type="number" class="form-control number-input bg-light" id="inside_persons_cumulative-0" name="inside_persons_cumulative[]" value="<?php echo $cumulative_settings['inside_persons_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="inside_persons_current-0" class="form-label">Persons (Current)</label>
@@ -754,8 +762,8 @@ ob_start();
                                 <div class="row g-3">
                                     <div class="col-md-6 col-lg-3">
                                         <label for="outside_families_cumulative-0" class="form-label">Families (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="outside_families_cumulative-0" name="outside_families_cumulative[]" value="400" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Predefined data</div>
+                                        <input type="number" class="form-control number-input bg-light" id="outside_families_cumulative-0" name="outside_families_cumulative[]" value="<?php echo $cumulative_settings['outside_families_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="outside_families_current-0" class="form-label">Families (Current)</label>
@@ -763,8 +771,8 @@ ob_start();
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="outside_persons_cumulative-0" class="form-label">Persons (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="outside_persons_cumulative-0" name="outside_persons_cumulative[]" value="1860" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Predefined data</div>
+                                        <input type="number" class="form-control number-input bg-light" id="outside_persons_cumulative-0" name="outside_persons_cumulative[]" value="<?php echo $cumulative_settings['outside_persons_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="outside_persons_current-0" class="form-label">Persons (Current)</label>
@@ -780,8 +788,8 @@ ob_start();
                                 <div class="row g-3">
                                     <div class="col-md-6 col-lg-3">
                                         <label for="total_families_cumulative-0" class="form-label">Families (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="total_families_cumulative-0" name="total_families_cumulative[]" value="1250" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Auto-calculated</div>
+                                        <input type="number" class="form-control number-input bg-light" id="total_families_cumulative-0" name="total_families_cumulative[]" value="<?php echo $cumulative_settings['total_families_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="total_families_current-0" class="form-label">Families (Current)</label>
@@ -790,8 +798,8 @@ ob_start();
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="total_persons_cumulative-0" class="form-label">Persons (Cumulative)</label>
-                                        <input type="number" class="form-control number-input bg-light" id="total_persons_cumulative-0" name="total_persons_cumulative[]" value="5840" readonly min="0" max="999999999">
-                                        <div class="auto-calc-indicator">Auto-calculated</div>
+                                        <input type="number" class="form-control number-input bg-light" id="total_persons_cumulative-0" name="total_persons_cumulative[]" value="<?php echo $cumulative_settings['total_persons_cumulative'] ?? 0; ?>" readonly min="0" max="999999999">
+                                        <div class="auto-calc-indicator">From settings</div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <label for="total_persons_current-0" class="form-label">Persons (Current)</label>
