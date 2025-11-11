@@ -64,7 +64,7 @@ $csrf_token = generate_token();
         </div>
         <div class="col-md-6">
             <label for="edit_cost" class="form-label">Cost</label>
-            <input type="text" class="form-control" id="edit_cost" name="cost" 
+            <input type="text" class="form-control" id="edit_cost" name="cost"
                    value="<?php echo htmlspecialchars($record['cost']); ?>" placeholder="Enter cost">
         </div>
         <div class="col-12">

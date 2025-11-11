@@ -1898,3 +1898,128 @@ Stack trace:
 [11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Undefined array key "Tungel" in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
 [11-Nov-2025 14:58:02 Asia/Manila] Error [2]: Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php:227
 [11-Nov-2025 14:58:02 Asia/Manila] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\mdr1\admin\annex2_cumulative_settings.php on line 227
+[11-Nov-2025 15:27:14 Asia/Manila] No file uploaded for entry 0 or file upload not set
+[11-Nov-2025 15:27:14 Asia/Manila] Annex9 - Entry 1 inserted with ID: 8
+[11-Nov-2025 15:27:14 Asia/Manila] Annex9 - Total inserted: 1, IDs: 8
+[11-Nov-2025 15:27:14 Asia/Manila] DEBUG: User ID: 13
+[11-Nov-2025 15:27:14 Asia/Manila] DEBUG: Is Admin: No
+[11-Nov-2025 15:27:14 Asia/Manila] DEBUG: Running user query for user_id: 13
+[11-Nov-2025 15:27:14 Asia/Manila] DEBUG: Found 1 records
+[11-Nov-2025 15:27:14 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[11-Nov-2025 15:32:12 Asia/Manila] DEBUG: User ID: 13
+[11-Nov-2025 15:32:12 Asia/Manila] DEBUG: Is Admin: No
+[11-Nov-2025 15:32:12 Asia/Manila] DEBUG: Running user query for user_id: 13
+[11-Nov-2025 15:32:12 Asia/Manila] DEBUG: Found 1 records
+[11-Nov-2025 15:32:12 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[11-Nov-2025 15:32:42 Asia/Manila] Annex19 - Entry 1 inserted with ID: 2
+[11-Nov-2025 15:32:42 Asia/Manila] Annex19 - Total inserted: 1, IDs: 2
+[11-Nov-2025 15:34:52 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_37cca5742c382ad941a01c8a292613e9bcc001035ac3837188c9a9b094d7c5de
+[11-Nov-2025 15:35:01 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 15:40:11 Asia/Manila] Error [2]: Undefined variable $noRecoery in C:\xampp\htdocs\mdr1\api\annex5_save.php:288
+[11-Nov-2025 15:40:11 Asia/Manila] PHP Warning:  Undefined variable $noRecoery in C:\xampp\htdocs\mdr1\api\annex5_save.php on line 288
+[11-Nov-2025 15:40:11 Asia/Manila] Annex5 - Entry 1 inserted with ID: 11
+[11-Nov-2025 15:40:11 Asia/Manila] Annex5 - Total inserted: 1, IDs: 11
+[11-Nov-2025 15:48:39 Asia/Manila] Annex11 - Entry 1 inserted with ID: 2
+[11-Nov-2025 15:48:39 Asia/Manila] Annex11 - Total inserted: 1, IDs: 2
+[11-Nov-2025 15:54:16 Asia/Manila] Annex18 - Entry 1 inserted with ID: 2
+[11-Nov-2025 15:54:16 Asia/Manila] Annex18 - Total inserted: 1, IDs: 2
+[11-Nov-2025 16:16:35 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_e35b1b4f23b02ed57a2d1d567d5a2dedd6899fe7fa703cb963abf3774c5b4dc8
+[11-Nov-2025 16:16:44 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_e35b1b4f23b02ed57a2d1d567d5a2dedd6899fe7fa703cb963abf3774c5b4dc8
+[11-Nov-2025 16:16:45 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:16:50 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:16:53 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:16:57 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:17:05 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:17:10 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_2998757fa7ce4be7df5c4dcabdfe1959aa7f09994b4c694714a74f81e597938e
+[11-Nov-2025 16:20:37 Asia/Manila] DEBUG: User ID: 13
+[11-Nov-2025 16:20:37 Asia/Manila] DEBUG: Is Admin: No
+[11-Nov-2025 16:20:37 Asia/Manila] DEBUG: Running user query for user_id: 13
+[11-Nov-2025 16:20:37 Asia/Manila] DEBUG: Found 1 records
+[11-Nov-2025 16:20:37 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[11-Nov-2025 16:22:27 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_63dc47ee76d889d2bbfaf5d4249945308ff999129787f9ac619dfa8ab48d4a4a
+[11-Nov-2025 16:22:40 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_63dc47ee76d889d2bbfaf5d4249945308ff999129787f9ac619dfa8ab48d4a4a
+[11-Nov-2025 16:23:16 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_63dc47ee76d889d2bbfaf5d4249945308ff999129787f9ac619dfa8ab48d4a4a
+[11-Nov-2025 16:23:26 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 16:24:09 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_c11a6aba6c19076cc3f9cb0bb4ce32169987777834688413b264764e09096dbd
+[11-Nov-2025 16:28:02 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 16:31:37 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:34:52 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:46:06 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:49:11 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 16:49:53 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:35 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:37 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:50:37 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:51:10 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:53:14 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:53:20 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:53:24 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:53:26 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:54:33 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:54:51 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:56:38 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:58:15 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 16:58:39 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 17:15:23 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[11-Nov-2025 17:18:54 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9

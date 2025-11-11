@@ -750,11 +750,13 @@ ob_start();
             setTimeout(function() {
                 // Hide skeleton loader
                 skeletonLoader.style.display = 'none';
-                
+
                 // Show form content with fade-in animation
                 formContent.style.display = 'block';
                 setTimeout(function() {
                     formContent.classList.add('loaded');
+                    // Initialize cost formatting after form is loaded
+                    initializeCostFormatting();
                 }, 50);
             }, 1200); // 1.2 second loading simulation
         });
@@ -866,7 +868,7 @@ ob_start();
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <label for="barangay-${entryCount}" class="form-label">Barangay</label>
-                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]" 
+                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]"
                                 value="<?= htmlspecialchars($user_barangay) ?>" readonly>
                         </div>
                     </div>
@@ -906,16 +908,27 @@ ob_start();
                     </div>
                 `;
                 entriesContainer.appendChild(newEntry);
-                
+
                 // Trigger lazy loading animation
                 setTimeout(function() {
                     newEntry.classList.add('loaded');
+                    // Initialize cost formatting for the new entry
+                    const newCostInput = newEntry.querySelector('input[name="cost[]"]');
+                    if (newCostInput) {
+                        newCostInput.addEventListener('blur', function() {
+                            formatCost(this);
+                        });
+                        newCostInput.addEventListener('input', function() {
+                            // Allow only numbers and decimal point
+                            this.value = this.value.replace(/[^0-9.]/g, '');
+                        });
+                    }
                 }, 50);
-                
+
                 // Re-enable button
                 button.disabled = false;
                 button.innerHTML = 'Add Entry';
-                
+
                 entryCount++;
             }, 800); // 800ms loading delay for new entries
         });
@@ -945,12 +958,37 @@ ob_start();
             const totallyInput = entry.querySelector('input[name="totallyDamaged[]"]');
             const partiallyInput = entry.querySelector('input[name="partiallyDamaged[]"]');
             const totalInput = entry.querySelector('input[name="totalDamaged[]"]');
-            
+
             const totally = parseInt(totallyInput.value) || 0;
             const partially = parseInt(partiallyInput.value) || 0;
             const total = totally + partially;
-            
+
             totalInput.value = total;
+        }
+
+        // Format cost with commas
+        function formatCost(input) {
+            let value = input.value.replace(/,/g, ''); // Remove existing commas
+            if (value === '' || isNaN(value)) {
+                input.value = '';
+                return;
+            }
+            // Format with commas
+            input.value = parseFloat(value).toLocaleString('en-US');
+        }
+
+        // Initialize cost formatting for existing entries
+        function initializeCostFormatting() {
+            const costInputs = document.querySelectorAll('input[name="cost[]"]');
+            costInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    formatCost(this);
+                });
+                input.addEventListener('input', function() {
+                    // Allow only numbers and decimal point
+                    this.value = this.value.replace(/[^0-9.]/g, '');
+                });
+            });
         }
 
         // Handle form submission with loading state
