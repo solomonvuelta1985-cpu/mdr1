@@ -650,17 +650,31 @@ ob_start();
                 formContent.style.display = 'block';
                 setTimeout(function() {
                     formContent.classList.add('loaded');
-                }, 50);
+                    
+                    // Initialize listeners after form is visible
+                    const initialEntry = document.querySelector('.entry-card');
+                    if (initialEntry) {
+                        attachClassificationListeners(initialEntry);
+                        console.log('Attached listeners to initial entry');
+                    }
+                }, 100);
             }, 1200);
-
-            // Attach listeners to initial classification selects
-            attachClassificationListeners(document.querySelector('.entry-card'));
         });
+
+        // Additional initialization after DOM load for safety
+        setTimeout(function() {
+            const initialEntry = document.querySelector('.entry-card');
+            if (initialEntry) {
+                attachClassificationListeners(initialEntry);
+            }
+        }, 1500);
 
         // Update type options when classification changes
         function updateTypeOptions(classificationSelect, typeSelect) {
             const classification = classificationSelect.value;
             typeSelect.innerHTML = '<option value="">Select Type</option>';
+            
+            console.log('Updating type options for classification:', classification);
             
             if (classification && animalTypes[classification]) {
                 animalTypes[classification].forEach(type => {
@@ -669,6 +683,9 @@ ob_start();
                     option.textContent = type;
                     typeSelect.appendChild(option);
                 });
+                console.log('Populated', animalTypes[classification].length, 'options for', classification);
+            } else {
+                console.log('No options for classification:', classification);
             }
         }
 
@@ -678,14 +695,20 @@ ob_start();
             const typeSelect = entryCard.querySelector('.type-select');
             
             if (classificationSelect && typeSelect) {
-                classificationSelect.addEventListener('change', function() {
+                // Remove existing listeners to avoid duplicates
+                classificationSelect.removeEventListener('change', classificationSelect._boundHandler);
+                
+                classificationSelect._boundHandler = function() {
                     updateTypeOptions(this, typeSelect);
-                });
+                };
+                classificationSelect.addEventListener('change', classificationSelect._boundHandler);
                 
                 // Initialize type options if classification is already selected
                 if (classificationSelect.value) {
                     updateTypeOptions(classificationSelect, typeSelect);
                 }
+            } else {
+                console.warn('Classification or type select not found in entry card');
             }
         }
 

@@ -110,6 +110,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
                 break;
+
+            case 'reset_rate_limits':
+                // Get username for rate limit key generation
+                $user_stmt = db_query("SELECT username FROM users WHERE id = ?", [$user_id]);
+                $user_data = $user_stmt->fetch();
+
+                if ($user_data) {
+                    $username = $user_data['username'];
+                    $rate_limit_key = "login_attempt_" . hash('sha256', strtolower($username));
+
+                    // Delete rate limit entries for this user
+                    $delete_stmt = db_query("DELETE FROM rate_limits WHERE action = ?", [$rate_limit_key]);
+
+                    if ($delete_stmt) {
+                        // Log the rate limit reset
+                        log_audit_action($current_user_id, 'rate_limit_reset_admin', "Reset rate limits for user: {$username} (ID: {$user_id})");
+
+                        set_flash('Rate limits reset successfully! User can now attempt to login again.', 'success');
+                    } else {
+                        set_flash('Failed to reset rate limits', 'error');
+                    }
+                } else {
+                    set_flash('User not found', 'error');
+                }
+                break;
                 
             case 'create':
                 $full_name = sanitize($_POST['full_name']);
@@ -184,13 +209,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Get all users with session info
+// Get all users with session info and rate limit status
 $users_stmt = db_query("
-    SELECT u.*, 
+    SELECT u.*,
            creator.full_name as created_by_name,
-           (SELECT COUNT(*) FROM user_sessions us WHERE us.user_id = u.id AND us.is_active = TRUE) as active_sessions
-    FROM users u 
-    LEFT JOIN users creator ON u.created_by = creator.id 
+           (SELECT COUNT(*) FROM user_sessions us WHERE us.user_id = u.id AND us.is_active = TRUE) as active_sessions,
+           (SELECT COUNT(*) FROM rate_limits rl
+            WHERE rl.action = CONCAT('login_attempt_', SHA2(LOWER(u.username), 256))
+            AND rl.attempt_time > DATE_SUB(NOW(), INTERVAL 15 MINUTE)) as recent_attempts
+    FROM users u
+    LEFT JOIN users creator ON u.created_by = creator.id
     ORDER BY u.created_at DESC
 ");
 $users = $users_stmt->fetchAll();
@@ -251,6 +279,7 @@ $token = generate_token();
                                         <th>Role</th>
                                         <th>Status</th>
                                         <th>Sessions</th>
+                                        <th>Rate Limits</th>
                                         <th>Created By</th>
                                         <th>Created Date</th>
                                         <th>Actions</th>
@@ -297,6 +326,21 @@ $token = generate_token();
                                                 </span>
                                             <?php endif; ?>
                                         </td>
+                                        <td>
+                                            <?php if ($user['recent_attempts'] >= 5): ?>
+                                                <span class="badge bg-danger">
+                                                    <i class="fas fa-exclamation-triangle me-1"></i>Locked (<?= $user['recent_attempts'] ?>/5)
+                                                </span>
+                                            <?php elseif ($user['recent_attempts'] > 0): ?>
+                                                <span class="badge bg-warning text-dark">
+                                                    <i class="fas fa-clock me-1"></i><?= $user['recent_attempts'] ?>/5 attempts
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="badge bg-success">
+                                                    <i class="fas fa-check me-1"></i>OK
+                                                </span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td><?= htmlspecialchars($user['created_by_name'] ?? 'System') ?></td>
                                         <td><?= format_date($user['created_at']) ?></td>
                                         <td class="table-actions">
@@ -320,6 +364,13 @@ $token = generate_token();
                                                     data-userid="<?= $user['id'] ?>"
                                                     data-username="<?= htmlspecialchars($user['username']) ?>">
                                                 <i class="fas fa-key"></i>
+                                            </button>
+
+                                            <!-- Reset Rate Limits Button -->
+                                            <button class="btn btn-outline-warning btn-sm"
+                                                    onclick="resetRateLimits(<?= $user['id'] ?>, '<?= htmlspecialchars($user['username']) ?>')"
+                                                    title="Reset Rate Limits">
+                                                <i class="fas fa-clock-rotate-left"></i>
                                             </button>
 
                                             <!-- Activate/Deactivate Button -->
@@ -637,7 +688,7 @@ $token = generate_token();
         document.getElementById('reset_confirm_password')?.addEventListener('input', function() {
             const password = document.getElementById('new_password').value;
             const confirm = this.value;
-            
+
             if (confirm && password !== confirm) {
                 this.classList.add('is-invalid');
                 this.classList.remove('is-valid');
@@ -648,6 +699,37 @@ $token = generate_token();
                 this.classList.remove('is-invalid', 'is-valid');
             }
         });
+
+        // Reset Rate Limits Function
+        function resetRateLimits(userId, username) {
+            if (confirm(`Are you sure you want to reset rate limits for user "${username}"? This will allow them to attempt login again immediately.`)) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.style.display = 'none';
+
+                const tokenInput = document.createElement('input');
+                tokenInput.type = 'hidden';
+                tokenInput.name = 'token';
+                tokenInput.value = '<?= $token ?>';
+
+                const actionInput = document.createElement('input');
+                actionInput.type = 'hidden';
+                actionInput.name = 'action';
+                actionInput.value = 'reset_rate_limits';
+
+                const userIdInput = document.createElement('input');
+                userIdInput.type = 'hidden';
+                userIdInput.name = 'user_id';
+                userIdInput.value = userId;
+
+                form.appendChild(tokenInput);
+                form.appendChild(actionInput);
+                form.appendChild(userIdInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
     </script>
 </body>
 </html>

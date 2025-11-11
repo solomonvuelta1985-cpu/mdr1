@@ -626,3 +626,38 @@ Stack trace:
 #0 C:\xampp\htdocs\mdr1\admin\barangay_locking.php(223): include()
 #1 {main}
   thrown in C:\xampp\htdocs\mdr1\includes\footer.php on line 3
+[11-Nov-2025 10:03:30 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:16:58 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:24:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:24:41 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:24:48 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:28:41 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:29:00 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:33:29 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 12:33:57 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:34:02 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:34:16 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:34:25 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:34:29 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:34:36 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:35:42 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:42:51 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:43:12 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:45:31 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:45:35 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:45:39 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:45:43 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:45:47 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 12:46:18 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 13:01:34 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 13:04:07 Asia/Manila] Annex18 - Entry 1 inserted with ID: 1
+[11-Nov-2025 13:04:07 Asia/Manila] Annex18 - Total inserted: 1, IDs: 1
+[11-Nov-2025 13:05:25 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 13:24:51 Asia/Manila] === CSRF DEBUG START ===
+[11-Nov-2025 13:24:51 Asia/Manila] Session ID: ojypo6-ysKYZoZLNq,mFM9gJK0hc,1YWlO0phXSvA1URtRob
+[11-Nov-2025 13:24:51 Asia/Manila] User ID: 5
+[11-Nov-2025 13:24:51 Asia/Manila] CSRF Token in POST: 01d3b632b689a0f58b896b50cc88a0e4cc0c89f761da6c375ed00f2336801382
+[11-Nov-2025 13:24:51 Asia/Manila] CSRF Token in SESSION: 01d3b632b689a0f58b896b50cc88a0e4cc0c89f761da6c375ed00f2336801382
+[11-Nov-2025 13:24:51 Asia/Manila] Tokens match: YES
+[11-Nov-2025 13:24:51 Asia/Manila] === CSRF DEBUG END ===
+[11-Nov-2025 13:24:51 Asia/Manila] CSRF SUCCESS: Token validated

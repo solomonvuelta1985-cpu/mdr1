@@ -70,7 +70,7 @@ function exportToPDF($records) {
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>NDRRMC Annex 1 - Related Incident</title>
+        <title>MDRRM-ARMS Annex 1 - Related Incident</title>
         <style>
             @page {
                 size: A4 landscape;
@@ -279,7 +279,7 @@ function exportToWord($records) {
           xmlns="http://www.w3.org/TR/REC-html40">
     <head>
         <meta charset="UTF-8">
-        <title>NDRRMC Annex 1 - Related Incident</title>
+        <title>MDRRM-ARMS Annex 1 - Related Incident</title>
         <style>
             @page Section1 {
                 size: 11.0in 8.5in;

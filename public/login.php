@@ -101,82 +101,286 @@ $token = generate_token();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Annex Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .login-container {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .login-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 400px;
-            background: white;
-        }
-        .login-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0 !important;
-            padding: 2rem;
-            text-align: center;
-        }
-        .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
-            transform: translateY(-1px);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDRRM-ARMS | Login</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      background: #1e40af;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+    }
+
+    h1 {
+      color: #1e293b;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #374151;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6b7280;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 14px 14px 45px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      background: #f9fafb;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6b7280;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      background: #1e3a8a;
+    }
+
+    .login-btn:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #9ca3af;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .flash-message {
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid;
+    }
+
+    .flash-message.error {
+      background: #fef2f2;
+      color: #dc2626;
+      border-left-color: #dc2626;
+    }
+
+    .flash-message.success {
+      background: #f0fdf4;
+      color: #16a34a;
+      border-left-color: #16a34a;
+    }
+
+    .flash-message i {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 25px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="card login-card">
-            <div class="card-header login-header">
-                <h3><i class="fas fa-file-contract me-2"></i>Annex System</h3>
-                <p class="mb-0">Sign in to your account</p>
-            </div>
-            <div class="card-body p-4">
-                <?php show_flash(); ?>
-                
-                <form method="POST">
-                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
-                    
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" value="<?= htmlspecialchars($username) ?>" required autofocus>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary w-100 py-2">
-                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
-                    </button>
-                </form>
-
-                <!-- SECURITY FIX: Default credentials removed to prevent unauthorized access -->
-            </div>
+  <div class="login-container">
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
         </div>
+      </div>
+      <h1>MDRRM-ARMS</h1>
+      <p class="subtitle">
+        Municipal Disaster Risk Reduction & Management<br>
+        Annex Reporting and Monitoring System
+      </p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- PHP Flash Messages -->
+    <?php
+    if (isset($_SESSION['flash_message'])) {
+        $flash_type = $_SESSION['flash_type'] ?? 'error';
+        $flash_message = $_SESSION['flash_message'];
+        $icon = $flash_type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        echo '<div class="flash-message ' . htmlspecialchars($flash_type) . '">
+          <i class="fas ' . $icon . '"></i>
+          <span>' . htmlspecialchars($flash_message) . '</span>
+        </div>';
+        unset($_SESSION['flash_message']);
+        unset($_SESSION['flash_type']);
+    }
+    ?>
+
+    <form method="POST" id="loginForm">
+      <input type="hidden" name="csrf_token" value="<?= $token ?>">
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-with-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" name="username" placeholder="Enter your username" value="<?= htmlspecialchars($username) ?>" required autofocus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <span class="password-toggle" id="passwordToggle">
+            <i class="fas fa-eye"></i>
+          </span>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" id="loginBtn">
+        Sign In
+      </button>
+    </form>
+
+    <div class="footer">
+      &copy; 2025 MDRRM-ARMS<br>
+      Developed for the Municipal Disaster Risk Reduction and Management Office
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Password visibility toggle
+      const passwordToggle = document.getElementById('passwordToggle');
+      const passwordInput = document.getElementById('password');
+
+      passwordToggle.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Toggle eye icon
+        const icon = this.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+      });
+
+      // Form submission animation
+      const loginForm = document.getElementById('loginForm');
+      const loginBtn = document.getElementById('loginBtn');
+
+      loginForm.addEventListener('submit', function(e) {
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+        loginBtn.disabled = true;
+      });
+    });
+  </script>
 </body>
 </html>

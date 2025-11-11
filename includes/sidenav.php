@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NDRRMC Reporting System</title>
+    <title>MDRRM-ARMS - Municipal Disaster Risk Reduction and Management – Annex Reporting and Monitoring System</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -501,7 +501,7 @@
     <div class="mobile-header">
         <div class="mobile-header-content">
             <div>
-                <h4>NDRRMC Reports</h4>
+                <h4>MDRRM-ARMS</h4>
                 <p>Memorandum Circular No. 05, s. 2025</p>
             </div>
             <button type="button" id="mobileSidebarToggle" class="btn">
@@ -516,7 +516,7 @@
     <!-- Sidebar Navigation -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>NDRRMC Reports</h3>
+            <h3>MDRRM-ARMS</h3>
             <p>Memorandum Circular No. 05, s. 2025</p>
         </div>
 
@@ -768,7 +768,7 @@
                         <i class="bi bi-list"></i>
                     </button>
                     <div class="ms-3">
-                        <h4 class="mb-0">NDRRMC Reporting System</h4>
+                        <h4 class="mb-0">MDRRM-ARMS</h4>
                         <small class="text-muted">
                             Welcome, <?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?> 
                             (<?php echo htmlspecialchars($_SESSION['user_role'] ?? 'User'); ?>)
@@ -791,7 +791,7 @@
                 // Default content or include your page-specific content here
                 ?>
                 <div class="page-header">
-                    <h1>Welcome to NDRRMC Reporting System</h1>
+                    <h1>Welcome to MDRRM-ARMS</h1>
                     <p>Select a menu item to begin</p>
                 </div>
                 <div class="dashboard-cards">
@@ -833,6 +833,14 @@
             ?>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-2 py-2">
+        <div class="container text-center">
+            <p class="text-muted mb-1 small">&copy; <?php echo date('Y'); ?> <?php echo SITE_NAME; ?>. All rights reserved.</p>
+            <p class="text-muted mb-0 small">Developed by <span class="badge bg-primary rounded-pill small">Richmond Rosete</span></p>
+        </div>
+    </footer>
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

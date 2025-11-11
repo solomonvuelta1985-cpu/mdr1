@@ -87,6 +87,23 @@ log_audit_action(
             <label for="edit_type" class="form-label">Type</label>
             <select class="form-select" id="edit_type" name="type" required>
                 <option value="">Select Type</option>
+                <?php
+                // Livestock types
+                $livestockTypes = ['Pig', 'Cow', 'Goat', 'Horse'];
+                $poultryTypes = ['Chicken', 'Duck'];
+
+                if ($record['classification'] === 'Livestock') {
+                    foreach ($livestockTypes as $type) {
+                        $selected = ($record['type'] === $type) ? 'selected' : '';
+                        echo "<option value=\"{$type}\" {$selected}>{$type}</option>";
+                    }
+                } elseif ($record['classification'] === 'Poultry') {
+                    foreach ($poultryTypes as $type) {
+                        $selected = ($record['type'] === $type) ? 'selected' : '';
+                        echo "<option value=\"{$type}\" {$selected}>{$type}</option>";
+                    }
+                }
+                ?>
             </select>
         </div>
         
@@ -158,94 +175,90 @@ const typeOptions = {
 
 // Store the current type from PHP
 const currentType = '<?php echo htmlspecialchars($record['type']); ?>';
+const currentClassification = '<?php echo htmlspecialchars($record['classification']); ?>';
 
-// Initialize form with current classification
-document.addEventListener('DOMContentLoaded', function() {
-    const classification = document.getElementById('edit_classification');
-    
-    console.log('Initializing edit form:');
-    console.log('- Classification:', classification.value);
-    console.log('- Current Type:', currentType);
-    
-    if (classification.value) {
-        // First populate type options with the correct selection
-        updateEditTypeOptions();
-        // Force set the type value after a small delay to ensure DOM is ready
-        setTimeout(() => {
-            const typeSelect = document.getElementById('edit_type');
-            if (typeSelect && currentType) {
-                typeSelect.value = currentType;
-                console.log('Forced type selection to:', currentType);
-            }
-        }, 100);
-    }
-});
-
+// Function to update type options when classification changes
 function updateEditTypeOptions() {
-    const classification = document.getElementById('edit_classification').value;
+    const classification = document.getElementById('edit_classification');
     const typeSelect = document.getElementById('edit_type');
-    
+
+    if (!classification || !typeSelect) {
+        return;
+    }
+
+    const selectedClassification = classification.value;
     typeSelect.innerHTML = '<option value="">Select Type</option>';
-    
-    console.log('Updating type options for:', classification, 'with selection:', currentType);
-    
-    if (typeOptions[classification]) {
-        typeOptions[classification].forEach(type => {
+
+    if (typeOptions[selectedClassification]) {
+        typeOptions[selectedClassification].forEach(type => {
             const option = document.createElement('option');
             option.value = type;
             option.textContent = type;
-            // Set selected attribute if it matches
-            if (type === currentType) {
-                option.selected = true;
-                console.log('Setting option as selected:', type);
-            }
             typeSelect.appendChild(option);
         });
     }
-    
-    // Ensure the selected value is set after population
-    if (currentType) {
-        typeSelect.value = currentType;
-    }
 }
 
+// Initialize form
+(function initializeEditForm() {
+    const classification = document.getElementById('edit_classification');
+
+    if (!classification) {
+        // Retry if elements not found (AJAX loading)
+        setTimeout(initializeEditForm, 100);
+        return;
+    }
+
+    // Attach change event listener
+    classification.addEventListener('change', updateEditTypeOptions);
+})();
+
 // Handle form submission
-document.getElementById('editRecordForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
-    submitBtn.disabled = true;
-    
-    fetch('../api/annex18_update.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Check if redirect URL is provided
-            if (data.redirect) {
-                // Redirect to annex18_records.php
-                window.location.href = data.redirect;
+(function attachFormSubmit() {
+    const form = document.getElementById('editRecordForm');
+
+    if (!form) {
+        setTimeout(attachFormSubmit, 100);
+        return;
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+        submitBtn.disabled = true;
+
+        fetch('../api/annex18_update.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Check if redirect URL is provided
+                if (data.redirect) {
+                    // Redirect to annex18_records.php
+                    window.location.href = data.redirect;
+                } else {
+                    // Fallback: Show success message and reload
+                    alert('✅ Record updated successfully!');
+                    location.reload();
+                }
             } else {
-                // Fallback: Show success message and reload
-                alert('✅ Record updated successfully!');
-                location.reload();
+                alert('❌ Error: ' + (data.message || 'Failed to update record'));
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
-        } else {
-            alert('❌ Error: ' + (data.message || 'Failed to update record'));
+        })
+        .catch(error => {
+            alert('❌ Error: ' + error.message);
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }
-    })
-    .catch(error => {
-        alert('❌ Error: ' + error.message);
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        });
     });
-});
+})();
 </script>

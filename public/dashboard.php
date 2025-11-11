@@ -14,6 +14,21 @@ require_login();
 ob_start();
 ?>
 
+<!-- Custom Loader HTML -->
+<div class="spinnerContainer" id="customLoader">
+    <div class="spinner"></div>
+    <div class="loader">
+        <p>loading</p>
+        <div class="words">
+            <span class="word">reports</span>
+            <span class="word">data</span>
+            <span class="word">incidents</span>
+            <span class="word">assistance</span>
+            <span class="word">reports</span>
+        </div>
+    </div>
+</div>
+
 <!-- Dashboard Content -->
 <style>
     .page-header {
@@ -80,6 +95,122 @@ ob_start();
         transform: translateX(5px);
     }
 
+    /* Custom Loader Styles */
+    .spinnerContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+    }
+
+    .spinner {
+        width: 56px;
+        height: 56px;
+        display: grid;
+        border: 4px solid #0000;
+        border-radius: 50%;
+        border-right-color: #299fff;
+        animation: tri-spinner 1s infinite linear;
+    }
+
+    .spinner::before,
+    .spinner::after {
+        content: "";
+        grid-area: 1/1;
+        margin: 2px;
+        border: inherit;
+        border-radius: 50%;
+        animation: tri-spinner 2s infinite;
+    }
+
+    .spinner::after {
+        margin: 8px;
+        animation-duration: 3s;
+    }
+
+    @keyframes tri-spinner {
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+
+    .loader {
+        color: #4a4a4a;
+        font-family: "Poppins",sans-serif;
+        font-weight: 500;
+        font-size: 25px;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        height: 40px;
+        padding: 10px 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border-radius: 8px;
+    }
+
+    .words {
+        overflow: hidden;
+    }
+
+    .word {
+        display: block;
+        height: 100%;
+        padding-left: 6px;
+        color: #299fff;
+        animation: cycle-words 5s infinite;
+    }
+
+    @keyframes cycle-words {
+        10% {
+            -webkit-transform: translateY(-105%);
+            transform: translateY(-105%);
+        }
+
+        25% {
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+        }
+
+        35% {
+            -webkit-transform: translateY(-205%);
+            transform: translateY(-205%);
+        }
+
+        50% {
+            -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+        }
+
+        60% {
+            -webkit-transform: translateY(-305%);
+            transform: translateY(-305%);
+        }
+
+        75% {
+            -webkit-transform: translateY(-300%);
+            transform: translateY(-300%);
+        }
+
+        85% {
+            -webkit-transform: translateY(-405%);
+            transform: translateY(-405%);
+        }
+
+        100% {
+            -webkit-transform: translateY(-400%);
+            transform: translateY(-400%);
+        }
+    }
+
     /* Skeleton Loader Styles */
     .skeleton {
         background: #f6f7f8;
@@ -138,7 +269,7 @@ ob_start();
 <div class="page-header">
     <div class="container-fluid">
         <h1>Dashboard</h1>
-        <p>Welcome to the NDRRMC Reporting System. Select a report from the sidebar to get started.</p>
+        <p>Welcome to the MDRRM-ARMS (Municipal Disaster Risk Reduction and Management – Annex Reporting and Monitoring System). Select a report from the sidebar to get started.</p>
         <div class="mt-3">
             <small class="text-muted">
                 Logged in as: <strong><?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?></strong>
@@ -288,7 +419,7 @@ ob_start();
                             <div class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     <i class="bi bi-info-circle text-primary me-2"></i>
-                                    <span>Welcome to the NDRRMC Reporting System</span>
+                                    <span>Welcome to the MDRRM-ARMS</span>
                                 </div>
                                 <small class="text-muted">Today</small>
                             </div>
@@ -300,10 +431,18 @@ ob_start();
     </div>
 </div>
 
-<!-- JavaScript for Skeleton Loader -->
+<!-- JavaScript for Loaders -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Simulate loading delay (replace with actual data fetch if needed)
+        // Hide custom loader after short delay
+        setTimeout(function () {
+            const customLoader = document.getElementById('customLoader');
+            if (customLoader) {
+                customLoader.style.display = 'none';
+            }
+        }, 2000); // 2 seconds for custom loader
+
+        // Simulate loading delay for skeleton loaders (replace with actual data fetch if needed)
         setTimeout(function () {
             // Hide skeleton loaders
             document.querySelectorAll('.skeleton-container').forEach(function (container) {
@@ -313,7 +452,7 @@ ob_start();
             document.querySelectorAll('.content-container').forEach(function (container) {
                 container.classList.remove('content-hidden');
             });
-        }, 1500); // 1.5 seconds delay for demo; adjust based on actual data loading
+        }, 3000); // 1.5 seconds delay for skeletons
     });
 </script>
 
