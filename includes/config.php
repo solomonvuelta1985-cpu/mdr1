@@ -116,6 +116,11 @@ if (session_status() === PHP_SESSION_NONE) {
 // Optional timezone default
 date_default_timezone_set('Asia/Manila');
 
+// ============================================================
+// SITE CONFIGURATION
+// ============================================================
+define('SITE_NAME', 'NDRRMC Annex Management System');
+
 // Include security headers
 require_once 'security_headers.php';
 

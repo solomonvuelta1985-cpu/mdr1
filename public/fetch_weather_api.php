@@ -187,13 +187,24 @@ function checkForActiveStorms() {
             return null;
         }
 
-        // Parse HTML to find storm name and classification
-        // PAGASA uses format: Super Typhoon &quot;Uwan&quot; or Super Typhoon "Uwan"
+        // Check if no active storm
+        if (stripos($html, 'No tropical cyclone') !== false || stripos($html, 'no tropical cyclone') !== false) {
+            return null;
+        }
 
-        // Pattern 1: Look for PAGASA's exact format with HTML entities (&quot;)
-        if (preg_match('/(Super Typhoon|Typhoon|Severe Tropical Storm|Tropical Storm|Tropical Depression)\s+&quot;([A-Za-z]+)&quot;/i', $html, $matches)) {
+        // Parse HTML to find storm name and classification
+        // PAGASA uses format: Super Typhoon "Uwan" or Super Typhoon "Uwan"
+
+        // Pattern 1: Look for PAGASA's exact format with HTML entities (")
+        if (preg_match('/(Super Typhoon|Typhoon|Severe Tropical Storm|Tropical Storm|Tropical Depression)\s+"([A-Za-z]+)"/i', $html, $matches)) {
             $classification = $matches[1];
             $stormName = ucfirst(strtolower($matches[2])); // Convert to title case
+
+            // Check if the storm is outside PAR
+            if (stripos($html, 'OUTSIDE PAR') !== false) {
+                return null; // Do not show storms outside PAR
+            }
+
             return $classification . ' "' . strtoupper($stormName) . '"';
         }
 
@@ -201,13 +212,25 @@ function checkForActiveStorms() {
         if (preg_match('/(Super Typhoon|Typhoon|Severe Tropical Storm|Tropical Storm|Tropical Depression)\s+"([A-Za-z]+)"/i', $html, $matches)) {
             $classification = $matches[1];
             $stormName = $matches[2];
+
+            // Check if the storm is outside PAR
+            if (stripos($html, 'OUTSIDE PAR') !== false) {
+                return null; // Do not show storms outside PAR
+            }
+
             return $classification . ' "' . strtoupper($stormName) . '"';
         }
 
         // Pattern 3: Look in <h3> tags specifically (PAGASA bulletin title)
-        if (preg_match('/<h3>(Super Typhoon|Typhoon|Severe Tropical Storm|Tropical Storm|Tropical Depression)\s+&quot;([A-Za-z]+)&quot;/i', $html, $h3Matches)) {
+        if (preg_match('/<h3>(Super Typhoon|Typhoon|Severe Tropical Storm|Tropical Storm|Tropical Depression)\s+"([A-Za-z]+)"/i', $html, $h3Matches)) {
             $classification = $h3Matches[1];
             $stormName = $h3Matches[2];
+
+            // Check if the storm is outside PAR
+            if (stripos($html, 'OUTSIDE PAR') !== false) {
+                return null; // Do not show storms outside PAR
+            }
+
             return $classification . ' "' . strtoupper($stormName) . '"';
         }
 

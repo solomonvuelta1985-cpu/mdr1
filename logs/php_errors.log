@@ -248,3 +248,381 @@ Stack trace:
 [09-Nov-2025 17:52:47 Asia/Manila] Annex19 - Entry 1 inserted with ID: 1
 [09-Nov-2025 17:52:47 Asia/Manila] Annex19 - Total inserted: 1, IDs: 1
 [09-Nov-2025 17:59:03 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 18:30:09 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 20:32:10 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[09-Nov-2025 20:40:07 Asia/Manila] === CSRF DEBUG START ===
+[09-Nov-2025 20:40:07 Asia/Manila] Session ID: 7cyVdFgNItRxn0ssDkNmhaemvHEI365vPxDNT3YZQzdzZnZS
+[09-Nov-2025 20:40:07 Asia/Manila] User ID: 5
+[09-Nov-2025 20:40:07 Asia/Manila] CSRF Token in POST: 15173097198edc2c0954dac04679157cb399a2bc5e6f15f4103600c363380d0d
+[09-Nov-2025 20:40:07 Asia/Manila] CSRF Token in SESSION: 15173097198edc2c0954dac04679157cb399a2bc5e6f15f4103600c363380d0d
+[09-Nov-2025 20:40:07 Asia/Manila] Tokens match: YES
+[09-Nov-2025 20:40:07 Asia/Manila] === CSRF DEBUG END ===
+[09-Nov-2025 20:40:07 Asia/Manila] CSRF SUCCESS: Token validated
+[09-Nov-2025 20:40:07 Asia/Manila] CRITICAL ERROR: Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+[09-Nov-2025 20:40:07 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\annex8_save.php(174): safe_image_upload(Array, 'annex8', 'roadbridge_Asas...')
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\file_security.php on line 291
+[09-Nov-2025 20:41:52 Asia/Manila] No file uploaded for entry 0 or file upload not set
+[09-Nov-2025 20:41:52 Asia/Manila] Annex9 - Entry 1 inserted with ID: 4
+[09-Nov-2025 20:41:52 Asia/Manila] Annex9 - Total inserted: 1, IDs: 4
+[09-Nov-2025 20:41:52 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:41:52 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:41:52 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:41:52 Asia/Manila] DEBUG: Found 3 records
+[09-Nov-2025 20:41:52 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 4
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:41:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:41:52
+    [updated_at] => 2025-11-09 04:41:52
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:08 Asia/Manila] User ID: 5
+[09-Nov-2025 20:42:08 Asia/Manila] POST data: Array
+(
+    [csrf_token] => 15173097198edc2c0954dac04679157cb399a2bc5e6f15f4103600c363380d0d
+    [record_id] => 4
+    [current_image_path] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_date] => 2025-11-09T04:41
+    [restored_date] => 
+    [remarks] => 
+)
+
+[09-Nov-2025 20:42:08 Asia/Manila] FILES data: Array
+(
+    [image] => Array
+        (
+            [name] => CamScanner 10-08-2025 09.05.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpBCC2.tmp
+            [error] => 0
+            [size] => 634137
+        )
+
+)
+
+[09-Nov-2025 20:42:08 Asia/Manila] Record ID: 4
+[09-Nov-2025 20:42:08 Asia/Manila] Current record found. Current image: none
+[09-Nov-2025 20:42:08 Asia/Manila] Upload directory: C:\xampp\htdocs\mdr1\api/../uploads/
+[09-Nov-2025 20:42:08 Asia/Manila] NEW IMAGE UPLOAD DETECTED!
+[09-Nov-2025 20:42:08 Asia/Manila] File details: name=CamScanner 10-08-2025 09.05.jpg, size=634137
+[09-Nov-2025 20:42:08 Asia/Manila] File MIME type: image/jpeg
+[09-Nov-2025 20:42:08 Asia/Manila] Destination: C:\xampp\htdocs\mdr1\api/../uploads/69108c204d673_20251109_204208_CamScanner_10-08-2025_09.05.jpg
+[09-Nov-2025 20:42:08 Asia/Manila] SUCCESS! Image uploaded: 69108c204d673_20251109_204208_CamScanner_10-08-2025_09.05.jpg
+[09-Nov-2025 20:42:08 Asia/Manila] Updating database with image_path: 69108c204d673_20251109_204208_CamScanner_10-08-2025_09.05.jpg
+[09-Nov-2025 20:42:08 Asia/Manila] Database update successful!
+[09-Nov-2025 20:42:08 Asia/Manila] === ANNEX9 UPDATE FINISHED ===
+[09-Nov-2025 20:42:09 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:09 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:09 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:09 Asia/Manila] DEBUG: Found 3 records
+[09-Nov-2025 20:42:09 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 4
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:41:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 69108c204d673_20251109_204208_CamScanner_10-08-2025_09.05.jpg
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:41:52
+    [updated_at] => 2025-11-09 04:42:08
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:23 Asia/Manila] No file uploaded for entry 0 or file upload not set
+[09-Nov-2025 20:42:23 Asia/Manila] Annex9 - Entry 1 inserted with ID: 5
+[09-Nov-2025 20:42:23 Asia/Manila] Annex9 - Total inserted: 1, IDs: 5
+[09-Nov-2025 20:42:23 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:23 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:23 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:23 Asia/Manila] DEBUG: Found 4 records
+[09-Nov-2025 20:42:23 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 5
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:42:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:42:23
+    [updated_at] => 2025-11-09 04:42:23
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:28 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:28 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:28 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:28 Asia/Manila] DEBUG: Found 4 records
+[09-Nov-2025 20:42:28 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 5
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:42:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:42:23
+    [updated_at] => 2025-11-09 04:42:23
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:34 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:34 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:34 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:34 Asia/Manila] DEBUG: Found 3 records
+[09-Nov-2025 20:42:34 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 4
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:41:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 69108c204d673_20251109_204208_CamScanner_10-08-2025_09.05.jpg
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:41:52
+    [updated_at] => 2025-11-09 04:42:08
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:38 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:38 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:38 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:38 Asia/Manila] DEBUG: Found 2 records
+[09-Nov-2025 20:42:38 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 3
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-08 20:48:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 5
+    [created_at] => 2025-11-08 20:49:39
+    [updated_at] => 2025-11-08 20:49:39
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:51 Asia/Manila] File upload attempt - Entry 0: mdrrmo.png, Size: 38921, Error: 0
+[09-Nov-2025 20:42:51 Asia/Manila] Attempting to move file to: C:\xampp\htdocs\mdr1\api/../uploads/69108c4ba7c13_20251109_204251_mdrrmo.png
+[09-Nov-2025 20:42:51 Asia/Manila] File uploaded successfully: 69108c4ba7c13_20251109_204251_mdrrmo.png
+[09-Nov-2025 20:42:51 Asia/Manila] Annex9 - Entry 1 inserted with ID: 6 (with image: 69108c4ba7c13_20251109_204251_mdrrmo.png)
+[09-Nov-2025 20:42:51 Asia/Manila] Annex9 - Total inserted: 1, IDs: 6
+[09-Nov-2025 20:42:51 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:51 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:51 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:51 Asia/Manila] DEBUG: Found 3 records
+[09-Nov-2025 20:42:51 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 6
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:42:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 69108c4ba7c13_20251109_204251_mdrrmo.png
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:42:51
+    [updated_at] => 2025-11-09 04:42:51
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:42:57 Asia/Manila] DEBUG: User ID: 5
+[09-Nov-2025 20:42:57 Asia/Manila] DEBUG: Is Admin: No
+[09-Nov-2025 20:42:57 Asia/Manila] DEBUG: Running user query for user_id: 5
+[09-Nov-2025 20:42:57 Asia/Manila] DEBUG: Found 2 records
+[09-Nov-2025 20:42:57 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 6
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-09 04:42:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 69108c4ba7c13_20251109_204251_mdrrmo.png
+    [created_by] => 5
+    [created_at] => 2025-11-09 04:42:51
+    [updated_at] => 2025-11-09 04:42:51
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[09-Nov-2025 20:46:38 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[09-Nov-2025 20:46:51 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 08:43:25 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7baa68f2418ba82d2545a780c00d7a8778249bbcdaf7369114534874ea6d3bd6
+[11-Nov-2025 08:54:29 Asia/Manila] File upload attempt - Entry 0: baggao.png, Size: 81467, Error: 0
+[11-Nov-2025 08:54:32 Asia/Manila] Attempting to move file to: C:\xampp\htdocs\mdr1\api/../uploads/6912894875a28_20251111_085432_baggao.png
+[11-Nov-2025 08:54:33 Asia/Manila] File uploaded successfully: 6912894875a28_20251111_085432_baggao.png
+[11-Nov-2025 08:54:39 Asia/Manila] Annex9 - Entry 1 inserted with ID: 7 (with image: 6912894875a28_20251111_085432_baggao.png)
+[11-Nov-2025 08:54:43 Asia/Manila] Annex9 - Total inserted: 1, IDs: 7
+[11-Nov-2025 08:54:44 Asia/Manila] DEBUG: User ID: 5
+[11-Nov-2025 08:54:44 Asia/Manila] DEBUG: Is Admin: No
+[11-Nov-2025 08:54:44 Asia/Manila] DEBUG: Running user query for user_id: 5
+[11-Nov-2025 08:54:44 Asia/Manila] DEBUG: Found 3 records
+[11-Nov-2025 08:54:44 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 7
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 16:54:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 6912894875a28_20251111_085432_baggao.png
+    [created_by] => 5
+    [created_at] => 2025-11-10 16:54:34
+    [updated_at] => 2025-11-10 16:54:34
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[11-Nov-2025 08:55:54 Asia/Manila] === CSRF DEBUG START ===
+[11-Nov-2025 08:55:54 Asia/Manila] Session ID: SgAq63tSMAX4UVRetUZ0,rQiouGBw1H7CHZXTkU-jBjCxPSk
+[11-Nov-2025 08:55:54 Asia/Manila] User ID: 5
+[11-Nov-2025 08:55:54 Asia/Manila] CSRF Token in POST: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:55:54 Asia/Manila] CSRF Token in SESSION: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:55:54 Asia/Manila] Tokens match: YES
+[11-Nov-2025 08:55:54 Asia/Manila] === CSRF DEBUG END ===
+[11-Nov-2025 08:55:54 Asia/Manila] CSRF SUCCESS: Token validated
+[11-Nov-2025 08:55:54 Asia/Manila] CRITICAL ERROR: Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+[11-Nov-2025 08:55:54 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\annex8_save.php(174): safe_image_upload(Array, 'annex8', 'roadbridge_Asas...')
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\file_security.php on line 291
+[11-Nov-2025 08:58:51 Asia/Manila] === CSRF DEBUG START ===
+[11-Nov-2025 08:58:51 Asia/Manila] Session ID: SgAq63tSMAX4UVRetUZ0,rQiouGBw1H7CHZXTkU-jBjCxPSk
+[11-Nov-2025 08:58:51 Asia/Manila] User ID: 5
+[11-Nov-2025 08:58:51 Asia/Manila] CSRF Token in POST: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:58:51 Asia/Manila] CSRF Token in SESSION: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:58:51 Asia/Manila] Tokens match: YES
+[11-Nov-2025 08:58:51 Asia/Manila] === CSRF DEBUG END ===
+[11-Nov-2025 08:58:51 Asia/Manila] CSRF SUCCESS: Token validated
+[11-Nov-2025 08:58:51 Asia/Manila] CRITICAL ERROR: Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+[11-Nov-2025 08:58:51 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\annex8_save.php(174): safe_image_upload(Array, 'annex8', 'roadbridge_Asas...')
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\file_security.php on line 291
+[11-Nov-2025 08:58:55 Asia/Manila] === CSRF DEBUG START ===
+[11-Nov-2025 08:58:55 Asia/Manila] Session ID: SgAq63tSMAX4UVRetUZ0,rQiouGBw1H7CHZXTkU-jBjCxPSk
+[11-Nov-2025 08:58:55 Asia/Manila] User ID: 5
+[11-Nov-2025 08:58:55 Asia/Manila] CSRF Token in POST: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:58:55 Asia/Manila] CSRF Token in SESSION: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:58:55 Asia/Manila] Tokens match: YES
+[11-Nov-2025 08:58:55 Asia/Manila] === CSRF DEBUG END ===
+[11-Nov-2025 08:58:55 Asia/Manila] CSRF SUCCESS: Token validated
+[11-Nov-2025 08:58:55 Asia/Manila] CRITICAL ERROR: Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+[11-Nov-2025 08:58:55 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\mdr1\includes\file_security.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\annex8_save.php(174): safe_image_upload(Array, 'annex8', 'roadbridge_Asas...')
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\file_security.php on line 291
+[11-Nov-2025 08:59:39 Asia/Manila] === CSRF DEBUG START ===
+[11-Nov-2025 08:59:39 Asia/Manila] Session ID: SgAq63tSMAX4UVRetUZ0,rQiouGBw1H7CHZXTkU-jBjCxPSk
+[11-Nov-2025 08:59:39 Asia/Manila] User ID: 5
+[11-Nov-2025 08:59:39 Asia/Manila] CSRF Token in POST: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:59:39 Asia/Manila] CSRF Token in SESSION: c81abd122351dec05eeaefe4c6d1b10a08b1e23698acb70779b4f4591516c858
+[11-Nov-2025 08:59:39 Asia/Manila] Tokens match: YES
+[11-Nov-2025 08:59:39 Asia/Manila] === CSRF DEBUG END ===
+[11-Nov-2025 08:59:39 Asia/Manila] CSRF SUCCESS: Token validated
+[11-Nov-2025 08:59:57 Asia/Manila] DEBUG: User ID: 5
+[11-Nov-2025 08:59:57 Asia/Manila] DEBUG: Is Admin: No
+[11-Nov-2025 08:59:57 Asia/Manila] DEBUG: Running user query for user_id: 5
+[11-Nov-2025 08:59:57 Asia/Manila] DEBUG: Found 3 records
+[11-Nov-2025 08:59:57 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 7
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 16:54:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 6912894875a28_20251111_085432_baggao.png
+    [created_by] => 5
+    [created_at] => 2025-11-10 16:54:34
+    [updated_at] => 2025-11-10 16:54:34
+    [is_archived] => 0
+    [full_name] => richmond
+    [user_barangay] => Asassi
+)
+
+[11-Nov-2025 09:36:34 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[11-Nov-2025 09:36:42 Asia/Manila] CRITICAL ERROR: Error: Undefined constant "SITE_NAME" in C:\xampp\htdocs\mdr1\includes\footer.php:3
+[11-Nov-2025 09:36:42 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_NAME" in C:\xampp\htdocs\mdr1\includes\footer.php:3
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\admin\barangay_locking.php(223): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\footer.php on line 3
+[11-Nov-2025 09:37:07 Asia/Manila] CRITICAL ERROR: Error: Undefined constant "SITE_NAME" in C:\xampp\htdocs\mdr1\includes\footer.php:3
+[11-Nov-2025 09:37:07 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_NAME" in C:\xampp\htdocs\mdr1\includes\footer.php:3
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\admin\barangay_locking.php(223): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\footer.php on line 3

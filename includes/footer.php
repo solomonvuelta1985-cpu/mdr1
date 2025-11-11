@@ -1,6 +1,7 @@
     <footer class="bg-light mt-5 py-4">
         <div class="container text-center">
-            <p class="text-muted mb-0">&copy; <?php echo date('Y'); ?> <?php echo SITE_NAME; ?>. All rights reserved.</p>
+            <p class="text-muted mb-2">&copy; <?php echo date('Y'); ?> <?php echo SITE_NAME; ?>. All rights reserved.</p>
+            <p class="text-muted mb-0 small">Developed by <span class="badge bg-primary rounded-pill">Richmond Rosete</span></p>
         </div>
     </footer>
 

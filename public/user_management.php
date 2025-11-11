@@ -211,33 +211,7 @@ $token = generate_token();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <style>
-        .form-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        .card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0 !important;
-            padding: 1.5rem;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-        }
-        .status-active { color: #28a745; font-weight: bold; }
-        .status-inactive { color: #dc3545; font-weight: bold; }
-        .role-admin { color: #dc3545; font-weight: bold; }
-        .role-user { color: #28a745; font-weight: bold; }
-        .table-actions { white-space: nowrap; }
-        .badge-online { background-color: #28a745; }
-        .badge-offline { background-color: #6c757d; }
-        .session-active { background-color: #d4edda; }
-        .nav-tabs .nav-link.active { font-weight: bold; }
-    </style>
+    <link href="css/user_management.css" rel="stylesheet">
 </head>
 <body>
     <?php include '../includes/header.php'; ?>
@@ -246,10 +220,10 @@ $token = generate_token();
         <div class="row">
             <div class="col-12">
                 <!-- Header Section -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <h1 class="display-5 fw-bold"><i class="fas fa-users me-2"></i>User Management</h1>
-                        <p class="lead text-muted">Manage system users and their permissions</p>
+                <div class="header-section">
+                    <div class="header-content">
+                        <h1><i class="fas fa-users me-2"></i>User Management</h1>
+                        <p class="lead">Manage system users and their permissions</p>
                     </div>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">
                         <i class="fas fa-plus me-2"></i>Create New User
@@ -260,9 +234,9 @@ $token = generate_token();
                 <?php show_flash(); ?>
 
                 <!-- Users Table -->
-                <div class="card form-card">
+                <div class="card">
                     <div class="card-header">
-                        <h3 class="mb-0"><i class="fas fa-list me-2"></i>All Users</h3>
+                        <h3><i class="fas fa-list me-2"></i>All Users</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -327,8 +301,8 @@ $token = generate_token();
                                         <td><?= format_date($user['created_at']) ?></td>
                                         <td class="table-actions">
                                             <!-- Edit Button -->
-                                            <button class="btn btn-sm btn-outline-primary" 
-                                                    data-bs-toggle="modal" 
+                                            <button class="btn btn-outline-primary btn-sm"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#editUserModal"
                                                     data-userid="<?= $user['id'] ?>"
                                                     data-fullname="<?= htmlspecialchars($user['full_name']) ?>"
@@ -336,18 +310,18 @@ $token = generate_token();
                                                     data-barangay="<?= htmlspecialchars($user['barangay']) ?>"
                                                     data-contact="<?= htmlspecialchars($user['contact_number']) ?>"
                                                     data-role="<?= $user['user_role'] ?>">
-                                                <i class="fas fa-edit" title="Edit User"></i>
+                                                <i class="fas fa-edit"></i>
                                             </button>
-                                            
+
                                             <!-- Reset Password Button -->
-                                            <button class="btn btn-sm btn-outline-info" 
-                                                    data-bs-toggle="modal" 
+                                            <button class="btn btn-outline-info btn-sm"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#resetPasswordModal"
                                                     data-userid="<?= $user['id'] ?>"
                                                     data-username="<?= htmlspecialchars($user['username']) ?>">
-                                                <i class="fas fa-key" title="Reset Password"></i>
+                                                <i class="fas fa-key"></i>
                                             </button>
-                                            
+
                                             <!-- Activate/Deactivate Button -->
                                             <?php if ($user['id'] != $current_user_id): ?>
                                                 <?php if ($user['is_active']): ?>
@@ -355,7 +329,7 @@ $token = generate_token();
                                                         <input type="hidden" name="token" value="<?= $token ?>">
                                                         <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                                         <input type="hidden" name="action" value="delete">
-                                                        <button type="submit" class="btn btn-sm btn-outline-warning" 
+                                                        <button type="submit" class="btn btn-outline-warning btn-sm"
                                                                 onclick="return confirm('Deactivate this user? This will log them out immediately.')"
                                                                 title="Deactivate User">
                                                             <i class="fas fa-user-slash"></i>
@@ -366,7 +340,7 @@ $token = generate_token();
                                                         <input type="hidden" name="token" value="<?= $token ?>">
                                                         <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                                         <input type="hidden" name="action" value="activate">
-                                                        <button type="submit" class="btn btn-sm btn-outline-success" 
+                                                        <button type="submit" class="btn btn-outline-success btn-sm"
                                                                 onclick="return confirm('Activate this user?')"
                                                                 title="Activate User">
                                                             <i class="fas fa-user-check"></i>
@@ -397,7 +371,7 @@ $token = generate_token();
                 <form method="POST">
                     <input type="hidden" name="token" value="<?= $token ?>">
                     <input type="hidden" name="action" value="create">
-                    
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -409,11 +383,11 @@ $token = generate_token();
                                 <input type="text" class="form-control" id="create_username" name="username" required>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="create_contact_number" class="form-label">Contact Number *</label>
-                                <input type="tel" class="form-control" id="create_contact_number" name="contact_number" 
+                                <input type="tel" class="form-control" id="create_contact_number" name="contact_number"
                                        pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -426,7 +400,7 @@ $token = generate_token();
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="create_user_role" class="form-label">User Role *</label>
@@ -436,8 +410,11 @@ $token = generate_token();
                                     <option value="admin">Administrator</option>
                                 </select>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <!-- Empty column for alignment -->
+                            </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="create_password" class="form-label">Password *</label>
@@ -470,7 +447,7 @@ $token = generate_token();
                     <input type="hidden" name="token" value="<?= $token ?>">
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="user_id" id="edit_user_id">
-                    
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -482,11 +459,11 @@ $token = generate_token();
                                 <input type="text" class="form-control" id="edit_username" name="username" required>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="edit_contact_number" class="form-label">Contact Number *</label>
-                                <input type="tel" class="form-control" id="edit_contact_number" name="contact_number" 
+                                <input type="tel" class="form-control" id="edit_contact_number" name="contact_number"
                                        pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -499,7 +476,7 @@ $token = generate_token();
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="edit_user_role" class="form-label">User Role *</label>
@@ -508,6 +485,9 @@ $token = generate_token();
                                     <option value="user">User</option>
                                     <option value="admin">Administrator</option>
                                 </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <!-- Empty column for alignment -->
                             </div>
                         </div>
                     </div>
@@ -532,23 +512,23 @@ $token = generate_token();
                     <input type="hidden" name="token" value="<?= $token ?>">
                     <input type="hidden" name="action" value="reset_password">
                     <input type="hidden" name="user_id" id="reset_user_id">
-                    
+
                     <div class="modal-body">
                         <div class="alert alert-info">
                             <i class="fas fa-info-circle me-2"></i>
                             Resetting the password will log out the user from all active sessions.
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             <input type="text" class="form-control" id="reset_username" readonly>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="new_password" class="form-label">New Password *</label>
                             <input type="password" class="form-control" id="new_password" name="new_password" required minlength="6" placeholder="Enter new password">
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="reset_confirm_password" class="form-label">Confirm New Password *</label>
                             <input type="password" class="form-control" id="reset_confirm_password" name="confirm_password" required minlength="6" placeholder="Confirm new password">

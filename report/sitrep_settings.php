@@ -254,7 +254,7 @@ if (!$currentMetadata) {
             const statusElement = document.getElementById('fetch-status');
             statusElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching weather data...';
 
-            fetch('fetch_weather_api.php')
+            fetch('../public/fetch_weather_api.php')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {

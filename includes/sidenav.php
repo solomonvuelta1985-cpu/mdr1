@@ -711,13 +711,32 @@
                     </ul>
                 </li>
                 
-                <!-- Settings Link -->
+                <!-- Settings Dropdown (Admin Only) -->
+                <?php if ($_SESSION['user_role'] === 'admin'): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage == 'settings.php' ? 'active' : ''; ?>" href="settings.php">
+                    <a class="nav-link dropdown-toggle <?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'active' : ''; ?>"
+                       href="#settingsSubmenu"
+                       data-bs-toggle="collapse"
+                       aria-expanded="<?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'true' : 'false'; ?>">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
+                    <ul class="collapse list-unstyled <?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'show' : ''; ?>" id="settingsSubmenu">
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'sitrep_settings.php' ? 'active' : ''; ?>" href="sitrep_settings.php">
+                                <i class="bi bi-bar-chart-line"></i>
+                                <span>SITREP Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'user_management.php' ? 'active' : ''; ?>" href="user_management.php">
+                                <i class="bi bi-people"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                <?php endif; ?>
                 
                 <!-- Help & Support Link -->
                 <li class="nav-item">
