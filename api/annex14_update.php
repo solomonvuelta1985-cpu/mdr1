@@ -6,6 +6,13 @@ require_once '../includes/auth.php';
 
 // Check if user is logged in
 require_login();
+// Annex Access Control - Only Admin and Sheila can add/edit
+require_once __DIR__ . '/../includes/check_annex_access.php';
+if (!can_access_annex('14')) {
+    echo json_encode(['success' => false, 'message' => 'You do not have permission to modify Annex 14 records.']);
+    exit;
+}
+
 
 // Validate session fingerprint
 if (!validate_session_fingerprint()) {

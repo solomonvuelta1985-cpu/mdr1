@@ -6,6 +6,13 @@ require_once __DIR__ . '/../includes/auth.php';
 header('Content-Type: application/json');
 
 require_login();
+// Annex Access Control - Only Admin and Sheila can add/edit
+require_once __DIR__ . '/../includes/check_annex_access.php';
+if (!can_access_annex('15')) {
+    echo json_encode(['success' => false, 'message' => 'You do not have permission to modify Annex 15 records.']);
+    exit;
+}
+
 
 // Verify CSRF token
 if (!verify_token($_POST['csrf_token'] ?? '')) {

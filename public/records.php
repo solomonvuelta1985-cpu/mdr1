@@ -77,6 +77,7 @@ $recordCounts = [
     'annex15' => getRecordCount('annex15_class_suspension', $_SESSION['user_id'], $is_admin),
     'annex18' => getRecordCount('annex18_evacuation_animals', $_SESSION['user_id'], $is_admin),
     'annex19' => getRecordCount('annex19_families_assisted', $_SESSION['user_id'], $is_admin),
+    'annex20' => getRecordCount('annex20_assistance', $_SESSION['user_id'], $is_admin),
     'annex21' => getRecordCount('annex21_lgus_agencies', $_SESSION['user_id'], $is_admin),
 ];
 
@@ -788,7 +789,7 @@ ob_start();
                         <i class="bi bi-heart"></i>
                     </span>
                     <span>Assistance Reports</span>
-                    <span class="category-badge"><?php echo $recordCounts['annex19'] + $recordCounts['annex21']; ?> Records</span>
+                    <span class="category-badge"><?php echo $recordCounts['annex19'] + $recordCounts['annex20'] + $recordCounts['annex21']; ?> Records</span>
                 </button>
             </h2>
             <div id="collapseAssistance" class="accordion-collapse collapse" data-bs-parent="#recordsAccordion">
@@ -809,6 +810,26 @@ ob_start();
                                         <i class="bi bi-eye"></i> View
                                     </a>
                                     <a href="annex19.php" class="btn-action btn-add">
+                                        <i class="bi bi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="annex-item">
+                            <div class="annex-info">
+                                <div class="annex-number">A20</div>
+                                <div class="annex-details">
+                                    <h5>Assistance Provided to Families</h5>
+                                    <p>Detailed assistance by cluster and type</p>
+                                </div>
+                            </div>
+                            <div class="annex-stats">
+                                <span class="stat-badge"><?php echo $recordCounts['annex20']; ?> records</span>
+                                <div class="annex-actions">
+                                    <a href="annex20_records.php" class="btn-action btn-view">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="annex20.php" class="btn-action btn-add">
                                         <i class="bi bi-plus"></i> Add
                                     </a>
                                 </div>

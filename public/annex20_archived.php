@@ -1,32 +1,24 @@
 <?php
 // Define page title for the header
-define('PAGE_TITLE', 'Annex 14 - Archived Records');
+define('PAGE_TITLE', 'Annex 20 - Archived Assistance Provided to Families Records');
 
 // Include required configuration and function files
 require_once '../includes/config.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
 
-// Check if user is logged in, redirect to login if not
+// Check if user is logged in
 require_login();
 // Annex Access Control - Only Admin and Sheila can access
 require_once __DIR__ . '/../includes/check_annex_access.php';
-require_annex_access_or_redirect('14');
+require_annex_access_or_redirect('20');
 
-
-// Validate session fingerprint
-if (!validate_session_fingerprint()) {
-    log_security_event($_SESSION['user_id'], 'session_hijack_attempt', 'Annex 14 archived session validation failed');
-    session_regenerate_id(true);
-    session_destroy();
-    set_flash('Security violation detected. Please log in again.', 'error');
-    header('Location: ../login.php');
-    exit;
-}
-
-// Log page access
-log_audit_action($_SESSION['user_id'], 'annex14_archived_access', 'User accessed Annex 14 archived records page');
-
+// AUDIT LOG: Page access
+log_audit_action(
+    $_SESSION['user_id'],
+    'annex20_archived_access',
+    'Accessed Annex 20 archived records page'
+);
 // Database connection
 $pdo = $pdo;
 
@@ -34,28 +26,32 @@ $pdo = $pdo;
 $user_location = get_user_location_data($_SESSION['user_id']);
 $is_admin = ($_SESSION['user_role'] === 'admin');
 
-// Handle restore action with enhanced security
+// Ensure is_archived column exists
+try {
+    $column_check = $pdo->query("SHOW COLUMNS FROM annex20_assistance LIKE 'is_archived'");
+    if ($column_check->rowCount() == 0) {
+        // SECURITY: Do NOT modify database schema from web application
+        error_log("CRITICAL: Missing is_archived column. Run migrations manually");
+        set_flash('Database schema error. Contact administrator.', 'error');
+        header('Location: dashboard.php');
+        exit;
+    }
+    if (false) { // DISABLED FOR SECURITY
+    if ($column_check->rowCount() == 0) {
+        // SECURITY FIX - DO NOT AUTO-ALTER: // $pdo->exec("ALTER TABLE annex20_assistance ADD COLUMN is_archived TINYINT(1) DEFAULT 0 AFTER remarks");
+    }
+    
+    }
+} catch (PDOException $e) {
+    error_log("Failed to add is_archived column: " . $e->getMessage());
+}
+
+// Handle restore and delete actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check concurrent requests
-    if (!check_concurrent_requests($_SESSION['user_id'], 'annex14_archived_action', 3)) {
-        log_security_event($_SESSION['user_id'], 'concurrent_limit', 'Too many Annex 14 archived actions');
-        set_flash('Too many simultaneous requests. Please wait a moment.', 'error');
-        header('Location: annex14_archived.php');
-        exit;
-    }
-    
-    if (!validate_csrf_with_operation($_POST['csrf_token'] ?? '', 'annex14_archived_action')) {
-        log_security_event($_SESSION['user_id'], 'csrf_validation_failed', 'Annex 14 archived action CSRF failure');
+    if (!verify_token($_POST['csrf_token'] ?? '')) {
         set_flash('Security token validation failed', 'error');
-        header('Location: annex14_archived.php');
-        exit;
-    }
-    
-    // Rate limiting for actions
-    if (!check_rate_limit($_SESSION['user_id'], 'annex14_archived_action', 15, 300)) {
-        log_security_event($_SESSION['user_id'], 'rate_limit_exceeded', 'Annex 14 archived action rate limit exceeded');
-        set_flash('Too many actions. Please wait a few minutes.', 'error');
-        header('Location: annex14_archived.php');
+        log_security_event($_SESSION['user_id'], 'csrf_failure', 'annex20 archived CSRF token mismatch');
+        header('Location: annex20_archived.php');
         exit;
     }
     
@@ -65,44 +61,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Check if user owns the record (unless admin)
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT id, barangay FROM annex14_suspension_work WHERE id = ? AND created_by = ?", [$restore_id, $_SESSION['user_id']]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ? AND created_by = ?", [$restore_id, $_SESSION['user_id']]);
             $record = $check_stmt->fetch();
+            
             if (!$record) {
-                log_security_event($_SESSION['user_id'], 'unauthorized_restore', 
-                    "Attempted to restore Annex 14 record #$restore_id without permission");
                 set_flash('Record not found or access denied', 'error');
-                header('Location: annex14_archived.php');
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to restore annex20 record #{$restore_id} without permission");
+                header('Location: annex20_archived.php');
                 exit;
             }
-            $barangay_info = $record['barangay'];
         } else {
-            $check_stmt = db_query("SELECT barangay FROM annex14_suspension_work WHERE id = ?", [$restore_id]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ?", [$restore_id]);
             $record = $check_stmt->fetch();
-            $barangay_info = $record ? $record['barangay'] : 'Unknown';
         }
         
-        // Log restore attempt
-        log_audit_action($_SESSION['user_id'], 'annex14_restore_attempt', 
-            "Attempting to restore record #$restore_id (Barangay: $barangay_info)");
-        
-        $stmt = db_query("UPDATE annex14_suspension_work SET is_archived = 0 WHERE id = ?", [$restore_id]);
-        
-        if ($stmt && $stmt->rowCount() > 0) {
-            // Log successful restore
-            log_audit_action($_SESSION['user_id'], 'annex14_restore_success', 
-                "Successfully restored record #$restore_id (Barangay: $barangay_info)");
-            set_flash('Record restored successfully', 'success');
+        if ($record) {
+            $stmt = db_query("UPDATE annex20_assistance SET is_archived = 0 WHERE id = ?", [$restore_id]);
+            
+            if ($stmt && $stmt->rowCount() > 0) {
+                log_audit_action(
+                    $_SESSION['user_id'],
+                    'annex20_restore',
+                    "Restored record #{$restore_id} for {$record['barangay']}: {$record['cluster']} - {$record['type']}"
+                );
+                
+                set_flash('Record restored successfully', 'success');
+            } else {
+                set_flash('Failed to restore record', 'error');
+            }
         } else {
-            // Log restore failure
-            log_security_event($_SESSION['user_id'], 'restore_failed', 
-                "Failed to restore Annex 14 record #$restore_id");
-            set_flash('Failed to restore record', 'error');
+            set_flash('Record not found', 'error');
         }
-        
-        // Release concurrent request
-        release_concurrent_request($_SESSION['user_id'], 'annex14_archived_action');
-        
-        header('Location: annex14_archived.php');
+        header('Location: annex20_archived.php');
         exit;
     }
     
@@ -112,44 +102,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Check if user owns the record (unless admin)
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT id, barangay FROM annex14_suspension_work WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
             $record = $check_stmt->fetch();
+            
             if (!$record) {
-                log_security_event($_SESSION['user_id'], 'unauthorized_permanent_delete', 
-                    "Attempted to permanently delete Annex 14 record #$delete_id without permission");
                 set_flash('Record not found or access denied', 'error');
-                header('Location: annex14_archived.php');
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to permanently delete annex20 record #{$delete_id} without permission");
+                header('Location: annex20_archived.php');
                 exit;
             }
-            $barangay_info = $record['barangay'];
         } else {
-            $check_stmt = db_query("SELECT barangay FROM annex14_suspension_work WHERE id = ?", [$delete_id]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ?", [$delete_id]);
             $record = $check_stmt->fetch();
-            $barangay_info = $record ? $record['barangay'] : 'Unknown';
         }
         
-        // Log permanent delete attempt
-        log_audit_action($_SESSION['user_id'], 'annex14_permanent_delete_attempt', 
-            "Attempting to permanently delete record #$delete_id (Barangay: $barangay_info)");
-        
-        $stmt = db_query("DELETE FROM annex14_suspension_work WHERE id = ?", [$delete_id]);
-        
-        if ($stmt && $stmt->rowCount() > 0) {
-            // Log successful permanent deletion
-            log_audit_action($_SESSION['user_id'], 'annex14_permanent_delete_success', 
-                "Permanently deleted record #$delete_id (Barangay: $barangay_info)");
-            set_flash('Record permanently deleted', 'success');
+        if ($record) {
+            $stmt = db_query("DELETE FROM annex20_assistance WHERE id = ?", [$delete_id]);
+            
+            if ($stmt && $stmt->rowCount() > 0) {
+                log_audit_action(
+                    $_SESSION['user_id'],
+                    'annex20_permanent_delete',
+                    "Permanently deleted archived record #{$delete_id} for {$record['barangay']}: {$record['cluster']} - {$record['type']}"
+                );
+                
+                set_flash('Record permanently deleted', 'success');
+            } else {
+                set_flash('Failed to delete record', 'error');
+            }
         } else {
-            // Log permanent deletion failure
-            log_security_event($_SESSION['user_id'], 'permanent_delete_failed', 
-                "Failed to permanently delete Annex 14 record #$delete_id");
-            set_flash('Failed to delete record', 'error');
+            set_flash('Record not found', 'error');
         }
-        
-        // Release concurrent request
-        release_concurrent_request($_SESSION['user_id'], 'annex14_archived_action');
-        
-        header('Location: annex14_archived.php');
+        header('Location: annex20_archived.php');
         exit;
     }
 }
@@ -159,18 +143,16 @@ $csrf_token = generate_token();
 
 // Fetch archived records based on user role
 if ($is_admin) {
-    // Admin can see all archived records
     $stmt = db_query("
         SELECT a.*, u.full_name, u.barangay as user_barangay 
-        FROM annex14_suspension_work a 
+        FROM annex20_assistance a 
         LEFT JOIN users u ON a.created_by = u.id 
         WHERE a.is_archived = 1 
         ORDER BY a.updated_at DESC
     ");
 } else {
-    // Regular users can only see their own archived records
     $stmt = db_query("
-        SELECT * FROM annex14_suspension_work 
+        SELECT * FROM annex20_assistance 
         WHERE created_by = ? AND is_archived = 1 
         ORDER BY updated_at DESC
     ", [$_SESSION['user_id']]);
@@ -178,35 +160,9 @@ if ($is_admin) {
 
 $archived_records = $stmt->fetchAll();
 
-// Log archived records view
-log_audit_action($_SESSION['user_id'], 'annex14_archived_view', 
-    "Viewed " . count($archived_records) . " archived records" . ($is_admin ? " (Admin view)" : ""));
-
-// Calculate statistics
-$government_count = 0;
-$private_count = 0;
-$all_count = 0;
-
-foreach ($archived_records as $record) {
-    switch ($record['type']) {
-        case 'Government':
-            $government_count++;
-            break;
-        case 'Private':
-            $private_count++;
-            break;
-        case 'All':
-            $all_count++;
-            break;
-    }
-}
-
 // Start output buffering
 ob_start();
 ?>
-
-<!-- REST OF YOUR ANNEX14_ARCHIVED.PHP HTML CONTENT REMAINS THE SAME -->
-<!-- Only the PHP security parts above are updated -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
@@ -302,6 +258,45 @@ ob_start();
     .btn-delete:hover {
         background-color: #bb2d3b;
     }
+    .btn-view {
+        background-color: #0d6efd;
+        color: white;
+    }
+    .btn-view:hover {
+        background-color: #0b5ed7;
+    }
+    
+    /* Badge Styles */
+    .badge {
+        padding: 0.35em 0.65em;
+        font-size: 0.75em;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.375rem;
+    }
+    .badge-crops {
+        background-color: #198754;
+        color: white;
+    }
+    .badge-livestock {
+        background-color: #fd7e14;
+        color: white;
+    }
+    .badge-fisheries {
+        background-color: #0dcaf0;
+        color: white;
+    }
+    .badge-infrastructure {
+        background-color: #6f42c1;
+        color: white;
+    }
+    .badge-machinery {
+        background-color: #6c757d;
+        color: white;
+    }
     
     /* Skeleton Loader */
     .skeleton-loader {
@@ -377,17 +372,6 @@ ob_start();
         margin-bottom: 20px;
     }
     
-    /* Type Badges */
-    .badge-government {
-        background-color: #0d6efd;
-    }
-    .badge-private {
-        background-color: #6f42c1;
-    }
-    .badge-all {
-        background-color: #198754;
-    }
-    
     /* Responsive */
     @media (max-width: 768px) {
         .table-container {
@@ -405,6 +389,12 @@ ob_start();
             padding: 4px 8px;
             font-size: 0.8rem;
         }
+        .records-table th:nth-child(6),
+        .records-table td:nth-child(6),
+        .records-table th:nth-child(7),
+        .records-table td:nth-child(7) {
+            display: none;
+        }
     }
 </style>
 
@@ -412,7 +402,7 @@ ob_start();
     <div class="records-container">
         <div class="header-section">
             <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
-            <h2>Annex 14: Archived Suspension of Work Records</h2>
+            <h2>Annex 20: Archived Assistance Provided to Families Records</h2>
             <?php if ($is_admin): ?>
                 <div class="alert alert-info mt-3">
                     <strong>Admin Mode:</strong> You are viewing all archived records from all barangays.
@@ -437,43 +427,30 @@ ob_start();
         <!-- Statistics Card -->
         <div class="stats-card">
             <div class="row">
-                <div class="col-md-3 text-center">
+                <div class="col-md-4 text-center">
                     <div class="stats-number"><?php echo count($archived_records); ?></div>
                     <div class="stats-label">Archived Records</div>
                 </div>
-                <div class="col-md-3 text-center">
-                    <div class="stats-number"><?php echo $government_count; ?></div>
-                    <div class="stats-label">Government</div>
+                <div class="col-md-4 text-center">
+                    <div class="stats-number"><?php echo $is_admin ? 'All' : htmlspecialchars($user_location['barangay']); ?></div>
+                    <div class="stats-label">Barangay</div>
                 </div>
-                <div class="col-md-3 text-center">
-                    <div class="stats-number"><?php echo $private_count; ?></div>
-                    <div class="stats-label">Private</div>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="stats-number"><?php echo $all_count; ?></div>
-                    <div class="stats-label">All Sectors</div>
+                <div class="col-md-4 text-center">
+                    <div class="stats-number"><?php echo date('M j, Y'); ?></div>
+                    <div class="stats-label">Last Updated</div>
                 </div>
             </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="d-flex justify-content-between mb-4 flex-wrap gap-3">
-            <a href="annex14_records.php" class="btn btn-primary">
+            <a href="annex20_records.php" class="btn btn-primary">
                 <i class="fas fa-arrow-left me-2"></i>Back to Active Records
             </a>
             <div class="action-buttons">
                 <button class="btn btn-outline-secondary" onclick="exportToCSV()">
                     <i class="fas fa-download me-2"></i>Export CSV
                 </button>
-                <?php if (!empty($archived_records)): ?>
-                <form method="POST" style="display: inline;" onsubmit="return confirmRestoreAll()">
-                    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-                    <input type="hidden" name="restore_all" value="1">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-undo me-2"></i>Restore All
-                    </button>
-                </form>
-                <?php endif; ?>
             </div>
         </div>
 
@@ -484,11 +461,11 @@ ob_start();
                     <tr>
                         <th>ID</th>
                         <th>Barangay</th>
+                        <th>Cluster</th>
                         <th>Type</th>
-                        <th>Suspension Date</th>
-                        <th>Resumption Date</th>
-                        <th>Duration</th>
-                        <th>Remarks</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Amount (₱)</th>
                         <th>Archived Date</th>
                         <th>Actions</th>
                     </tr>
@@ -500,14 +477,15 @@ ob_start();
                     <tr>
                         <td><div class="skeleton-item skeleton-text" style="width: 50px;"></div></td>
                         <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
-                        <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
-                        <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
                         <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
                         <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
-                        <td><div class="skeleton-item skeleton-text" style="width: 150px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
                         <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
                         <td>
                             <div class="d-flex gap-2">
+                                <div class="skeleton-item skeleton-button"></div>
                                 <div class="skeleton-item skeleton-button"></div>
                                 <div class="skeleton-item skeleton-button"></div>
                             </div>
@@ -524,8 +502,8 @@ ob_start();
                                 <div class="empty-state">
                                     <i class="fas fa-archive"></i>
                                     <h3>No Archived Records</h3>
-                                    <p>There are no archived suspension of work reports.</p>
-                                    <a href="annex14_records.php" class="btn btn-primary mt-3">
+                                    <p>There are no archived Assistance Provided to Families reports.</p>
+                                    <a href="annex20_records.php" class="btn btn-primary mt-3">
                                         <i class="fas fa-arrow-left me-2"></i>Back to Active Records
                                     </a>
                                 </div>
@@ -536,65 +514,38 @@ ob_start();
                             <tr>
                                 <td><strong>#<?php echo $record['id']; ?></strong></td>
                                 <td>
-                                    <?php echo htmlspecialchars($record['barangay']); ?>
-                                    <?php if ($is_admin): ?>
-                                        <br><small class="text-muted">by <?php echo htmlspecialchars($record['full_name'] ?? 'Unknown'); ?></small>
+                                    <?php echo htmlspecialchars($record['barangay'] ?? $record['user_barangay'] ?? 'Unknown'); ?>
+                                    <?php if ($is_admin && isset($record['full_name'])): ?>
+                                        <br><small class="text-muted">by <?php echo htmlspecialchars($record['full_name']); ?></small>
                                     <?php endif; ?>
                                 </td>
                                 <td>
                                     <?php
-                                    $badge_class = '';
-                                    switch ($record['type']) {
-                                        case 'Government':
-                                            $badge_class = 'badge-government';
-                                            break;
-                                        case 'Private':
-                                            $badge_class = 'badge-private';
-                                            break;
-                                        case 'All':
-                                            $badge_class = 'badge-all';
-                                            break;
-                                    }
+                                    $badge_class = match($record['cluster']) {
+                                        'Food' => 'badge-crops',
+                                        'WASH' => 'badge-fisheries',
+                                        'Shelter' => 'badge-livestock',
+                                        'Health' => 'badge-infrastructure',
+                                        default => 'badge-machinery'
+                                    };
                                     ?>
-                                    <span class="badge <?php echo $badge_class; ?>"><?php echo $record['type']; ?></span>
+                                    <span class="badge <?php echo $badge_class; ?>">
+                                        <?php echo htmlspecialchars($record['cluster']); ?>
+                                    </span>
                                 </td>
-                                <td>
-                                    <small><?php echo date('M j, Y g:i A', strtotime($record['suspension_date'])); ?></small>
-                                </td>
-                                <td>
-                                    <?php if (!empty($record['resumption_date'])): ?>
-                                        <small><?php echo date('M j, Y g:i A', strtotime($record['resumption_date'])); ?></small>
-                                    <?php else: ?>
-                                        <span class="text-muted">-</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <?php if (!empty($record['resumption_date'])): ?>
-                                        <?php
-                                        $suspension = new DateTime($record['suspension_date']);
-                                        $resumption = new DateTime($record['resumption_date']);
-                                        $interval = $suspension->diff($resumption);
-                                        echo $interval->format('%a days %h hrs');
-                                        ?>
-                                    <?php else: ?>
-                                        <span class="text-muted">Ongoing</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <?php if (!empty($record['remarks'])): ?>
-                                        <div class="text-truncate" style="max-width: 150px;" title="<?php echo htmlspecialchars($record['remarks']); ?>">
-                                            <?php echo htmlspecialchars($record['remarks']); ?>
-                                        </div>
-                                    <?php else: ?>
-                                        <span class="text-muted">-</span>
-                                    <?php endif; ?>
-                                </td>
+                                <td><strong><?php echo htmlspecialchars($record['type']); ?></strong></td>
+                                <td><?php echo number_format($record['quantity']); ?></td>
+                                <td><?php echo htmlspecialchars($record['unit']); ?></td>
+                                <td><strong>₱<?php echo number_format($record['amount'], 2); ?></strong></td>
                                 <td>
                                     <small><?php echo date('M j, Y', strtotime($record['updated_at'])); ?></small>
                                     <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['updated_at'])); ?></small>
                                 </td>
                                 <td>
                                     <div class="action-buttons">
+                                        <button class="btn btn-table btn-view" onclick="viewRecord(<?php echo $record['id']; ?>)" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
                                         <form method="POST" style="display: inline;" onsubmit="return confirmRestore(<?php echo $record['id']; ?>)">
                                             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                                             <input type="hidden" name="restore_id" value="<?php echo $record['id']; ?>">
@@ -634,17 +585,53 @@ ob_start();
     </div>
 </div>
 
+<!-- View Record Modal -->
+<div class="modal fade" id="viewRecordModal" tabindex="-1" aria-labelledby="viewRecordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewRecordModalLabel">Assistance Provided to Families Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="viewRecordContent">
+                <div class="text-center py-4">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading record data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 // Skeleton Loader
 document.addEventListener('DOMContentLoaded', function() {
-    // Show skeleton loader initially
     document.querySelector('.table-container').classList.add('loading');
-    
-    // Simulate loading time
     setTimeout(function() {
         document.querySelector('.table-container').classList.remove('loading');
     }, 1000);
 });
+
+// View record function
+function viewRecord(recordId) {
+    const modal = new bootstrap.Modal(document.getElementById('viewRecordModal'));
+    modal.show();
+    
+    fetch(`../api/annex20_view.php?id=${recordId}`)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('viewRecordContent').innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById('viewRecordContent').innerHTML = `
+                <div class="alert alert-danger">
+                    Error loading record: ${error.message}
+                </div>
+            `;
+        });
+}
 
 // Confirm restore function
 function confirmRestore(recordId) {
@@ -656,42 +643,26 @@ function confirmPermanentDelete(recordId) {
     return confirm('🗑️⚠️ Are you sure you want to PERMANENTLY DELETE Record #' + recordId + '?\n\nThis action cannot be undone and the record will be lost forever.');
 }
 
-// Confirm restore all function
-function confirmRestoreAll() {
-    const count = <?php echo count($archived_records); ?>;
-    return confirm('🔄 Are you sure you want to restore all ' + count + ' archived records?\n\nThis will make all records active again.');
-}
-
 // Export to CSV function
 function exportToCSV() {
     const records = <?php echo json_encode($archived_records); ?>;
     let csvContent = "data:text/csv;charset=utf-8,";
     
-    // Headers
-    csvContent += "ID,Barangay,Type,Suspension Date,Resumption Date,Duration,Remarks,Created By,Archived Date\n";
+    csvContent += "ID,Region,Province,City,Barangay,Cluster,Type,Quantity,Unit,Cost per Unit,Amount,Remarks,Created By,Archived Date\n";
     
-    // Data
     records.forEach(record => {
-        const suspensionDate = new Date(record.suspension_date);
-        const resumptionDate = record.resumption_date ? new Date(record.resumption_date) : null;
-        let duration = '';
-        
-        if (resumptionDate) {
-            const diffTime = Math.abs(resumptionDate - suspensionDate);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            duration = `${diffDays} days ${diffHours} hrs`;
-        } else {
-            duration = 'Ongoing';
-        }
-        
         const row = [
             record.id,
-            `"${record.barangay}"`,
-            record.type,
-            `"${suspensionDate.toLocaleString()}"`,
-            resumptionDate ? `"${resumptionDate.toLocaleString()}"` : '',
-            `"${duration}"`,
+            `"${record.region}"`,
+            `"${record.province}"`,
+            `"${record.city}"`,
+            `"${record.barangay || record.user_barangay || 'Unknown'}"`,
+            `"${record.cluster}"`,
+            `"${record.type}"`,
+            record.quantity || 0,
+            `"${record.unit || ''}"`,
+            record.cost_per_unit || 0,
+            record.amount || 0,
             `"${(record.remarks || '').replace(/"/g, '""')}"`,
             `"${record.full_name || 'Current User'}"`,
             `"${record.updated_at}"`
@@ -699,11 +670,10 @@ function exportToCSV() {
         csvContent += row + "\n";
     });
     
-    // Download
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "annex14_archived_records_" + new Date().toISOString().split('T')[0] + ".csv");
+    link.setAttribute("download", "annex20_archived_" + new Date().toISOString().split('T')[0] + ".csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -711,9 +681,6 @@ function exportToCSV() {
 </script>
 
 <?php
-// Get the captured content and store it in a variable
 $content = ob_get_clean();
-
-// Now include the sidenav layout which will wrap this content
 require_once '../includes/sidenav.php';
 ?>

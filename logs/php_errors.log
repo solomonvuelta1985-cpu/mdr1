@@ -2086,3 +2086,123 @@ Stack trace:
 [13-Nov-2025 12:02:19 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
 [13-Nov-2025 14:41:31 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
 [13-Nov-2025 20:06:27 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[13-Nov-2025 20:43:47 Asia/Manila] Annex20 - Entry 1 inserted with ID: 1
+[13-Nov-2025 20:43:47 Asia/Manila] Annex20 - Total inserted: 1, IDs: 1
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:520
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 520
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:530
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 530
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:534
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 534
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:535
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 535
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:537
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 537
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:539
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 539
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:541
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 541
+[13-Nov-2025 20:44:17 Asia/Manila] Error [2]: Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:544
+[13-Nov-2025 20:44:17 Asia/Manila] PHP Warning:  Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 544
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:520
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 520
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:530
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 530
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:534
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 534
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:535
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 535
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:537
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 537
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:539
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 539
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:541
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 541
+[13-Nov-2025 20:44:34 Asia/Manila] Error [2]: Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:544
+[13-Nov-2025 20:44:34 Asia/Manila] PHP Warning:  Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 544
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:520
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 520
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:530
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 530
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:534
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "affected_people" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 534
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:535
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "damage_value" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 535
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:537
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 537
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:539
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 539
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:541
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 541
+[13-Nov-2025 20:48:15 Asia/Manila] Error [2]: Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:544
+[13-Nov-2025 20:48:15 Asia/Manila] PHP Warning:  Undefined array key "total_damaged" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 544
+[13-Nov-2025 20:50:21 Asia/Manila] Error [2]: Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php:81
+[13-Nov-2025 20:50:21 Asia/Manila] PHP Warning:  Undefined array key "classification" in C:\xampp\htdocs\mdr1\public\annex20_archived.php on line 81
+[13-Nov-2025 20:54:25 Asia/Manila] Error [8]: session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\mdr1\tests\annex20_test.php:16
+[13-Nov-2025 20:54:25 Asia/Manila] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\mdr1\tests\annex20_test.php on line 16
+[13-Nov-2025 21:01:03 Asia/Manila] Amount mismatch - Qty: 200, Cost: 60, Calculated: 12000, Submitted: 150100, Diff: 138100
+[13-Nov-2025 21:01:38 Asia/Manila] Amount mismatch - Qty: 200, Cost: 600, Calculated: 120000, Submitted: 150100, Diff: 30100
+[13-Nov-2025 21:03:23 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:03:23 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:03:23 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:03:23 Asia/Manila] Raw POST cost_per_unit: 600
+[13-Nov-2025 21:03:23 Asia/Manila] Raw POST amount: 150100.00
+[13-Nov-2025 21:03:23 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:03:23 Asia/Manila] Parsed cost_per_unit: 600
+[13-Nov-2025 21:03:23 Asia/Manila] Parsed amount: 150100
+[13-Nov-2025 21:03:23 Asia/Manila] Amount mismatch - Qty: 200, Cost: 600, Calculated: 120000, Submitted: 150100, Diff: 30100
+[13-Nov-2025 21:03:36 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:03:36 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:03:36 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:03:36 Asia/Manila] Raw POST cost_per_unit: 750
+[13-Nov-2025 21:03:36 Asia/Manila] Raw POST amount: 150100.00
+[13-Nov-2025 21:03:36 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:03:36 Asia/Manila] Parsed cost_per_unit: 750
+[13-Nov-2025 21:03:36 Asia/Manila] Parsed amount: 150100
+[13-Nov-2025 21:03:36 Asia/Manila] Amount mismatch - Qty: 200, Cost: 750, Calculated: 150000, Submitted: 150100, Diff: 100
+[13-Nov-2025 21:04:36 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:04:36 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:04:36 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:04:36 Asia/Manila] Raw POST cost_per_unit: 400
+[13-Nov-2025 21:04:36 Asia/Manila] Raw POST amount: 150100.00
+[13-Nov-2025 21:04:36 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:04:36 Asia/Manila] Parsed cost_per_unit: 400
+[13-Nov-2025 21:04:36 Asia/Manila] Parsed amount: 150100
+[13-Nov-2025 21:04:36 Asia/Manila] Amount mismatch - Qty: 200, Cost: 400, Calculated: 80000, Submitted: 150100, Diff: 70100
+[13-Nov-2025 21:05:41 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:05:41 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:05:41 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:05:41 Asia/Manila] Raw POST cost_per_unit: 300
+[13-Nov-2025 21:05:41 Asia/Manila] Raw POST amount: 150100.00
+[13-Nov-2025 21:05:41 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:05:41 Asia/Manila] Parsed cost_per_unit: 300
+[13-Nov-2025 21:05:41 Asia/Manila] Parsed amount: 150100
+[13-Nov-2025 21:05:41 Asia/Manila] Amount mismatch - Qty: 200, Cost: 300, Calculated: 60000, Submitted: 150100, Diff: 90100
+[13-Nov-2025 21:07:14 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:07:14 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:07:14 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:07:14 Asia/Manila] Raw POST cost_per_unit: 400
+[13-Nov-2025 21:07:14 Asia/Manila] Raw POST amount: 80000.00
+[13-Nov-2025 21:07:14 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:07:14 Asia/Manila] Parsed cost_per_unit: 400
+[13-Nov-2025 21:07:14 Asia/Manila] Parsed amount: 80000
+[13-Nov-2025 21:07:26 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:07:26 Asia/Manila] Record ID: 1
+[13-Nov-2025 21:07:26 Asia/Manila] Raw POST quantity: 200
+[13-Nov-2025 21:07:26 Asia/Manila] Raw POST cost_per_unit: 200.50
+[13-Nov-2025 21:07:26 Asia/Manila] Raw POST amount: 40100.00
+[13-Nov-2025 21:07:26 Asia/Manila] Parsed quantity: 200
+[13-Nov-2025 21:07:26 Asia/Manila] Parsed cost_per_unit: 200.5
+[13-Nov-2025 21:07:26 Asia/Manila] Parsed amount: 40100
+[13-Nov-2025 21:10:48 Asia/Manila] Annex20 - Entry 1 inserted with ID: 7
+[13-Nov-2025 21:10:48 Asia/Manila] Annex20 - Total inserted: 1, IDs: 7
+[13-Nov-2025 21:10:59 Asia/Manila] === ANNEX20 UPDATE DEBUG ===
+[13-Nov-2025 21:10:59 Asia/Manila] Record ID: 7
+[13-Nov-2025 21:10:59 Asia/Manila] Raw POST quantity: 600
+[13-Nov-2025 21:10:59 Asia/Manila] Raw POST cost_per_unit: 400
+[13-Nov-2025 21:10:59 Asia/Manila] Raw POST amount: 240000.00
+[13-Nov-2025 21:10:59 Asia/Manila] Parsed quantity: 600
+[13-Nov-2025 21:10:59 Asia/Manila] Parsed cost_per_unit: 400
+[13-Nov-2025 21:10:59 Asia/Manila] Parsed amount: 240000
+[13-Nov-2025 21:13:31 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[13-Nov-2025 21:26:39 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2

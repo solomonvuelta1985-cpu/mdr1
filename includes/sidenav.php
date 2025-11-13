@@ -475,13 +475,25 @@
             background: rgba(30, 60, 114, 0.15);
             border-left: 3px solid var(--warning-color);
         }
+
+        /* Font smoothing for clear text rendering in dropdown items */
+        .dropdown-item, 
+        .dropdown-item span {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body style="margin: 0; padding: 0;">
     <?php
+        // Load annex access control functions
+        require_once __DIR__ . '/check_annex_access.php';
+
         // Get current page for active states
         $currentPage = basename($_SERVER['PHP_SELF']);
-        
+
         // Define page groups for each dropdown
         $incidentPages = ['annex1.php', 'annex2.php', 'annex3.php', 'annex1_records.php'];
         $damagePages = ['annex4.php', 'annex5.php', 'annex6.php', 'annex7.php'];
@@ -550,25 +562,24 @@
                     <ul class="collapse list-unstyled <?php echo $incidentActive ? 'show' : ''; ?>" id="incidentsSubmenu">
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex1.php' ? 'active' : ''; ?>" href="annex1.php">
-                                <i class="bi bi-1-circle"></i>
                                 <span>Annex 1: Related Incident</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex2.php' ? 'active' : ''; ?>" href="annex2.php">
-                                <i class="bi bi-2-circle"></i>
                                 <span>Annex 2: Affected Population</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex3.php' ? 'active' : ''; ?>" href="annex3.php">
-                                <i class="bi bi-3-circle"></i>
                                 <span>Annex 3: Casualties</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex1_records.php' ? 'active' : ''; ?>" href="annex1_records.php">
-                                <i class="bi bi-file-earmark-text"></i>
                                 <span>Annex 1 Records</span>
                             </a>
                         </li>
@@ -587,25 +598,24 @@
                     <ul class="collapse list-unstyled <?php echo $damageActive ? 'show' : ''; ?>" id="damageSubmenu">
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex4.php' ? 'active' : ''; ?>" href="annex4.php">
-                                <i class="bi bi-4-circle"></i>
                                 <span>Annex 4: Damaged Houses</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex5.php' ? 'active' : ''; ?>" href="annex5.php">
-                                <i class="bi bi-5-circle"></i>
                                 <span>Annex 5: Agriculture</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex6.php' ? 'active' : ''; ?>" href="annex6.php">
-                                <i class="bi bi-6-circle"></i>
                                 <span>Annex 6: Infrastructure</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex7.php' ? 'active' : ''; ?>" href="annex7.php">
-                                <i class="bi bi-7-circle"></i>
                                 <span>Annex 7: Other Assets</span>
                             </a>
                         </li>
@@ -624,34 +634,39 @@
                     <ul class="collapse list-unstyled <?php echo $statusActive ? 'show' : ''; ?>" id="statusSubmenu">
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex8.php' ? 'active' : ''; ?>" href="annex8.php">
-                                <i class="bi bi-8-circle"></i>
                                 <span>Annex 8: Roads & Bridges</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex9.php' ? 'active' : ''; ?>" href="annex9.php">
-                                <i class="bi bi-9-circle"></i>
                                 <span>Annex 9: Power Supply</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex11.php' ? 'active' : ''; ?>" href="annex11.php">
-                                <i class="bi bi-telephone"></i>
                                 <span>Annex 11: Communication</span>
                             </a>
                         </li>
+                        <?php if (can_access_annex('14')): ?>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex14.php' ? 'active' : ''; ?>" href="annex14.php">
-                                <i class="bi bi-briefcase"></i>
                                 <span>Annex 14: Work Suspension</span>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if (can_access_annex('15')): ?>
+                        <?php if (can_access_annex('14')): ?>
+                        <div class="dropdown-divider"></div>
+                        <?php endif; ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex15.php' ? 'active' : ''; ?>" href="annex15.php">
-                                <i class="bi bi-backpack"></i>
                                 <span>Annex 15: Class Suspension</span>
                             </a>
                         </li>
+                        <?php endif; ?>
                     </ul>
                 </li>
 
@@ -667,13 +682,12 @@
                     <ul class="collapse list-unstyled <?php echo $evacuationActive ? 'show' : ''; ?>" id="evacuationSubmenu">
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex17.php' ? 'active' : ''; ?>" href="annex17.php">
-                                <i class="bi bi-person-walking"></i>
                                 <span>Annex 17: Evacuation (People)</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex18.php' ? 'active' : ''; ?>" href="annex18.php">
-                                <i class="bi bi-piggy-bank"></i>
                                 <span>Annex 18: Evacuation (Animals)</span>
                             </a>
                         </li>
@@ -681,35 +695,46 @@
                 </li>
 
                 <!-- Assistance Reports Dropdown -->
+                <?php if (can_access_annex('19') || can_access_annex('20') || can_access_annex('21')): ?>
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle <?php echo $assistanceActive ? 'active' : ''; ?>" 
-                       href="#assistanceSubmenu" 
-                       data-bs-toggle="collapse" 
+                    <a class="nav-link dropdown-toggle <?php echo $assistanceActive ? 'active' : ''; ?>"
+                       href="#assistanceSubmenu"
+                       data-bs-toggle="collapse"
                        aria-expanded="<?php echo $assistanceActive ? 'true' : 'false'; ?>">
                         <i class="bi bi-heart"></i>
                         <span>Assistance Reports</span>
                     </a>
                     <ul class="collapse list-unstyled <?php echo $assistanceActive ? 'show' : ''; ?>" id="assistanceSubmenu">
+                        <?php if (can_access_annex('19')): ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex19.php' ? 'active' : ''; ?>" href="annex19.php">
-                                <i class="bi bi-house-heart"></i>
                                 <span>Annex 19: Families Assisted</span>
                             </a>
                         </li>
+                        <?php if (can_access_annex('20') || can_access_annex('21')): ?>
+                        <div class="dropdown-divider"></div>
+                        <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if (can_access_annex('20')): ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex20.php' ? 'active' : ''; ?>" href="annex20.php">
-                                <i class="bi bi-people"></i>
                                 <span>Annex 20: To Families</span>
                             </a>
                         </li>
+                        <?php if (can_access_annex('21')): ?>
+                        <div class="dropdown-divider"></div>
+                        <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if (can_access_annex('21')): ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex21.php' ? 'active' : ''; ?>" href="annex21.php">
-                                <i class="bi bi-building"></i>
                                 <span>Annex 21: To LGUs/Agencies</span>
                             </a>
                         </li>
+                        <?php endif; ?>
                     </ul>
                 </li>
+                <?php endif; ?>
                 
                 <!-- Settings Dropdown (Admin Only) -->
                 <?php if ($_SESSION['user_role'] === 'admin'): ?>
@@ -724,13 +749,12 @@
                     <ul class="collapse list-unstyled <?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'show' : ''; ?>" id="settingsSubmenu">
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'sitrep_settings.php' ? 'active' : ''; ?>" href="sitrep_settings.php">
-                                <i class="bi bi-bar-chart-line"></i>
                                 <span>SITREP Settings</span>
                             </a>
                         </li>
+                        <div class="dropdown-divider"></div>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'user_management.php' ? 'active' : ''; ?>" href="user_management.php">
-                                <i class="bi bi-people"></i>
                                 <span>User Management</span>
                             </a>
                         </li>

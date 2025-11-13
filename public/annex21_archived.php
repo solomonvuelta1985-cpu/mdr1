@@ -9,6 +9,10 @@ require_once '../includes/auth.php';
 
 // Check if user is logged in
 require_login();
+// Annex Access Control - Only Admin and Sheila can access
+require_once __DIR__ . '/../includes/check_annex_access.php';
+require_annex_access_or_redirect('21');
+
 // AUDIT LOG: Page access
 log_audit_action(
     $_SESSION['user_id'],

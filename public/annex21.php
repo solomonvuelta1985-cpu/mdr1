@@ -14,6 +14,10 @@ require_once __DIR__ . '/../includes/auth.php';
 
 // Authentication check
 require_login();
+// Annex Access Control - Only Admin and Sheila can access
+require_once __DIR__ . '/../includes/check_annex_access.php';
+require_annex_access_or_redirect('21');
+
 // Rate limiting check for form access (prevent form spam)
 $rate_limit_key = 'annex21_form_access_' . $_SESSION['user_id'];
 if (!check_rate_limit($rate_limit_key, 100, 3600)) {

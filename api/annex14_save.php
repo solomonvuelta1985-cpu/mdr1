@@ -6,6 +6,13 @@ require_once '../includes/functions.php';
 
 // Check if user is logged in
 require_login();
+// Annex Access Control - Only Admin and Sheila can add/edit
+require_once __DIR__ . '/../includes/check_annex_access.php';
+if (!can_access_annex('14')) {
+    echo json_encode(['success' => false, 'message' => 'You do not have permission to modify Annex 14 records.']);
+    exit;
+}
+
 
 // Set JSON header
 header('Content-Type: application/json');

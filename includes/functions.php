@@ -504,4 +504,4 @@ if (!function_exists('validate_annex3_entry')) {
         
         return $errors;
     }
-}
+}require_once __DIR__ . '/annex_access_functions.php';

@@ -10,6 +10,10 @@ define('PAGE_TITLE', 'Annex 14 - Suspension of Work');
 
 // Check if user is logged in
 require_login();
+// Annex Access Control - Only Admin and Sheila can access
+require_once __DIR__ . '/../includes/check_annex_access.php';
+require_annex_access_or_redirect('14');
+
 
 
 // Validate session fingerprint for security

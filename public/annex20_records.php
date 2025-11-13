@@ -1,6 +1,6 @@
 <?php
 // Define page title for the header
-define('PAGE_TITLE', 'Annex 15 - Suspension of Classes Records');
+define('PAGE_TITLE', 'Annex 20 - Assistance Provided to Families Records');
 
 // Include required configuration and function files
 require_once '../includes/config.php';
@@ -11,13 +11,13 @@ require_once '../includes/auth.php';
 require_login();
 // Annex Access Control - Only Admin and Sheila can access
 require_once __DIR__ . '/../includes/check_annex_access.php';
-require_annex_access_or_redirect('15');
+require_annex_access_or_redirect('20');
 
 
 // RATE LIMITING: Check if user is not flooding the page with requests
 $user_id = $_SESSION['user_id'] ?? 0;
-if (!check_rate_limit($user_id, 'annex15_records_access', 100, 3600)) {
-    log_security_event($user_id, 'rate_limit_exceeded', 'Annex15 records page access rate limit exceeded');
+if (!check_rate_limit($user_id, 'annex20_records_access', 100, 3600)) {
+    log_security_event($user_id, 'rate_limit_exceeded', 'Annex20 records page access rate limit exceeded');
     set_flash('Too many requests. Please try again later.', 'error');
     header('Location: dashboard.php');
     exit;
@@ -26,15 +26,15 @@ if (!check_rate_limit($user_id, 'annex15_records_access', 100, 3600)) {
 // AUDIT LOG: Page access
 log_audit_action(
     $_SESSION['user_id'],
-    'annex15_records_access',
-    'Accessed Annex 15 suspension of classes records page'
+    'annex20_records_access',
+    'Accessed Annex 20 assistance records page'
 );
 
 // SECURITY LOG: Page access
 log_security_event(
     $_SESSION['user_id'],
     'page_access',
-    'Accessed Annex 15 records page'
+    'Accessed Annex 20 records page'
 );
 
 // Database connection
@@ -46,7 +46,7 @@ $is_admin = ($_SESSION['user_role'] === 'admin');
 
 // Ensure is_archived column exists
 try {
-    $column_check = $pdo->query("SHOW COLUMNS FROM annex15_suspension_classes LIKE 'is_archived'");
+    $column_check = $pdo->query("SHOW COLUMNS FROM annex20_assistance LIKE 'is_archived'");
     if ($column_check->rowCount() == 0) {
         // SECURITY: Do NOT modify database schema from web application
         error_log("CRITICAL: Missing is_archived column. Run migrations manually");
@@ -63,147 +63,147 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // CSRF Token Verification
     if (!verify_token($_POST['csrf_token'] ?? '')) {
         set_flash('Security token validation failed', 'error');
-        log_security_event($_SESSION['user_id'], 'csrf_failure', 'Annex15 records CSRF token mismatch');
-        header('Location: annex15_records.php');
+        log_security_event($_SESSION['user_id'], 'csrf_failure', 'Annex20 records CSRF token mismatch');
+        header('Location: annex20_records.php');
         exit;
     }
-    
+
     // RATE LIMITING: Check action-specific rate limits
-    if (!check_rate_limit($user_id, 'annex15_post_action', 30, 3600)) {
-        log_security_event($user_id, 'rate_limit_exceeded', 'Annex15 POST action rate limit exceeded');
+    if (!check_rate_limit($user_id, 'annex20_post_action', 30, 3600)) {
+        log_security_event($user_id, 'rate_limit_exceeded', 'Annex20 POST action rate limit exceeded');
         set_flash('Too many actions. Please try again later.', 'error');
-        header('Location: annex15_records.php');
+        header('Location: annex20_records.php');
         exit;
     }
-    
+
     // Handle delete action
     if (isset($_POST['delete_id'])) {
         $delete_id = filter_var($_POST['delete_id'], FILTER_VALIDATE_INT);
-        
+
         if (!$delete_id) {
             set_flash('Invalid record ID', 'error');
-            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid delete_id for Annex15');
-            header('Location: annex15_records.php');
+            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid delete_id for Annex20');
+            header('Location: annex20_records.php');
             exit;
         }
-        
+
         // RATE LIMITING: Specific check for delete operations
-        if (!check_rate_limit($user_id, 'annex15_delete', 10, 3600)) {
-            log_security_event($user_id, 'rate_limit_exceeded', 'Annex15 delete rate limit exceeded');
+        if (!check_rate_limit($user_id, 'annex20_delete', 10, 3600)) {
+            log_security_event($user_id, 'rate_limit_exceeded', 'Annex20 delete rate limit exceeded');
             set_flash('Too many delete attempts. Please try again later.', 'error');
-            header('Location: annex15_records.php');
+            header('Location: annex20_records.php');
             exit;
         }
-        
+
         // Check if user owns the record (unless admin)
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT * FROM annex15_suspension_classes WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
             $record = $check_stmt->fetch();
-            
+
             if (!$record) {
                 set_flash('Record not found or access denied', 'error');
-                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to delete Annex15 record #{$delete_id} without permission");
-                header('Location: annex15_records.php');
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to delete Annex20 record #{$delete_id} without permission");
+                header('Location: annex20_records.php');
                 exit;
             }
         } else {
-            $check_stmt = db_query("SELECT * FROM annex15_suspension_classes WHERE id = ?", [$delete_id]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ?", [$delete_id]);
             $record = $check_stmt->fetch();
         }
-        
+
         if ($record) {
-            $stmt = db_query("DELETE FROM annex15_suspension_classes WHERE id = ?", [$delete_id]);
-            
+            $stmt = db_query("DELETE FROM annex20_assistance WHERE id = ?", [$delete_id]);
+
             if ($stmt && $stmt->rowCount() > 0) {
                 // AUDIT LOG: Record deletion
                 log_audit_action(
                     $_SESSION['user_id'],
-                    'annex15_delete',
-                    "Permanently deleted record #{$delete_id} for {$record['barangay']}: {$record['level']} - {$record['type']}"
+                    'annex20_delete',
+                    "Permanently deleted record #{$delete_id} for {$record['barangay']}: {$record['cluster']} - {$record['type']}"
                 );
-                
+
                 // SECURITY LOG: Successful deletion
                 log_security_event(
                     $_SESSION['user_id'],
-                    'annex15_delete_success',
-                    "Successfully deleted Annex15 record #{$delete_id}"
+                    'annex20_delete_success',
+                    "Successfully deleted Annex20 record #{$delete_id}"
                 );
-                
+
                 set_flash('Record deleted successfully', 'success');
             } else {
                 set_flash('Failed to delete record', 'error');
-                log_security_event($_SESSION['user_id'], 'delete_failure', "Failed to delete Annex15 record #{$delete_id}");
+                log_security_event($_SESSION['user_id'], 'delete_failure', "Failed to delete Annex20 record #{$delete_id}");
             }
         } else {
             set_flash('Record not found', 'error');
         }
-        header('Location: annex15_records.php');
+        header('Location: annex20_records.php');
         exit;
     }
-    
+
     // Handle archive action
     if (isset($_POST['archive_id'])) {
         $archive_id = filter_var($_POST['archive_id'], FILTER_VALIDATE_INT);
-        
+
         if (!$archive_id) {
             set_flash('Invalid record ID', 'error');
-            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid archive_id for Annex15');
-            header('Location: annex15_records.php');
+            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid archive_id for Annex20');
+            header('Location: annex20_records.php');
             exit;
         }
-        
+
         // RATE LIMITING: Specific check for archive operations
-        if (!check_rate_limit($user_id, 'annex15_archive', 20, 3600)) {
-            log_security_event($user_id, 'rate_limit_exceeded', 'Annex15 archive rate limit exceeded');
+        if (!check_rate_limit($user_id, 'annex20_archive', 20, 3600)) {
+            log_security_event($user_id, 'rate_limit_exceeded', 'Annex20 archive rate limit exceeded');
             set_flash('Too many archive attempts. Please try again later.', 'error');
-            header('Location: annex15_records.php');
+            header('Location: annex20_records.php');
             exit;
         }
-        
+
         // Check if user owns the record (unless admin)
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT * FROM annex15_suspension_classes WHERE id = ? AND created_by = ?", [$archive_id, $_SESSION['user_id']]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ? AND created_by = ?", [$archive_id, $_SESSION['user_id']]);
             $record = $check_stmt->fetch();
-            
+
             if (!$record) {
                 set_flash('Record not found or access denied', 'error');
-                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to archive Annex15 record #{$archive_id} without permission");
-                header('Location: annex15_records.php');
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to archive Annex20 record #{$archive_id} without permission");
+                header('Location: annex20_records.php');
                 exit;
             }
         } else {
-            $check_stmt = db_query("SELECT * FROM annex15_suspension_classes WHERE id = ?", [$archive_id]);
+            $check_stmt = db_query("SELECT * FROM annex20_assistance WHERE id = ?", [$archive_id]);
             $record = $check_stmt->fetch();
         }
-        
+
         if ($record) {
             // Archive the record
-            $stmt = db_query("UPDATE annex15_suspension_classes SET is_archived = 1 WHERE id = ?", [$archive_id]);
-            
+            $stmt = db_query("UPDATE annex20_assistance SET is_archived = 1 WHERE id = ?", [$archive_id]);
+
             if ($stmt && $stmt->rowCount() > 0) {
                 // AUDIT LOG: Record archival
                 log_audit_action(
                     $_SESSION['user_id'],
-                    'annex15_archive',
-                    "Archived record #{$archive_id} for {$record['barangay']}: {$record['level']} - {$record['type']}"
+                    'annex20_archive',
+                    "Archived record #{$archive_id} for {$record['barangay']}: {$record['cluster']} - {$record['type']}"
                 );
-                
+
                 // SECURITY LOG: Successful archival
                 log_security_event(
                     $_SESSION['user_id'],
-                    'annex15_archive_success',
-                    "Successfully archived Annex15 record #{$archive_id}"
+                    'annex20_archive_success',
+                    "Successfully archived Annex20 record #{$archive_id}"
                 );
-                
+
                 set_flash('Record archived successfully', 'success');
             } else {
                 set_flash('Failed to archive record', 'error');
-                log_security_event($_SESSION['user_id'], 'archive_failure', "Failed to archive Annex15 record #{$archive_id}");
+                log_security_event($_SESSION['user_id'], 'archive_failure', "Failed to archive Annex20 record #{$archive_id}");
             }
         } else {
             set_flash('Record not found', 'error');
         }
-        header('Location: annex15_records.php');
+        header('Location: annex20_records.php');
         exit;
     }
 }
@@ -215,16 +215,16 @@ $csrf_token = generate_token();
 if ($is_admin) {
     // Admin can see all non-archived records
     $stmt = db_query("
-        SELECT a.*, u.full_name, u.barangay as user_barangay 
-        FROM annex15_suspension_classes a 
-        LEFT JOIN users u ON a.created_by = u.id 
+        SELECT a.*, u.full_name, u.barangay as user_barangay
+        FROM annex20_assistance a
+        LEFT JOIN users u ON a.created_by = u.id
         WHERE (a.is_archived = 0 OR a.is_archived IS NULL)
         ORDER BY a.created_at DESC
     ");
 } else {
     // Regular users can only see their own non-archived records
     $stmt = db_query("
-        SELECT * FROM annex15_suspension_classes 
+        SELECT * FROM annex20_assistance
         WHERE created_by = ? AND (is_archived = 0 OR is_archived IS NULL)
         ORDER BY created_at DESC
     ", [$_SESSION['user_id']]);
@@ -234,47 +234,33 @@ $records = $stmt->fetchAll();
 
 // Calculate total statistics
 $total_records = count($records);
-$total_preschool = 0;
-$total_elementary = 0;
-$total_secondary = 0;
-$total_senior_high = 0;
-$total_tertiary = 0;
-$total_all_levels = 0;
-$total_public = 0;
-$total_private = 0;
-$total_all_types = 0;
+$total_food = 0;
+$total_wash = 0;
+$total_shelter = 0;
+$total_health = 0;
+$total_other = 0;
+$total_amount = 0;
+$total_quantity = 0;
 
 foreach ($records as $record) {
-    switch ($record['level']) {
-        case 'Preschool / Kindergarten':
-            $total_preschool++;
+    $total_amount += $record['amount'] ?? 0;
+    $total_quantity += $record['quantity'] ?? 0;
+
+    switch ($record['cluster']) {
+        case 'Food':
+            $total_food++;
             break;
-        case 'Elementary':
-            $total_elementary++;
+        case 'WASH':
+            $total_wash++;
             break;
-        case 'Secondary / High School':
-            $total_secondary++;
+        case 'Shelter':
+            $total_shelter++;
             break;
-        case 'Senior High School':
-            $total_senior_high++;
+        case 'Health':
+            $total_health++;
             break;
-        case 'Tertiary / College / University':
-            $total_tertiary++;
-            break;
-        case 'All Levels':
-            $total_all_levels++;
-            break;
-    }
-    
-    switch ($record['type']) {
-        case 'Public':
-            $total_public++;
-            break;
-        case 'Private':
-            $total_private++;
-            break;
-        case 'All':
-            $total_all_types++;
+        default:
+            $total_other++;
             break;
     }
 }
@@ -465,55 +451,30 @@ ob_start();
         font-weight: 500;
         white-space: nowrap;
     }
-    .badge-preschool { 
-        background-color: #d1e7dd; 
+    .badge-food {
+        background-color: #d1e7dd;
         color: #0f5132;
         border: 1px solid #badbcc;
     }
-    .badge-elementary { 
-        background-color: #cff4fc; 
+    .badge-wash {
+        background-color: #cff4fc;
         color: #055160;
         border: 1px solid #b6effb;
     }
-    .badge-secondary { 
-        background-color: #fff3cd; 
+    .badge-shelter {
+        background-color: #fff3cd;
         color: #664d03;
         border: 1px solid #ffecb5;
     }
-    .badge-senior-high { 
-        background-color: #e2d9f3; 
-        color: #422874;
-        border: 1px solid #d4c4ed;
+    .badge-health {
+        background-color: #f8d7da;
+        color: #842029;
+        border: 1px solid #f5c2c7;
     }
-    .badge-tertiary { 
-        background-color: #d1ecf1; 
-        color: #0c5460;
-        border: 1px solid #bee5eb;
-    }
-    .badge-all-levels { 
-        background-color: #f8d7da; 
-        color: #721c24;
-        border: 1px solid #f1b0b7;
-    }
-    .badge-public { 
-        background-color: #d1e7dd; 
-        color: #0f5132;
-    }
-    .badge-private { 
-        background-color: #cff4fc; 
-        color: #055160;
-    }
-    .badge-all { 
-        background-color: #fff3cd; 
-        color: #664d03;
-    }
-    .status-active {
-        background-color: #fff3cd;
-        color: #856404;
-    }
-    .status-resumed {
-        background-color: #d1edff;
-        color: #0c63e4;
+    .badge-other {
+        background-color: #e2e3e5;
+        color: #2b2f32;
+        border: 1px solid #d4d6d8;
     }
     .btn-table {
         padding: clamp(5px, 1.5vw, 6px) clamp(10px, 2.5vw, 12px);
@@ -669,8 +630,8 @@ ob_start();
 <div class="records-container">
     <!-- Header -->
     <div class="header-section">
-        <h1><i class="fas fa-school"></i> Suspension of Classes Records</h1>
-        <h2>NDRRMC Memorandum Circular No. 05, s. 2025 - Annex 15</h2>
+        <h1><i class="fas fa-hands-helping"></i> Assistance Provided to Families Records</h1>
+        <h2>NDRRMC Memorandum Circular No. 05, s. 2025 - Annex 20</h2>
         <?php if ($is_admin): ?>
             <div class="admin-alert">
                 <strong><i class="fas fa-shield-alt"></i> Admin Mode:</strong> You are viewing all records from all barangays.
@@ -720,24 +681,34 @@ ob_start();
             <p><i class="fas fa-file-alt"></i> Total Records</p>
         </div>
         <div class="stat-card">
-            <h3><?php echo $total_public; ?></h3>
-            <p><i class="fas fa-school"></i> Public Schools</p>
+            <h3><?php echo number_format($total_quantity); ?></h3>
+            <p><i class="fas fa-boxes"></i> Total Items</p>
         </div>
         <div class="stat-card">
-            <h3><?php echo $total_private; ?></h3>
-            <p><i class="fas fa-graduation-cap"></i> Private Schools</p>
+            <h3>
+                <?php
+                if ($total_amount >= 1000000) {
+                    echo '₱' . number_format($total_amount / 1000000, 1) . 'M';
+                } else if ($total_amount >= 1000) {
+                    echo '₱' . number_format($total_amount / 1000, 1) . 'K';
+                } else {
+                    echo '₱' . number_format($total_amount, 0);
+                }
+                ?>
+            </h3>
+            <p><i class="fas fa-money-bill-wave"></i> Total Value</p>
         </div>
         <div class="stat-card">
-            <h3><?php echo $total_elementary; ?></h3>
-            <p><i class="fas fa-child"></i> Elementary</p>
+            <h3><?php echo $total_food; ?></h3>
+            <p><i class="fas fa-utensils"></i> Food</p>
         </div>
         <div class="stat-card">
-            <h3><?php echo $total_secondary; ?></h3>
-            <p><i class="fas fa-user-graduate"></i> Secondary</p>
+            <h3><?php echo $total_wash; ?></h3>
+            <p><i class="fas fa-hand-sparkles"></i> WASH</p>
         </div>
         <div class="stat-card">
-            <h3><?php echo $total_tertiary; ?></h3>
-            <p><i class="fas fa-university"></i> Tertiary</p>
+            <h3><?php echo $total_shelter; ?></h3>
+            <p><i class="fas fa-home"></i> Shelter</p>
         </div>
     </div>
 
@@ -747,10 +718,10 @@ ob_start();
             <input type="text" id="searchInput" placeholder="🔍 Search records..." onkeyup="searchRecords()">
         </div>
         <div class="action-buttons">
-            <a href="annex15.php" class="btn-custom btn-primary-custom">
+            <a href="annex20.php" class="btn-custom btn-primary-custom">
                 <i class="fas fa-plus"></i> Add New Record
             </a>
-            <a href="annex15_archived.php" class="btn-custom btn-secondary-custom">
+            <a href="annex20_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
             <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
@@ -766,12 +737,12 @@ ob_start();
                 <tr>
                     <th>ID</th>
                     <th>Barangay</th>
-                    <th>Level</th>
+                    <th>Cluster</th>
                     <th>Type</th>
-                    <th>Suspension Date</th>
-                    <th>Resumption Date</th>
-                    <th>Reason</th>
-                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Cost/Unit (₱)</th>
+                    <th>Amount (₱)</th>
                     <th>Date Created</th>
                     <?php if ($is_admin): ?>
                     <th>Created By</th>
@@ -779,7 +750,7 @@ ob_start();
                     <th>Actions</th>
                 </tr>
             </thead>
-            
+
             <!-- Skeleton Loader -->
             <tbody class="skeleton-loader" id="skeletonLoader">
                 <?php for ($i = 0; $i < 5; $i++): ?>
@@ -800,13 +771,13 @@ ob_start();
                         <div class="skeleton-bar short skeleton"></div>
                     </td>
                     <td class="skeleton-cell">
+                        <div class="skeleton-bar short skeleton"></div>
+                    </td>
+                    <td class="skeleton-cell">
                         <div class="skeleton-bar medium skeleton"></div>
                     </td>
                     <td class="skeleton-cell">
-                        <div class="skeleton-bar long skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
+                        <div class="skeleton-bar medium skeleton"></div>
                     </td>
                     <td class="skeleton-cell">
                         <div class="skeleton-bar short skeleton"></div>
@@ -826,15 +797,15 @@ ob_start();
                 </tr>
                 <?php endfor; ?>
             </tbody>
-            
+
             <!-- Actual Content -->
             <tbody class="table-content" id="tableContent">
                 <?php if (empty($records)): ?>
                     <tr>
                         <td colspan="<?php echo $is_admin ? '11' : '10'; ?>" style="text-align: center; padding: 30px;">
-                            <i class="fas fa-school" style="font-size: 3rem; color: #ccc;"></i>
-                            <p style="color: #6c757d; margin-top: 15px;">No suspension of classes records found.</p>
-                            <a href="annex15.php" class="btn-custom btn-primary-custom" style="margin-top: 15px;">
+                            <i class="fas fa-hands-helping" style="font-size: 3rem; color: #ccc;"></i>
+                            <p style="color: #6c757d; margin-top: 15px;">No assistance records found.</p>
+                            <a href="annex20.php" class="btn-custom btn-primary-custom" style="margin-top: 15px;">
                                 <i class="fas fa-plus"></i> Create First Record
                             </a>
                         </td>
@@ -851,55 +822,23 @@ ob_start();
                             </td>
                             <td>
                                 <?php
-                                $badge_class = match($record['level']) {
-                                    'Preschool / Kindergarten' => 'badge-preschool',
-                                    'Elementary' => 'badge-elementary',
-                                    'Secondary / High School' => 'badge-secondary',
-                                    'Senior High School' => 'badge-senior-high',
-                                    'Tertiary / College / University' => 'badge-tertiary',
-                                    'All Levels' => 'badge-all-levels',
-                                    default => 'badge-secondary'
+                                $badge_class = match($record['cluster']) {
+                                    'Food' => 'badge-food',
+                                    'WASH' => 'badge-wash',
+                                    'Shelter' => 'badge-shelter',
+                                    'Health' => 'badge-health',
+                                    default => 'badge-other'
                                 };
                                 ?>
                                 <span class="badge <?php echo $badge_class; ?>">
-                                    <?php echo htmlspecialchars($record['level']); ?>
+                                    <?php echo htmlspecialchars($record['cluster']); ?>
                                 </span>
                             </td>
-                            <td>
-                                <?php
-                                $type_badge = match($record['type']) {
-                                    'Public' => 'badge-public',
-                                    'Private' => 'badge-private',
-                                    'All' => 'badge-all',
-                                    default => 'badge-secondary'
-                                };
-                                ?>
-                                <span class="badge <?php echo $type_badge; ?>">
-                                    <?php echo htmlspecialchars($record['type']); ?>
-                                </span>
-                            </td>
-                            <td>
-                                <small><?php echo date('M j, Y', strtotime($record['suspension_date'])); ?></small>
-                                <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['suspension_date'])); ?></small>
-                            </td>
-                            <td>
-                                <?php if ($record['resumption_date']): ?>
-                                    <small><?php echo date('M j, Y', strtotime($record['resumption_date'])); ?></small>
-                                    <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['resumption_date'])); ?></small>
-                                <?php else: ?>
-                                    <span class="badge status-active">Not Resumed</span>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <small><?php echo htmlspecialchars($record['suspension_reason']); ?></small>
-                            </td>
-                            <td>
-                                <?php if ($record['resumption_date']): ?>
-                                    <span class="badge status-resumed">Resumed</span>
-                                <?php else: ?>
-                                    <span class="badge status-active">Active</span>
-                                <?php endif; ?>
-                            </td>
+                            <td><strong><?php echo htmlspecialchars($record['type']); ?></strong></td>
+                            <td><?php echo number_format($record['quantity']); ?></td>
+                            <td><?php echo htmlspecialchars($record['unit']); ?></td>
+                            <td>₱<?php echo number_format($record['cost_per_unit'], 2); ?></td>
+                            <td><strong>₱<?php echo number_format($record['amount'], 2); ?></strong></td>
                             <td>
                                 <small><?php echo date('M j, Y', strtotime($record['created_at'])); ?></small>
                                 <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['created_at'])); ?></small>
@@ -937,7 +876,7 @@ ob_start();
             </tbody>
         </table>
     </div>
-    
+
     <!-- Pagination -->
     <div class="d-flex justify-content-between align-items-center mt-4">
         <div class="text-muted">
@@ -955,20 +894,19 @@ ob_start();
 
 <!-- View Record Modal -->
 <div class="modal fade" id="viewRecordModal" tabindex="-1" aria-labelledby="viewRecordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewRecordModalLabel">Suspension of Classes Details</h5>
+                <h5 class="modal-title" id="viewRecordModalLabel">
+                    <i class="fas fa-hands-helping"></i> Assistance Record Details
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="viewRecordContent">
-                <!-- Content will be loaded via AJAX -->
-                <div class="text-center py-4">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="mt-2">Loading record data...</p>
-                </div>
+            <div class="modal-body" id="recordDetails">
+                <p class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading record details...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -979,150 +917,193 @@ ob_start();
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editRecordModalLabel">Edit Suspension of Classes Record</h5>
+                <h5 class="modal-title" id="editRecordModalLabel">
+                    <i class="fas fa-edit"></i> Edit Assistance Record
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="editRecordContent">
-                <!-- Content will be loaded via AJAX -->
-                <div class="text-center py-4">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="mt-2">Loading record data...</p>
-                </div>
+            <div class="modal-body" id="editRecordForm">
+                <p class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading record...</p>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// Skeleton Loader
-document.addEventListener('DOMContentLoaded', function() {
-    // Show skeleton loader for both table and cards
-    const tableContainer = document.getElementById('tableContainer');
-    const statsCards = document.getElementById('statsCards');
-    
-    tableContainer.classList.add('loading');
-    statsCards.classList.add('loading');
-    
-    // Simulate loading delay (you can remove this in production)
-    setTimeout(function() {
-        tableContainer.classList.remove('loading');
-        statsCards.classList.remove('loading');
-    }, 1500);
-});
+    // Initialize page with skeleton loader
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableContainer = document.getElementById('tableContainer');
+        const statsCards = document.getElementById('statsCards');
 
-// Search function
-function searchRecords() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById('recordsTable');
-    const tr = table.getElementsByTagName('tr');
+        tableContainer.classList.add('loading');
+        statsCards.classList.add('loading');
 
-    for (let i = 1; i < tr.length; i++) {
-        let txtValue = tr[i].textContent || tr[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = '';
-        } else {
-            tr[i].style.display = 'none';
+        // Simulate loading (remove after data is ready)
+        setTimeout(function() {
+            tableContainer.classList.remove('loading');
+            statsCards.classList.remove('loading');
+        }, 1000);
+    });
+
+    // Search functionality
+    function searchRecords() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('recordsTable');
+        const tbody = table.querySelector('.table-content');
+        const rows = tbody.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            const cells = row.getElementsByTagName('td');
+            let found = false;
+
+            for (let j = 0; j < cells.length - 1; j++) { // Exclude actions column
+                const cell = cells[j];
+                if (cell) {
+                    const textValue = cell.textContent || cell.innerText;
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            row.style.display = found ? '' : 'none';
         }
     }
-}
 
-// View record function
-function viewRecord(recordId) {
-    const modal = new bootstrap.Modal(document.getElementById('viewRecordModal'));
-    modal.show();
-    
-    fetch(`../api/annex15_view.php?id=${recordId}`)
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('viewRecordContent').innerHTML = data;
-        })
-        .catch(error => {
-            document.getElementById('viewRecordContent').innerHTML = `
-                <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle"></i> Error loading record details: ${error}
-                </div>
-            `;
-        });
-}
+    // View record details
+    function viewRecord(id) {
+        const modal = new bootstrap.Modal(document.getElementById('viewRecordModal'));
+        const detailsDiv = document.getElementById('recordDetails');
 
-// Edit record function with confirmation
-function editRecord(recordId) {
-    if (!confirm('⚠️ You are about to make changes to Record #' + recordId + '.\n\nClick OK to proceed with editing.')) {
-        return;
+        detailsDiv.innerHTML = '<p class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading record details...</p>';
+        modal.show();
+
+        // Fetch record details using fetch API
+        fetch(`../api/annex20_view.php?id=${id}`)
+            .then(response => response.text())
+            .then(html => {
+                detailsDiv.innerHTML = html;
+            })
+            .catch(error => {
+                detailsDiv.innerHTML = '<p class="text-danger"><i class="fas fa-exclamation-circle"></i> Error loading record details.</p>';
+            });
     }
-    
-    // Show loading state
-    const modal = new bootstrap.Modal(document.getElementById('editRecordModal'));
-    modal.show();
-    
-    // Load edit form via AJAX
-    fetch(`../api/annex15_edit.php?id=${recordId}`)
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('editRecordContent').innerHTML = data;
-        })
-        .catch(error => {
-            document.getElementById('editRecordContent').innerHTML = `
-                <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle"></i> Error loading record for editing: ${error}
-                </div>
-            `;
+
+    // Edit record
+    function editRecord(id) {
+        const modal = new bootstrap.Modal(document.getElementById('editRecordModal'));
+        const formDiv = document.getElementById('editRecordForm');
+
+        formDiv.innerHTML = '<p class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading record...</p>';
+        modal.show();
+
+        // Fetch edit form
+        fetch(`../api/annex20_edit.php?id=${id}`)
+            .then(response => response.text())
+            .then(html => {
+                formDiv.innerHTML = html;
+
+                // CRITICAL: Initialize the form after HTML is loaded
+                initializeEditForm();
+            })
+            .catch(error => {
+                formDiv.innerHTML = '<p class="text-danger"><i class="fas fa-exclamation-circle"></i> Error loading edit form.</p>';
+            });
+    }
+
+    // Initialize edit form calculations and event listeners
+    function initializeEditForm() {
+        // Wait for DOM to be ready
+        setTimeout(function() {
+            const quantityInput = document.getElementById('edit_quantity');
+            const costInput = document.getElementById('edit_cost_per_unit');
+            const amountInput = document.getElementById('edit_amount');
+
+            if (!quantityInput || !costInput || !amountInput) {
+                console.error('Edit form inputs not found!');
+                return;
+            }
+
+            // Calculation function
+            function calculateAmount() {
+                const quantity = parseFloat(quantityInput.value) || 0;
+                const costPerUnit = parseFloat(costInput.value) || 0;
+                const amount = quantity * costPerUnit;
+                amountInput.value = amount.toFixed(2);
+            }
+
+            // Initial calculation
+            calculateAmount();
+
+            // Add event listeners
+            quantityInput.addEventListener('input', calculateAmount);
+            quantityInput.addEventListener('change', calculateAmount);
+            costInput.addEventListener('input', calculateAmount);
+            costInput.addEventListener('change', calculateAmount);
+        }, 150);
+    }
+
+    // Confirm archive
+    function confirmArchive(id) {
+        return confirm('Are you sure you want to archive this record? Archived records can be restored later.');
+    }
+
+    // Confirm delete
+    function confirmDelete(id) {
+        return confirm('Are you sure you want to PERMANENTLY delete this record? This action cannot be undone!');
+    }
+
+    // Export to CSV
+    function exportToCSV() {
+        const table = document.getElementById('recordsTable');
+        const tbody = table.querySelector('.table-content');
+        const rows = tbody.querySelectorAll('tr');
+
+        if (rows.length === 0 || (rows.length === 1 && rows[0].cells.length === 1)) {
+            alert('No records to export');
+            return;
+        }
+
+        let csv = [];
+        const headers = ['ID', 'Barangay', 'Cluster', 'Type', 'Quantity', 'Unit', 'Cost per Unit', 'Amount', 'Date Created'];
+        csv.push(headers.join(','));
+
+        rows.forEach(row => {
+            if (row.cells.length > 1) {
+                const rowData = [];
+                for (let i = 0; i < 9; i++) { // First 9 columns only
+                    const cell = row.cells[i];
+                    if (cell) {
+                        let text = cell.textContent.trim().replace(/\s+/g, ' ');
+                        text = text.replace(/"/g, '""'); // Escape quotes
+                        rowData.push(`"${text}"`);
+                    }
+                }
+                csv.push(rowData.join(','));
+            }
         });
-}
 
-// Confirm delete function
-function confirmDelete(recordId) {
-    return confirm('🗑️ Are you sure you want to delete Record #' + recordId + '?\n\nThis action cannot be undone.');
-}
+        const csvContent = csv.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
 
-// Confirm archive function
-function confirmArchive(recordId) {
-    return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
-}
-
-// Export to CSV function
-function exportToCSV() {
-    const records = <?php echo json_encode($records); ?>;
-    let csvContent = "data:text/csv;charset=utf-8,";
-    
-    csvContent += "ID,Region,Province,City,Barangay,Level,Type,Suspension Date,Resumption Date,Suspension Reason,Issuing Authority,Suspension Scope,Alternative Delivery,Remarks,Created By,Created At\n";
-    
-    records.forEach(record => {
-        const row = [
-            record.id,
-            `"${record.region}"`,
-            `"${record.province}"`,
-            `"${record.city}"`,
-            `"${record.barangay || record.user_barangay || 'Unknown'}"`,
-            `"${record.level}"`,
-            `"${record.type}"`,
-            `"${record.suspension_date}"`,
-            `"${record.resumption_date || ''}"`,
-            `"${record.suspension_reason}"`,
-            `"${record.issuing_authority}"`,
-            `"${record.suspension_scope}"`,
-            `"${record.alternative_delivery}"`,
-            `"${(record.remarks || '').replace(/"/g, '""')}"`,
-            `"${record.full_name || 'Current User'}"`,
-            `"${record.created_at}"`
-        ].join(',');
-        csvContent += row + "\n";
-    });
-    
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "annex15_suspension_classes_" + new Date().toISOString().split('T')[0] + ".csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+        link.setAttribute('href', url);
+        link.setAttribute('download', `annex20_assistance_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 </script>
 
 <?php
+// Get the captured content and store it in a variable
 $content = ob_get_clean();
-require_once '../includes/sidenav.php';
+
+// Now include the sidenav layout which will wrap this content
+require_once __DIR__ . '/../includes/sidenav.php';
 ?>
