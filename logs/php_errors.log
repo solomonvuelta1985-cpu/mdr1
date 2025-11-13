@@ -2023,3 +2023,65 @@ Stack trace:
 [11-Nov-2025 16:58:39 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
 [11-Nov-2025 17:15:23 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
 [11-Nov-2025 17:18:54 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 07:59:50 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[12-Nov-2025 08:00:01 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_e6d3efc6abfd85ceacedc20ecbb866e564fe16742930c48f8618bff70c5028e6
+[12-Nov-2025 08:00:15 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 08:02:25 Asia/Manila] DEBUG: User ID: 13
+[12-Nov-2025 08:02:25 Asia/Manila] DEBUG: Is Admin: No
+[12-Nov-2025 08:02:25 Asia/Manila] DEBUG: Running user query for user_id: 13
+[12-Nov-2025 08:02:25 Asia/Manila] DEBUG: Found 1 records
+[12-Nov-2025 08:02:25 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-11 15:27:14
+    [updated_at] => 2025-11-11 15:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[12-Nov-2025 08:02:29 Asia/Manila] DEBUG: User ID: 13
+[12-Nov-2025 08:02:29 Asia/Manila] DEBUG: Is Admin: No
+[12-Nov-2025 08:02:29 Asia/Manila] DEBUG: Running user query for user_id: 13
+[12-Nov-2025 08:02:29 Asia/Manila] DEBUG: Found 0 records
+[12-Nov-2025 08:06:26 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[12-Nov-2025 08:38:56 Asia/Manila] === CSRF DEBUG START ===
+[12-Nov-2025 08:38:56 Asia/Manila] Session ID: PBN2h7QzVNTT1pY,tpFn386FkTj,D1BNxwnCVew6TbjDFU8l
+[12-Nov-2025 08:38:56 Asia/Manila] User ID: 13
+[12-Nov-2025 08:38:56 Asia/Manila] CSRF Token in POST: 2f18ba3cda041e00907d1f59df4f1160572da9e62ae2a5d9a31118a60155e61b
+[12-Nov-2025 08:38:56 Asia/Manila] CSRF Token in SESSION: 2f18ba3cda041e00907d1f59df4f1160572da9e62ae2a5d9a31118a60155e61b
+[12-Nov-2025 08:38:56 Asia/Manila] Tokens match: YES
+[12-Nov-2025 08:38:56 Asia/Manila] === CSRF DEBUG END ===
+[12-Nov-2025 08:38:56 Asia/Manila] CSRF SUCCESS: Token validated
+[12-Nov-2025 08:41:32 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 08:42:29 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_ce53c678303fa3e5678b3f614d1daeffc31e32137844b42b46546183bc8bb3d8
+[12-Nov-2025 10:24:21 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[12-Nov-2025 11:28:25 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 04:38:53 Europe/Berlin] CRITICAL: Database connection failed - SQLSTATE[HY000] [1049] Unknown database 'annex_management_system'
+[12-Nov-2025 04:38:56 Europe/Berlin] CRITICAL: Database connection failed - SQLSTATE[HY000] [1049] Unknown database 'annex_management_system'
+[12-Nov-2025 04:38:58 Europe/Berlin] CRITICAL: Database connection failed - SQLSTATE[HY000] [1049] Unknown database 'annex_management_system'
+[12-Nov-2025 04:38:59 Europe/Berlin] CRITICAL: Database connection failed - SQLSTATE[HY000] [1049] Unknown database 'annex_management_system'
+[12-Nov-2025 04:39:29 Europe/Berlin] CRITICAL: Database connection failed - SQLSTATE[HY000] [1049] Unknown database 'annex_management_system'
+[12-Nov-2025 11:40:01 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 11:43:43 Asia/Manila] === CSRF DEBUG START ===
+[12-Nov-2025 11:43:43 Asia/Manila] Session ID: GLMmAMWmuXkKUgM0KPa55FRwfqyBOYGZfLAV1RcorrAFFySw
+[12-Nov-2025 11:43:43 Asia/Manila] User ID: 13
+[12-Nov-2025 11:43:43 Asia/Manila] CSRF Token in POST: ad81ac5df52e6487b0695a97916eab696df1a01f1ee3757aa87d4ea46cd5dda2
+[12-Nov-2025 11:43:43 Asia/Manila] CSRF Token in SESSION: ad81ac5df52e6487b0695a97916eab696df1a01f1ee3757aa87d4ea46cd5dda2
+[12-Nov-2025 11:43:43 Asia/Manila] Tokens match: YES
+[12-Nov-2025 11:43:43 Asia/Manila] === CSRF DEBUG END ===
+[12-Nov-2025 11:43:43 Asia/Manila] CSRF SUCCESS: Token validated
+[12-Nov-2025 13:09:35 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[12-Nov-2025 13:09:41 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[13-Nov-2025 12:02:19 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[13-Nov-2025 14:41:31 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(touch:*)",
       "Bash(move:*)",
-      "Bash(\"/c/xampp/php/php.exe\" create_barangay_users.php)"
+      "Bash(\"/c/xampp/php/php.exe\" create_barangay_users.php)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\xampp\\htdocs\\annex\\extract_docx.ps1\")"
     ],
     "deny": [],
     "ask": []
