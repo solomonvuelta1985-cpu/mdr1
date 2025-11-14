@@ -139,9 +139,10 @@
         }
 
         .dropdown-item {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px 10px 40px;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 8px 20px 8px 40px;
             border-left: 3px solid transparent;
+            transition: all 0.2s ease;
         }
 
         .dropdown-item:hover {
@@ -154,6 +155,21 @@
             color: white;
             background: rgba(255, 255, 255, 0.15);
             border-left: 3px solid var(--warning-color);
+        }
+
+        .dropdown-divider {
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        li:has(> .dropdown-divider) {
+            margin: 2px 20px;
+            padding: 0;
         }
 
         .dropdown-toggle::after {
@@ -447,16 +463,17 @@
         }
 
         #sidebar.collapsed ul.collapse .dropdown-item {
-            padding: 10px 20px;
+            padding: 8px 20px;
             border-left: none;
             display: flex;
             align-items: center;
             white-space: nowrap;
             color: #1e3c72;
+            transition: all 0.2s ease;
         }
 
         #sidebar.collapsed ul.collapse .dropdown-item + .dropdown-item {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
         }
 
         #sidebar.collapsed ul.collapse .dropdown-item i {
@@ -466,14 +483,26 @@
         }
 
         #sidebar.collapsed ul.collapse .dropdown-item:hover {
-            background: rgba(30, 60, 114, 0.1);
+            background: rgba(30, 60, 114, 0.08);
             color: #0d6efd;
         }
 
         #sidebar.collapsed ul.collapse .dropdown-item.active {
             color: #0d6efd;
-            background: rgba(30, 60, 114, 0.15);
+            background: rgba(30, 60, 114, 0.12);
             border-left: 3px solid var(--warning-color);
+        }
+
+        #sidebar.collapsed ul.collapse .dropdown-divider {
+            border: none;
+            border-top: 1px solid rgba(30, 60, 114, 0.15);
+            opacity: 0.5;
+            margin: 0;
+        }
+
+        #sidebar.collapsed ul.collapse li:has(> .dropdown-divider) {
+            margin: 3px 15px;
+            padding: 0;
         }
 
         /* Font smoothing for clear text rendering in dropdown items */
@@ -565,19 +594,19 @@
                                 <span>Annex 1: Related Incident</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex2.php' ? 'active' : ''; ?>" href="annex2.php">
                                 <span>Annex 2: Affected Population</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex3.php' ? 'active' : ''; ?>" href="annex3.php">
                                 <span>Annex 3: Casualties</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex1_records.php' ? 'active' : ''; ?>" href="annex1_records.php">
                                 <span>Annex 1 Records</span>
@@ -601,19 +630,19 @@
                                 <span>Annex 4: Damaged Houses</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex5.php' ? 'active' : ''; ?>" href="annex5.php">
                                 <span>Annex 5: Agriculture</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex6.php' ? 'active' : ''; ?>" href="annex6.php">
                                 <span>Annex 6: Infrastructure</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex7.php' ? 'active' : ''; ?>" href="annex7.php">
                                 <span>Annex 7: Other Assets</span>
@@ -637,20 +666,20 @@
                                 <span>Annex 8: Roads & Bridges</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex9.php' ? 'active' : ''; ?>" href="annex9.php">
                                 <span>Annex 9: Power Supply</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex11.php' ? 'active' : ''; ?>" href="annex11.php">
                                 <span>Annex 11: Communication</span>
                             </a>
                         </li>
                         <?php if (can_access_annex('14')): ?>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex14.php' ? 'active' : ''; ?>" href="annex14.php">
                                 <span>Annex 14: Work Suspension</span>
@@ -658,9 +687,7 @@
                         </li>
                         <?php endif; ?>
                         <?php if (can_access_annex('15')): ?>
-                        <?php if (can_access_annex('14')): ?>
-                        <div class="dropdown-divider"></div>
-                        <?php endif; ?>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex15.php' ? 'active' : ''; ?>" href="annex15.php">
                                 <span>Annex 15: Class Suspension</span>
@@ -685,7 +712,7 @@
                                 <span>Annex 17: Evacuation (People)</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex18.php' ? 'active' : ''; ?>" href="annex18.php">
                                 <span>Annex 18: Evacuation (Animals)</span>
@@ -711,21 +738,21 @@
                                 <span>Annex 19: Families Assisted</span>
                             </a>
                         </li>
-                        <?php if (can_access_annex('20') || can_access_annex('21')): ?>
-                        <div class="dropdown-divider"></div>
-                        <?php endif; ?>
                         <?php endif; ?>
                         <?php if (can_access_annex('20')): ?>
+                        <?php if (can_access_annex('19')): ?>
+                        <li><hr class="dropdown-divider"></li>
+                        <?php endif; ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex20.php' ? 'active' : ''; ?>" href="annex20.php">
                                 <span>Annex 20: To Families</span>
                             </a>
                         </li>
-                        <?php if (can_access_annex('21')): ?>
-                        <div class="dropdown-divider"></div>
-                        <?php endif; ?>
                         <?php endif; ?>
                         <?php if (can_access_annex('21')): ?>
+                        <?php if (can_access_annex('19') || can_access_annex('20')): ?>
+                        <li><hr class="dropdown-divider"></li>
+                        <?php endif; ?>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'annex21.php' ? 'active' : ''; ?>" href="annex21.php">
                                 <span>Annex 21: To LGUs/Agencies</span>
@@ -752,7 +779,7 @@
                                 <span>SITREP Settings</span>
                             </a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'user_management.php' ? 'active' : ''; ?>" href="user_management.php">
                                 <span>User Management</span>
