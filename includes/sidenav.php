@@ -762,7 +762,27 @@
                     </ul>
                 </li>
                 <?php endif; ?>
-                
+
+                <!-- Manage Disaster Events (Admin & Special Access Only) -->
+                <?php if (in_array($_SESSION['user_role'], ['admin', 'special_access'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $currentPage == 'manage_disaster_events.php' ? 'active' : ''; ?>" href="manage_disaster_events.php">
+                        <i class="bi bi-calendar-event"></i>
+                        <span>Disaster Events</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <!-- Terminal Report Generator (Admin & Special Access Only) -->
+                <?php if (in_array($_SESSION['user_role'], ['admin', 'special_access'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $currentPage == 'generate_terminal_report.php' ? 'active' : ''; ?>" href="generate_terminal_report.php">
+                        <i class="bi bi-file-earmark-text"></i>
+                        <span>Terminal Report</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
                 <!-- Settings Dropdown (Admin Only) -->
                 <?php if ($_SESSION['user_role'] === 'admin'): ?>
                 <li class="nav-item">
@@ -832,57 +852,12 @@
             </div>
         </nav>
 
-        <!-- Dynamic Content Section -->
+        <!-- Dynamic Content Section (Only for dashboard.php with $content variable) -->
+        <?php if (isset($content)): ?>
         <div class="main-content-container">
-            <?php 
-            // Check if content variable is set from the including page
-            if (isset($content)) {
-                echo $content;
-            } else {
-                // Default content or include your page-specific content here
-                ?>
-                <div class="page-header">
-                    <h1>Welcome to MDRRM-ARMS</h1>
-                    <p>Select a menu item to begin</p>
-                </div>
-                <div class="dashboard-cards">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <i class="bi bi-exclamation-triangle card-icon text-warning"></i>
-                                    <h5 class="card-title">Incident Reports</h5>
-                                    <p class="card-text">Submit and manage incident reports including affected populations and casualties.</p>
-                                    <a href="annex1.php" class="card-link">Get Started <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <i class="bi bi-house card-icon text-danger"></i>
-                                    <h5 class="card-title">Damage Assessment</h5>
-                                    <p class="card-text">Record damage to houses, infrastructure, agriculture, and other assets.</p>
-                                    <a href="annex4.php" class="card-link">View Forms <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <i class="bi bi-clipboard-check card-icon text-success"></i>
-                                    <h5 class="card-title">Status Reports</h5>
-                                    <p class="card-text">Monitor status of roads, bridges, power supply, and communications.</p>
-                                    <a href="annex8.php" class="card-link">Check Status <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
+            <?php echo $content; ?>
         </div>
+        <?php endif; ?>
     </div>
 
     <!-- Footer -->

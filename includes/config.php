@@ -110,6 +110,15 @@ if (session_status() === PHP_SESSION_NONE) {
     } elseif (time() - $_SESSION['last_regeneration'] > 1800) { // 30 minutes
         session_regenerate_id(true);
         $_SESSION['last_regeneration'] = time();
+
+        // Update session fingerprint after regeneration
+        if (isset($_SESSION['fingerprint'])) {
+            $_SESSION['fingerprint'] = hash('sha256',
+                ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown') .
+                ($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0') .
+                session_id()
+            );
+        }
     }
 }
 

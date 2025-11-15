@@ -22,7 +22,7 @@ ob_start();
         <div class="words">
             <span class="word">reports</span>
             <span class="word">data</span>
-            <span class="word">incidents</span>
+            <span class="word">modules</span>
             <span class="word">assistance</span>
             <span class="word">reports</span>
         </div>
@@ -284,15 +284,15 @@ ob_start();
 
 <!-- Dashboard Cards -->
  <!-- In admin dashboard -->
-<div class="card">
+<!-- <div class="card">
     <div class="card-header">Quick Actions</div>
     <div class="card-body">
         <a href="barangay_locking.php" class="btn btn-primary me-2">
             <i class="fas fa-lock me-1"></i>Manage Barangay Locks
         </a>
-        <!-- Other dashboard links -->
+         Other dashboard links 
     </div>
-</div>
+</div> -->
 <div class="dashboard-cards">
     <div class="container-fluid">
         <div class="row skeleton-container">

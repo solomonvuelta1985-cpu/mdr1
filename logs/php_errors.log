@@ -2206,3 +2206,391 @@ Stack trace:
 [13-Nov-2025 21:10:59 Asia/Manila] Parsed amount: 240000
 [13-Nov-2025 21:13:31 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
 [13-Nov-2025 21:26:39 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2
+[14-Nov-2025 20:48:43 Asia/Manila] CRITICAL ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.disaster_events' doesn't exist in C:\xampp\htdocs\mdr1\public\generate_terminal_report.php:83
+[14-Nov-2025 20:55:31 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:909
+[14-Nov-2025 20:55:31 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:909
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 909
+[14-Nov-2025 20:57:55 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:908
+[14-Nov-2025 20:57:55 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:908
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 908
+[14-Nov-2025 20:58:00 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:908
+[14-Nov-2025 20:58:00 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:908
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 908
+[14-Nov-2025 21:00:30 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:906
+[14-Nov-2025 21:00:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:906
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 906
+[14-Nov-2025 21:01:27 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:903
+[14-Nov-2025 21:01:27 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:903
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 903
+[14-Nov-2025 21:02:02 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:901
+[14-Nov-2025 21:02:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:901
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 901
+[14-Nov-2025 21:03:11 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:894
+[14-Nov-2025 21:03:11 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:894
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(179): TerminalReportGenerator->getWeatherData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 894
+[14-Nov-2025 21:03:35 Asia/Manila] CRITICAL ERROR: Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:903
+[14-Nov-2025 21:03:35 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method PDOStatement::bind_param() in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:903
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(195): TerminalReportGenerator->getWaterLevelData()
+#1 C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php(80): TerminalReportGenerator->addSectionI_SituationOverview()
+#2 C:\xampp\htdocs\mdr1\public\process_terminal_report.php(46): TerminalReportGenerator->generate()
+#3 {main}
+  thrown in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 903
+[14-Nov-2025 21:04:48 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:04:48 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:04:48 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:04:48 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:04:56 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:04:56 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:04:56 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:04:56 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:05:10 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:05:10 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:05:10 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:05:10 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:05:24 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[14-Nov-2025 21:06:12 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:06:12 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:06:12 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:06:12 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:09:48 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:09:48 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:09:48 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:09:48 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:10:10 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:10:10 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:10:10 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:10:10 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:13:02 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:13:02 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:13:02 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:13:02 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:14:02 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:14:02 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 21:14:02 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php:320
+[14-Nov-2025 21:14:02 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\report\TerminalReportGenerator.php on line 320
+[14-Nov-2025 22:45:05 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:297
+[14-Nov-2025 22:45:05 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 297
+[14-Nov-2025 22:45:05 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:297
+[14-Nov-2025 22:45:05 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 297
+[14-Nov-2025 22:45:05 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:322
+[14-Nov-2025 22:45:05 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 322
+[14-Nov-2025 22:45:05 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:322
+[14-Nov-2025 22:45:05 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 322
+[14-Nov-2025 22:45:31 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:297
+[14-Nov-2025 22:45:31 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 297
+[14-Nov-2025 22:45:31 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:297
+[14-Nov-2025 22:45:31 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 297
+[14-Nov-2025 22:45:31 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:322
+[14-Nov-2025 22:45:31 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 322
+[14-Nov-2025 22:45:31 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:322
+[14-Nov-2025 22:45:31 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 322
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "event_name" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:29
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "event_name" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 29
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "event_type" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:30
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "event_type" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 30
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "start_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:31
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "start_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 31
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "end_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:32
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "end_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 32
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "affected_region" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:33
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "affected_region" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 33
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "affected_province" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:34
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "affected_province" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 34
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "affected_city" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:35
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "affected_city" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 35
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:36
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 36
+[15-Nov-2025 06:47:06 Asia/Manila] Error [2]: Undefined array key "description" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:37
+[15-Nov-2025 06:47:06 Asia/Manila] PHP Warning:  Undefined array key "description" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 37
+[15-Nov-2025 06:51:13 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "event_name" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:36
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "event_name" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 36
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "event_type" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:37
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "event_type" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 37
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "start_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:38
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "start_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 38
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "end_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:39
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "end_date" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 39
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "affected_region" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:40
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "affected_region" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 40
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "affected_province" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:41
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "affected_province" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 41
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "affected_city" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:42
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "affected_city" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 42
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "status" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:43
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 43
+[15-Nov-2025 06:55:12 Asia/Manila] Error [2]: Undefined array key "description" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:44
+[15-Nov-2025 06:55:12 Asia/Manila] PHP Warning:  Undefined array key "description" in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 44
+[15-Nov-2025 06:57:02 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2
+[15-Nov-2025 07:21:47 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 07:33:59 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2
+[15-Nov-2025 07:51:59 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 16:57:14 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 16:58:06 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 16:58:06 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 16:58:06 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 16:58:06 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 16:58:06 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:05:37 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 17:05:37 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 17:05:37 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 17:05:37 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 17:05:37 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:10:58 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2
+[15-Nov-2025 17:17:17 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 17:17:17 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 17:17:17 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 17:17:17 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 17:17:17 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-10 23:27:14
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:17:29 Asia/Manila] User ID: 13
+[15-Nov-2025 17:17:29 Asia/Manila] POST data: Array
+(
+    [csrf_token] => 35125ca0d2b9cbe3ab73f9d97105c0378b0985092b4d1b35c05fd1d38dcc842d
+    [record_id] => 8
+    [current_image_path] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_date] => 2025-11-10T23:26
+    [restored_date] => 2025-11-15T01:17
+    [remarks] => 
+)
+
+[15-Nov-2025 17:17:29 Asia/Manila] FILES data: Array
+(
+    [image] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[15-Nov-2025 17:17:29 Asia/Manila] Record ID: 8
+[15-Nov-2025 17:17:29 Asia/Manila] Current record found. Current image: none
+[15-Nov-2025 17:17:29 Asia/Manila] Upload directory: C:\xampp\htdocs\mdr1\api/../uploads/
+[15-Nov-2025 17:17:29 Asia/Manila] No new image uploaded
+[15-Nov-2025 17:17:29 Asia/Manila] Updating database with image_path: NULL
+[15-Nov-2025 17:17:29 Asia/Manila] Database update successful!
+[15-Nov-2025 17:17:29 Asia/Manila] === ANNEX9 UPDATE FINISHED ===
+[15-Nov-2025 17:17:30 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 17:17:30 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 17:17:30 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 17:17:30 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 17:17:30 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 2025-11-15 01:17:00
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-15 01:17:29
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:17:57 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 17:17:57 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 17:17:57 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 17:17:57 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 17:17:57 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 2025-11-15 01:17:00
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-15 01:17:29
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:19:28 Asia/Manila] === CSRF DEBUG START ===
+[15-Nov-2025 17:19:28 Asia/Manila] Session ID: yfElt82Xg0yR05,5eV1s1EBIQw8BGGoUd7op7piSwMomw1ZB
+[15-Nov-2025 17:19:28 Asia/Manila] User ID: 13
+[15-Nov-2025 17:19:28 Asia/Manila] CSRF Token in POST: 35125ca0d2b9cbe3ab73f9d97105c0378b0985092b4d1b35c05fd1d38dcc842d
+[15-Nov-2025 17:19:28 Asia/Manila] CSRF Token in SESSION: 35125ca0d2b9cbe3ab73f9d97105c0378b0985092b4d1b35c05fd1d38dcc842d
+[15-Nov-2025 17:19:28 Asia/Manila] Tokens match: YES
+[15-Nov-2025 17:19:28 Asia/Manila] === CSRF DEBUG END ===
+[15-Nov-2025 17:19:28 Asia/Manila] CSRF SUCCESS: Token validated
+[15-Nov-2025 17:25:11 Asia/Manila] DEBUG: User ID: 13
+[15-Nov-2025 17:25:11 Asia/Manila] DEBUG: Is Admin: No
+[15-Nov-2025 17:25:11 Asia/Manila] DEBUG: Running user query for user_id: 13
+[15-Nov-2025 17:25:11 Asia/Manila] DEBUG: Found 1 records
+[15-Nov-2025 17:25:11 Asia/Manila] DEBUG: First record: Array
+(
+    [id] => 8
+    [event_id] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_datetime] => 2025-11-10 23:26:00
+    [restored_datetime] => 2025-11-15 01:17:00
+    [remarks] => 
+    [image_path] => 
+    [created_by] => 13
+    [created_at] => 2025-11-10 23:27:14
+    [updated_at] => 2025-11-15 01:17:29
+    [is_archived] => 0
+    [full_name] => Barangay Asassi
+    [user_barangay] => Asassi
+)
+
+[15-Nov-2025 17:40:20 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 18:07:48 Asia/Manila] User ID: 13
+[15-Nov-2025 18:07:48 Asia/Manila] POST data: Array
+(
+    [csrf_token] => 89f9fcdf8b7a87a8a08a20b30ffb522da73905f566564d8ca874f2c721d9688a
+    [record_id] => 8
+    [current_image_path] => 
+    [region] => Region II
+    [province] => Cagayan
+    [city] => Baggao
+    [barangay] => Asassi
+    [service_provider] => CAGELCO
+    [interruption_date] => 2025-11-10T23:26
+    [restored_date] => 2025-11-13T01:17
+    [remarks] => 
+)
+
+[15-Nov-2025 18:07:48 Asia/Manila] FILES data: Array
+(
+    [image] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[15-Nov-2025 18:07:48 Asia/Manila] Record ID: 8
+[15-Nov-2025 18:07:48 Asia/Manila] Current record found. Current image: none
+[15-Nov-2025 18:07:48 Asia/Manila] Upload directory: C:\xampp\htdocs\mdr1\api/../uploads/
+[15-Nov-2025 18:07:48 Asia/Manila] No new image uploaded
+[15-Nov-2025 18:07:48 Asia/Manila] Updating database with image_path: NULL
+[15-Nov-2025 18:07:48 Asia/Manila] Database update successful!
+[15-Nov-2025 18:07:48 Asia/Manila] === ANNEX9 UPDATE FINISHED ===

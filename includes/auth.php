@@ -153,7 +153,7 @@ function check_session_timeout($timeout_minutes = 60) {
 
 /**
  * Require user to be logged in
- * SECURITY FIX: Also checks session timeout
+ * SECURITY FIX: Also checks session timeout and fingerprint validation
  */
 function require_login() {
     if (!is_logged_in()) {
@@ -165,6 +165,16 @@ function require_login() {
     // SECURITY FIX: Check session timeout (60 minutes of inactivity)
     if (!check_session_timeout(60)) {
         // Session timed out - redirect to login
+        header('Location: login.php');
+        exit;
+    }
+
+    // SECURITY FIX: Validate session fingerprint to detect hijacking
+    if (!validate_session_fingerprint()) {
+        log_security_event($_SESSION['user_id'] ?? 0, 'session_hijacking_attempt',
+            "Session fingerprint mismatch detected from IP: {$_SERVER['REMOTE_ADDR']}");
+        logout_user();
+        set_flash('Session security violation detected. Please log in again.', 'error');
         header('Location: login.php');
         exit;
     }

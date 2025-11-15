@@ -4,7 +4,14 @@
       "Bash(touch:*)",
       "Bash(move:*)",
       "Bash(\"/c/xampp/php/php.exe\" create_barangay_users.php)",
-      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\xampp\\htdocs\\annex\\extract_docx.ps1\")"
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\xampp\\htdocs\\annex\\extract_docx.ps1\")",
+      "Bash(dir:*)",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex1_incidents LIKE ''event_id'';\")",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW TABLES LIKE ''disaster_events'';\")",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex1_related_incidents;\")",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex3_casualties;\")",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex20_assistance_provided;\")",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
