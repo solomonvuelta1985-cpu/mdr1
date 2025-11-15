@@ -1,4 +1,10 @@
 <?php
+// Prevent caching of edit form
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../includes/auth.php';
@@ -119,7 +125,7 @@ $current_image_exists = $record['image_path'] && file_exists($current_image_path
 <!-- Alert Container -->
 <div id="editAlertContainer"></div>
 
-<form id="editRecordForm" method="POST" enctype="multipart/form-data">
+<form id="editRecordForm" method="POST" action="../api/annex9_update.php" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
     <input type="hidden" name="record_id" value="<?php echo $record['id']; ?>">
     <input type="hidden" name="current_image_path" value="<?php echo htmlspecialchars($record['image_path'] ?? ''); ?>">
@@ -266,3 +272,178 @@ $current_image_exists = $record['image_path'] && file_exists($current_image_path
         </button>
     </div>
 </form>
+
+<script>
+// Handle image upload and preview
+const uploadArea = document.getElementById('uploadArea');
+const imageInput = document.getElementById('imageInput');
+const newImagePreview = document.getElementById('newImagePreview');
+const imagePreview = document.getElementById('imagePreview');
+const fileName = document.getElementById('fileName');
+const errorArea = document.getElementById('errorArea');
+const currentImageSection = document.getElementById('currentImageSection');
+const removeNewImageBtn = document.getElementById('removeNewImageBtn');
+const removeCurrentCheck = document.getElementById('removeCurrentCheck');
+
+// Click upload area to trigger file input
+uploadArea.addEventListener('click', function() {
+    imageInput.click();
+});
+
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    uploadArea.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// Handle drag over
+['dragenter', 'dragover'].forEach(eventName => {
+    uploadArea.addEventListener(eventName, function() {
+        uploadArea.classList.add('border-primary');
+    });
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    uploadArea.addEventListener(eventName, function() {
+        uploadArea.classList.remove('border-primary');
+    });
+});
+
+// Handle drop
+uploadArea.addEventListener('drop', function(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    if (files.length > 0) {
+        imageInput.files = files;
+        handleImageSelect(files[0]);
+    }
+});
+
+// Handle file selection
+imageInput.addEventListener('change', function(e) {
+    if (this.files && this.files[0]) {
+        handleImageSelect(this.files[0]);
+    }
+});
+
+// Remove new image
+removeNewImageBtn.addEventListener('click', function() {
+    imageInput.value = '';
+    newImagePreview.style.display = 'none';
+    uploadArea.style.display = 'flex';
+    uploadArea.classList.remove('has-new-image');
+    if (currentImageSection) {
+        currentImageSection.classList.remove('dimmed');
+    }
+    errorArea.style.display = 'none';
+});
+
+// Handle remove current image checkbox
+if (removeCurrentCheck) {
+    removeCurrentCheck.addEventListener('change', function() {
+        if (this.checked) {
+            if (currentImageSection) {
+                currentImageSection.classList.add('dimmed');
+            }
+        } else {
+            if (currentImageSection) {
+                currentImageSection.classList.remove('dimmed');
+            }
+        }
+    });
+}
+
+function handleImageSelect(file) {
+    errorArea.style.display = 'none';
+
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        showError('File too large! Maximum size is 5MB');
+        imageInput.value = '';
+        return;
+    }
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+        showError('Invalid file type! Only JPG, JPEG, PNG, and GIF are allowed');
+        imageInput.value = '';
+        return;
+    }
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+        newImagePreview.style.display = 'block';
+        uploadArea.style.display = 'none';
+        uploadArea.classList.add('has-new-image');
+        fileName.textContent = file.name + ' (' + formatFileSize(file.size) + ')';
+
+        // Dim current image section when new image is selected
+        if (currentImageSection) {
+            currentImageSection.classList.add('dimmed');
+        }
+
+        // Uncheck remove current checkbox
+        if (removeCurrentCheck) {
+            removeCurrentCheck.checked = false;
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+function showError(message) {
+    errorArea.textContent = message;
+    errorArea.style.display = 'block';
+    uploadArea.classList.add('has-error');
+    setTimeout(() => {
+        uploadArea.classList.remove('has-error');
+    }, 3000);
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+// Handle form submission
+document.getElementById('editRecordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const submitBtn = this.querySelector('#saveBtn');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+    submitBtn.disabled = true;
+
+    fetch('../api/annex9_update.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ ' + data.message);
+            location.reload();
+        } else {
+            alert('❌ Error: ' + (data.message || 'Failed to update record'));
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    })
+    .catch(error => {
+        alert('❌ Error: ' + error.message);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    });
+});
+</script>
