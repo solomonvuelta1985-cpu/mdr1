@@ -1,12 +1,12 @@
 <?php
+// Define page title
+define('PAGE_TITLE', 'Annex 2 Cumulative Settings');
+
 require_once '../includes/config.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
 
 require_admin();
-
-$page_title = "Annex 2 Cumulative Settings";
-include '../includes/header.php';
 
 // Get barangay list
 $barangays = get_baggao_barangays();
@@ -105,6 +105,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $csrf_token = generate_token();
+
+// Include sidenav
+include '../includes/sidenav.php';
 ?>
 
 <style>
@@ -165,16 +168,14 @@ $csrf_token = generate_token();
 }
 </style>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10 mx-auto">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">
-                        <i class="fas fa-cog me-2"></i>Annex 2 Cumulative Settings
-                    </h4>
-                </div>
-                <div class="card-body">
+<div class="container-fluid px-4 py-3">
+    <div class="card">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">
+                <i class="bi bi-calculator me-2"></i>Annex 2 Cumulative Settings
+            </h5>
+        </div>
+        <div class="card-body">
                     <?php show_flash(); ?>
 
                     <div class="alert alert-info mb-4">
@@ -380,9 +381,6 @@ $csrf_token = generate_token();
                                 <span class="badge bg-warning text-dark ms-2">Outside ECs</span>
                                 <span class="badge bg-primary ms-2">Totals (Auto-calculated)</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

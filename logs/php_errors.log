@@ -1,0 +1,202 @@
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: session_name(): Session name cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:82
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  session_name(): Session name cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 82
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:92
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 92
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:96
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 96
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:97
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 97
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:98
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 98
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:99
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 99
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:100
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 100
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:102
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 102
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:103
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 103
+[16-Nov-2025 09:35:25 Europe/Berlin] Error [2]: session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:105
+[16-Nov-2025 09:35:25 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 105
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:22
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 22
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:25
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 25
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:28
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 28
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:31
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 31
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:50
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 50
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:61
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 61
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:77
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 77
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:78
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 78
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:79
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 79
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:82
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 82
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:85
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 85
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:88
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 88
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:91
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 91
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $users in C:\xampp\htdocs\mdr1\public\user_management.php:315
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $users in C:\xampp\htdocs\mdr1\public\user_management.php on line 315
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:315
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 315
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:449
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 449
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php:474
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php on line 474
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:474
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 474
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:525
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 525
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php:551
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php on line 551
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:551
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 551
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:591
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 591
+[16-Nov-2025 16:35:25 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:753
+[16-Nov-2025 16:35:25 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 753
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: session_name(): Session name cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:82
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  session_name(): Session name cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 82
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:92
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 92
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:96
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 96
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:97
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 97
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:98
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 98
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:99
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 99
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:100
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 100
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:102
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 102
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:103
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 103
+[16-Nov-2025 09:43:23 Europe/Berlin] Error [2]: session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php:105
+[16-Nov-2025 09:43:23 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\mdr1\includes\config.php on line 105
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:22
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 22
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:25
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 25
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:28
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 28
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:31
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 31
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:50
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 50
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:61
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 61
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:77
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 77
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:78
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 78
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:79
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 79
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:82
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 82
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:85
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 85
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:88
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 88
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php:91
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\mdr1\public\user_management.php:1) in C:\xampp\htdocs\mdr1\includes\security_headers.php on line 91
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $users in C:\xampp\htdocs\mdr1\public\user_management.php:286
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $users in C:\xampp\htdocs\mdr1\public\user_management.php on line 286
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:286
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 286
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:420
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 420
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php:445
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php on line 445
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:445
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 445
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:496
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 496
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php:522
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $barangays in C:\xampp\htdocs\mdr1\public\user_management.php on line 522
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php:522
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\mdr1\public\user_management.php on line 522
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:562
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 562
+[16-Nov-2025 16:43:23 Asia/Manila] Error [2]: Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php:723
+[16-Nov-2025 16:43:23 Asia/Manila] PHP Warning:  Undefined variable $token in C:\xampp\htdocs\mdr1\public\user_management.php on line 723
+[16-Nov-2025 19:31:45 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[16-Nov-2025 19:38:39 Asia/Manila] CRITICAL ERROR: Error: Call to undefined function get_flash() in C:\xampp\htdocs\mdr1\public\annex17_records.php:359
+[16-Nov-2025 19:38:39 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined function get_flash() in C:\xampp\htdocs\mdr1\public\annex17_records.php:359
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\public\annex17_records.php on line 359
+[16-Nov-2025 20:23:29 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:23:29 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:23:29 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:23:29 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:23:29 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:23:29 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:23:29 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:23:29 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:26:54 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:26:54 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:26:54 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:26:54 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:26:54 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:26:54 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:26:54 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:26:54 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:27:07 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:27:07 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:27:07 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:27:07 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:27:07 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:27:07 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:27:07 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:27:07 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:30:30 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:30:30 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:30:30 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:30:30 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:30:30 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:30:30 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:30:30 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:30:30 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:30:39 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:30:40 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:30:40 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:334
+[16-Nov-2025 20:30:40 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 334
+[16-Nov-2025 20:30:40 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:30:40 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:30:40 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:359
+[16-Nov-2025 20:30:40 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 359
+[16-Nov-2025 20:31:09 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:09 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:09 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:09 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:09 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:09 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:31:09 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:09 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:31:47 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:47 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:47 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:47 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:47 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:47 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:31:47 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:47 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:31:51 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:51 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:309
+[16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 309
+[16-Nov-2025 20:31:51 Asia/Manila] Error [2]: include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:31:51 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
+[16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335

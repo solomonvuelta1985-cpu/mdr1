@@ -529,6 +529,9 @@
         $statusPages = ['annex8.php', 'annex9.php', 'annex11.php', 'annex14.php', 'annex15.php'];
         $evacuationPages = ['annex17.php', 'annex18.php'];
         $assistancePages = ['annex19.php', 'annex20.php', 'annex21.php'];
+        $disasterMgmtPages = ['manage_disaster_events.php', 'generate_terminal_report.php'];
+        $cumulativeSettingsPages = ['annex2_cumulative_settings.php', 'annex17_cumulative_settings.php'];
+        $settingsPages = ['settings.php', 'sitrep_settings.php', 'user_management.php'];
 
         // Check which section is active
         $incidentActive = in_array($currentPage, $incidentPages);
@@ -536,6 +539,9 @@
         $statusActive = in_array($currentPage, $statusPages);
         $evacuationActive = in_array($currentPage, $evacuationPages);
         $assistanceActive = in_array($currentPage, $assistancePages);
+        $disasterMgmtActive = in_array($currentPage, $disasterMgmtPages);
+        $cumulativeSettingsActive = in_array($currentPage, $cumulativeSettingsPages);
+        $settingsActive = in_array($currentPage, array_merge($settingsPages, $cumulativeSettingsPages));
     ?>
 
     <!-- Mobile Header -->
@@ -763,46 +769,70 @@
                 </li>
                 <?php endif; ?>
 
-                <!-- Manage Disaster Events (Admin & Special Access Only) -->
+                <!-- Disaster Management (Admin & Special Access Only) -->
                 <?php if (in_array($_SESSION['user_role'], ['admin', 'special_access'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage == 'manage_disaster_events.php' ? 'active' : ''; ?>" href="manage_disaster_events.php">
-                        <i class="bi bi-calendar-event"></i>
-                        <span>Disaster Events</span>
+                    <a class="nav-link dropdown-toggle <?php echo $disasterMgmtActive ? 'active' : ''; ?>"
+                       href="#disasterMgmtSubmenu"
+                       data-bs-toggle="collapse"
+                       aria-expanded="<?php echo $disasterMgmtActive ? 'true' : 'false'; ?>">
+                        <i class="bi bi-cloud-lightning"></i>
+                        <span>Disaster Management</span>
                     </a>
-                </li>
-                <?php endif; ?>
-
-                <!-- Terminal Report Generator (Admin & Special Access Only) -->
-                <?php if (in_array($_SESSION['user_role'], ['admin', 'special_access'])): ?>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage == 'generate_terminal_report.php' ? 'active' : ''; ?>" href="generate_terminal_report.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        <span>Terminal Report</span>
-                    </a>
+                    <ul class="collapse list-unstyled <?php echo $disasterMgmtActive ? 'show' : ''; ?>" id="disasterMgmtSubmenu">
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'manage_disaster_events.php' ? 'active' : ''; ?>" href="manage_disaster_events.php">
+                                <i class="bi bi-calendar-event me-2"></i>
+                                <span>Manage Events</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'generate_terminal_report.php' ? 'active' : ''; ?>" href="generate_terminal_report.php">
+                                <i class="bi bi-file-earmark-text me-2"></i>
+                                <span>Terminal Report</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <?php endif; ?>
 
                 <!-- Settings Dropdown (Admin Only) -->
                 <?php if ($_SESSION['user_role'] === 'admin'): ?>
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle <?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'active' : ''; ?>"
+                    <a class="nav-link dropdown-toggle <?php echo $settingsActive ? 'active' : ''; ?>"
                        href="#settingsSubmenu"
                        data-bs-toggle="collapse"
-                       aria-expanded="<?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'true' : 'false'; ?>">
+                       aria-expanded="<?php echo $settingsActive ? 'true' : 'false'; ?>">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
-                    <ul class="collapse list-unstyled <?php echo in_array($currentPage, ['settings.php', 'sitrep_settings.php', 'user_management.php']) ? 'show' : ''; ?>" id="settingsSubmenu">
+                    <ul class="collapse list-unstyled <?php echo $settingsActive ? 'show' : ''; ?>" id="settingsSubmenu">
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'user_management.php' ? 'active' : ''; ?>" href="../admin/user_management.php">
+                                <i class="bi bi-people me-2"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item <?php echo $currentPage == 'sitrep_settings.php' ? 'active' : ''; ?>" href="sitrep_settings.php">
+                                <i class="bi bi-card-list me-2"></i>
                                 <span>SITREP Settings</span>
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item <?php echo $currentPage == 'user_management.php' ? 'active' : ''; ?>" href="user_management.php">
-                                <span>User Management</span>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex2_cumulative_settings.php' ? 'active' : ''; ?>" href="../admin/annex2_cumulative_settings.php">
+                                <i class="bi bi-calculator me-2"></i>
+                                <span>Annex 2 Cumulative</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item <?php echo $currentPage == 'annex17_cumulative_settings.php' ? 'active' : ''; ?>" href="../admin/annex17_cumulative_settings.php">
+                                <i class="bi bi-calculator me-2"></i>
+                                <span>Annex 17 Cumulative</span>
                             </a>
                         </li>
                     </ul>
