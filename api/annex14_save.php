@@ -63,18 +63,9 @@ try {
 
     // Get user data
     $user_data = get_user_location_data($_SESSION['user_id']);
-    $user_barangay = $user_data['barangay'];
-    error_log("ANNEX14_DEBUG: User barangay: " . $user_barangay);
 
-    // For admins, use their selected barangay
-    if (is_admin()) {
-        $current_lock = get_admin_locked_barangay($_SESSION['user_id']);
-        if (!$current_lock) {
-            throw new Exception('No barangay selected. Please select a barangay first.');
-        }
-        $user_barangay = $current_lock;
-        error_log("ANNEX14_DEBUG: Admin barangay lock: " . $current_lock);
-    }
+    // Annex 14 covers the entire municipality - no barangay locking required
+    error_log("ANNEX14_DEBUG: Municipality-wide submission");
 
     // Validate input arrays
     $regions = $requestData['region'] ?? [];
@@ -155,12 +146,8 @@ try {
             }
         }
 
-        // Validate barangay access
-        if (!is_admin() && $barangay !== $user_barangay) {
-            $errors[] = "Access denied for barangay: " . $barangay . " at entry " . ($i + 1);
-            error_log("ANNEX14_DEBUG: Barangay access denied: $barangay vs $user_barangay");
-            continue;
-        }
+        // Annex 14 is municipality-wide - no barangay access restriction
+        error_log("ANNEX14_DEBUG: Processing municipality-wide entry " . ($i + 1));
 
         // Insert into database
         error_log("ANNEX14_DEBUG: Attempting to insert into annex14_suspension_work");

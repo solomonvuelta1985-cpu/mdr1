@@ -30,23 +30,11 @@ if (!validate_session_fingerprint()) {
 log_audit_action($_SESSION['user_id'], 'annex14_form_access', 'User accessed the Annex 14 Suspension of Work form');
 
 // Security Functions (already in your functions.php)
-// Get user data and check barangay selection for admins
+// Get user data
 $user_data = get_user_location_data($_SESSION['user_id']);
 $user_role = $user_data['user_role'] ?? 'user';
 
-// Check if admin has selected a barangay
-if (is_admin()) {
-    $current_lock = get_admin_locked_barangay($_SESSION['user_id']);
-    if (!$current_lock) {
-        set_flash('Please select a barangay from the admin dashboard before filling out forms.', 'error');
-        header('Location: ../admin/barangay_locking.php');
-        exit;
-    }
-    $user_barangay = $current_lock;
-} else {
-    // Regular users use their assigned barangay
-    $user_barangay = $user_data['barangay'] ?? '';
-}
+// Annex 14 covers the entire municipality - no barangay locking required
 
 // Input validation and sanitization functions for Annex 14
 function validate_suspension_entry($entry) {
@@ -154,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'barangay' => sanitize($_POST['barangay'][$index] ?? ''),
                 'type' => sanitize($_POST['type'][$index] ?? ''),
                 'suspension_date' => sanitize($_POST['suspensionDate'][$index] ?? ''),
-                'resumption_date' => sanitize($_POST['resumptionDate'][$index] ?? ''),
+                'resumption_date' => !empty($_POST['resumptionDate'][$index]) ? sanitize($_POST['resumptionDate'][$index]) : null,
                 'remarks' => sanitize($_POST['remarks'][$index] ?? '')
             ];
             
@@ -168,13 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 continue;
             }
             
-            // Verify barangay access for non-admin users
-            if (!is_admin() && $entry_data['barangay'] !== $user_barangay) {
-                log_security_event($_SESSION['user_id'], 'unauthorized_barangay_access', 
-                    "Attempted to submit data for barangay: " . $entry_data['barangay']);
-                $error_count++;
-                continue;
-            }
+            // Annex 14 is municipality-wide, no barangay restriction needed
+            // All authorized users can submit for "Municipality of Baggao"
             
             // Insert into database using prepared statement
 // Insert into database using prepared statement
@@ -575,17 +558,11 @@ ob_start();
                     <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
                     <h2>Annex 14: Suspension of Work</h2>
                     
-                    <?php if ($user_role === 'admin'): ?>
-                        <div class="alert alert-info mt-3">
-                            <strong>Admin Mode:</strong> You are currently reporting for 
-                            <strong><?= htmlspecialchars($user_barangay) ?></strong> barangay.
-                            <br>
-                            <small class="text-muted">
-                                To change barangay, visit the 
-                                <a href="../admin/barangay_locking.php" class="alert-link">Barangay Locking Management</a> page.
-                            </small>
-                        </div>
-                    <?php endif; ?>
+                    <div class="alert alert-info mt-3">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> Suspension of Work applies to the entire
+                        <strong>Municipality of Baggao</strong> (all barangays).
+                    </div>
                 </div>
 
                 <!-- Flash Messages -->
@@ -624,9 +601,9 @@ ob_start();
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
-                                    <label for="barangay-0" class="form-label">Barangay</label>
-                                    <input type="text" class="form-control bg-light" id="barangay-0" name="barangay[]" 
-                                        value="<?= htmlspecialchars($user_barangay) ?>" readonly>
+                                    <label for="barangay-0" class="form-label">Coverage/Scope</label>
+                                    <input type="text" class="form-control bg-light" id="barangay-0" name="barangay[]"
+                                        value="Municipality of Baggao" readonly>
                                 </div>
                             </div>
 
@@ -857,9 +834,9 @@ ob_start();
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <label for="barangay-${entryCount}" class="form-label">Barangay</label>
-                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]" 
-                                value="<?= htmlspecialchars($user_barangay) ?>" readonly>
+                            <label for="barangay-${entryCount}" class="form-label">Coverage/Scope</label>
+                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]"
+                                value="Municipality of Baggao" readonly>
                         </div>
                     </div>
 

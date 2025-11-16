@@ -624,11 +624,10 @@ ob_start();
     <div class="header-section">
         <h1><i class="fas fa-business-time"></i> Suspension of Work Records</h1>
         <h2>NDRRMC Memorandum Circular No. 05, s. 2025 - Annex 14</h2>
-        <?php if ($is_admin): ?>
-            <div class="admin-alert">
-                <strong><i class="fas fa-shield-alt"></i> Admin Mode:</strong> You are viewing all records from all barangays.
-            </div>
-        <?php endif; ?>
+        <div class="admin-alert">
+            <i class="fas fa-info-circle"></i>
+            <strong>Municipality-Wide Coverage:</strong> All records apply to the entire Municipality of Baggao.
+        </div>
     </div>
 
     <?php show_flash(); ?>
@@ -709,7 +708,7 @@ ob_start();
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Barangay</th>
+                    <th>Coverage</th>
                     <th>Type</th>
                     <th>Suspension Date</th>
                     <th>Resumption Date</th>
@@ -788,10 +787,7 @@ ob_start();
                         <tr>
                             <td><strong>#<?php echo $record['id']; ?></strong></td>
                             <td>
-                                <strong><?php echo htmlspecialchars($record['barangay'] ?? $record['user_barangay'] ?? 'N/A'); ?></strong>
-                                <?php if ($is_admin && isset($record['full_name'])): ?>
-                                    <br><small class="text-muted">by <?php echo htmlspecialchars($record['full_name']); ?></small>
-                                <?php endif; ?>
+                                <strong>Municipality of Baggao</strong>
                             </td>
                             <td>
                                 <?php
@@ -1058,7 +1054,7 @@ function exportToCSV() {
             `"${record.region}"`,
             `"${record.province}"`,
             `"${record.city}"`,
-            `"${record.barangay || record.user_barangay || 'Unknown'}"`,
+            `"Municipality of Baggao"`,
             `"${record.type}"`,
             `"${suspensionDate.toLocaleString()}"`,
             resumptionDate ? `"${resumptionDate.toLocaleString()}"` : '',

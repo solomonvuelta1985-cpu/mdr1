@@ -5,17 +5,11 @@ require_once '../includes/auth.php';
 
 require_admin();
 
-$page_title = "Barangay Locking Management";
-include '../includes/header.php';
-
-// Get barangay list
-$barangays = get_baggao_barangays();
-
-// Handle barangay selection
+// Handle barangay selection BEFORE any output
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selected_barangay = sanitize($_POST['barangay'] ?? '');
     $action = $_POST['action'] ?? 'lock';
-    
+
     if ($action === 'lock' && !empty($selected_barangay)) {
         // Check if barangay is already locked by another admin
         $existing_lock = is_barangay_locked($selected_barangay);
@@ -29,16 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 set_flash('Failed to lock barangay. Please try again.', 'error');
             }
         }
-    } 
+    }
     elseif ($action === 'unlock') {
         // Unlock current barangay
         unlock_barangay($_SESSION['user_id']);
         set_flash('Barangay unlocked successfully. Regular users can now login.', 'success');
     }
-    
+
     header('Location: barangay_locking.php');
     exit;
 }
+
+$page_title = "Barangay Locking Management";
+include '../includes/header.php';
+
+// Get barangay list
+$barangays = get_baggao_barangays();
 
 // Get current lock status
 $current_lock = get_admin_locked_barangay($_SESSION['user_id']);

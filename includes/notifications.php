@@ -238,9 +238,7 @@ function get_barangay_activity($hours = 3) {
                 'annex2_affected_population' => 'Annex 2',
                 'annex3_casualties' => 'Annex 3',
                 'annex4_damaged_houses' => 'Annex 4',
-                'annex5_cost_of_damages' => 'Annex 5',
-                'annex6_lifelines' => 'Annex 6',
-                'annex7_damages_infrastructure' => 'Annex 7',
+                // annex5, annex6, annex7 reserved for Terminal Report Generator (future development)
                 'annex8_road_bridge_status' => 'Annex 8'
             ];
 
@@ -365,9 +363,7 @@ function get_barangay_activity_enhanced($hours = 3) {
                 'annex2_affected_population' => 'Annex 2',
                 'annex3_casualties' => 'Annex 3',
                 'annex4_damaged_houses' => 'Annex 4',
-                'annex5_cost_of_damages' => 'Annex 5',
-                'annex6_lifelines' => 'Annex 6',
-                'annex7_damages_infrastructure' => 'Annex 7',
+                // annex5, annex6, annex7 reserved for Terminal Report Generator (future development)
                 'annex8_road_bridge_status' => 'Annex 8'
             ];
 
@@ -380,18 +376,27 @@ function get_barangay_activity_enhanced($hours = 3) {
                     ", [$barangay]);
 
                     // Check if query was successful before calling fetch()
-                    if ($stmt === false) {
+                    if ($stmt === false || !is_object($stmt)) {
                         continue;
                     }
 
-                    $result = $stmt->fetch();
-                    if ($result && $result['last_update']) {
-                        if (!$last_submission || $result['last_update'] > $last_submission) {
-                            $last_submission = $result['last_update'];
-                            $last_annex = $annex_name;
+                    // Additional check to ensure statement is valid
+                    if (method_exists($stmt, 'fetch')) {
+                        $result = $stmt->fetch();
+                        if ($result && isset($result['last_update']) && $result['last_update']) {
+                            if (!$last_submission || $result['last_update'] > $last_submission) {
+                                $last_submission = $result['last_update'];
+                                $last_annex = $annex_name;
+                            }
                         }
                     }
                 } catch (Exception $e) {
+                    // Log the error but continue processing other tables
+                    error_log("Error checking table {$table} for barangay {$barangay}: " . $e->getMessage());
+                    continue;
+                } catch (Error $e) {
+                    // Catch fatal errors as well
+                    error_log("Fatal error checking table {$table} for barangay {$barangay}: " . $e->getMessage());
                     continue;
                 }
             }

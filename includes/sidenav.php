@@ -608,9 +608,9 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item <?php echo $currentPage == 'annex1_records.php' ? 'active' : ''; ?>" href="annex1_records.php">
+                            <!-- <a class="dropdown-item <?php echo $currentPage == 'annex1_records.php' ? 'active' : ''; ?>" href="annex1_records.php">
                                 <span>Annex 1 Records</span>
-                            </a>
+                            </a> -->
                         </li>
                     </ul>
                 </li>
@@ -1361,6 +1361,48 @@
                 })
                 .catch(error => {
                     console.error('Failed to mark all as read:', error);
+                });
+            });
+
+            // Clear all notifications
+            clearAllBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                if (!confirm('Are you sure you want to clear all notifications? This action cannot be undone.')) {
+                    return;
+                }
+
+                console.log('Clearing all notifications...');
+                fetch('../api/notifications_clear.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'clear_all'
+                    })
+                })
+                .then(response => {
+                    console.log('Clear response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('HTTP error! status: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Clear response data:', data);
+                    if (data.success) {
+                        console.log('Successfully cleared', data.deleted, 'notifications');
+                        notifications = [];
+                        fetchNotifications();
+                    } else {
+                        console.error('Clear failed:', data.error);
+                        alert('Failed to clear notifications: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to clear notifications:', error);
+                    alert('Error clearing notifications. Check console for details.');
                 });
             });
 

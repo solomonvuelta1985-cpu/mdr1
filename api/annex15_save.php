@@ -68,32 +68,8 @@ if (!check_rate_limit($user_id, 'annex15_save', 20, 3600)) {
 // Get user data
 $user_id = $_SESSION['user_id'];
 $user_data = get_user_location_data($user_id);
-$user_barangay = sanitize($_POST['user_barangay'] ?? '');
 
-// Verify barangay access for admins
-if (is_admin()) {
-    $current_lock = get_admin_locked_barangay($user_id);
-    if (!$current_lock) {
-        log_security_event(
-            $user_id,
-            'barangay_lock_missing',
-            'Admin attempted Annex 15 submission without barangay lock'
-        );
-        set_flash('Please select a barangay from the admin dashboard first.', 'error');
-        header('Location: ../admin/barangay_locking.php');
-        exit;
-    }
-    if ($current_lock !== $user_barangay) {
-        log_security_event(
-            $user_id,
-            'barangay_mismatch',
-            "Barangay mismatch: Locked=$current_lock, Submitted=$user_barangay"
-        );
-        set_flash('Invalid barangay selection. Please select a barangay from the admin dashboard.', 'error');
-        header('Location: ../admin/barangay_locking.php');
-        exit;
-    }
-}
+// Annex 15 covers the entire municipality - no barangay locking required
 
 // Validate input arrays exist
 $required_arrays = ['region', 'province', 'city', 'barangay', 'level', 'type', 'suspensionDate', 'suspensionReason', 'issuingAuthority', 'suspensionScope', 'alternativeDelivery'];
@@ -248,17 +224,8 @@ try {
             continue;
         }
         
-        // CRITICAL: Verify barangay matches user's barangay (prevent data manipulation)
-        if ($barangay !== $user_barangay) {
-            $errors[] = "Entry " . ($i + 1) . ": Barangay mismatch";
-            $validation_failures[] = "Entry " . ($i + 1) . ": barangay mismatch - attempted $barangay, expected $user_barangay";
-            log_security_event(
-                $user_id,
-                'barangay_manipulation_attempt',
-                "User attempted to submit data for barangay '$barangay' but locked to '$user_barangay'"
-            );
-            continue;
-        }
+        // Annex 15 is municipality-wide - no barangay restriction needed
+        // All authorized users can submit for "Municipality of Baggao"
         
         if (!in_array($level, $valid_levels)) {
             $errors[] = "Entry " . ($i + 1) . ": Invalid level";

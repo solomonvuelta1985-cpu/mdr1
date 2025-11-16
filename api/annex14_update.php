@@ -91,7 +91,7 @@ if (!$is_admin) {
 // Sanitize input data
 $type = sanitize($_POST['type'] ?? '');
 $suspension_date = sanitize($_POST['suspension_date'] ?? '');
-$resumption_date = sanitize($_POST['resumption_date'] ?? '');
+$resumption_date = !empty($_POST['resumption_date']) ? sanitize($_POST['resumption_date']) : null;
 $remarks = sanitize($_POST['remarks'] ?? '');
 
 // Validate required fields

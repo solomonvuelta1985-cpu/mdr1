@@ -47,19 +47,10 @@ log_security_event(
 
 // Get user location data
 $user_data = get_user_location_data($_SESSION['user_id']);
-$user_barangay = $user_data['barangay'] ?? '';
 $user_role = $user_data['user_role'] ?? 'user';
 
-// Barangay locking check for admins
-if (is_admin()) {
-    $current_lock = get_admin_locked_barangay($_SESSION['user_id']);
-    if (!$current_lock) {
-        set_flash('Please select a barangay from the admin dashboard before filling out forms.', 'error');
-        header('Location: ../admin/barangay_locking.php');
-        exit;
-    }
-    $user_barangay = $current_lock;
-}
+// Annex 15 covers the entire municipality - no barangay locking required
+$user_barangay = 'Municipality of Baggao'; // Set for JavaScript compatibility
 
 // Generate CSRF token
 $csrf_token = generate_token();
@@ -434,17 +425,11 @@ ob_start();
                 <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
                 <h2>Annex 15: Suspension of Classes</h2>
                 
-                <?php if ($user_role === 'admin'): ?>
-                    <div class="alert alert-info mt-3">
-                        <strong>Admin Mode:</strong> You are currently reporting for 
-                        <strong><?= htmlspecialchars($user_barangay) ?></strong> barangay.
-                        <br>
-                        <small class="text-muted">
-                            To change barangay, visit the 
-                            <a href="../admin/barangay_locking.php" class="alert-link">Barangay Locking Management</a> page.
-                        </small>
-                    </div>
-                <?php endif; ?>
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Note:</strong> Suspension of Classes applies to the entire
+                    <strong>Municipality of Baggao</strong> (all barangays).
+                </div>
             </div>
 
             <!-- Flash Messages -->
@@ -487,9 +472,9 @@ ob_start();
                                 <?php endif; ?>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <label for="barangay-0" class="form-label">Barangay</label>
-                                <input type="text" class="form-control bg-light" id="barangay-0" name="barangay[]" 
-                                    value="<?php echo htmlspecialchars($user_barangay); ?>" readonly required>
+                                <label for="barangay-0" class="form-label">Coverage/Scope</label>
+                                <input type="text" class="form-control bg-light" id="barangay-0" name="barangay[]"
+                                    value="Municipality of Baggao" readonly required>
                             </div>
                         </div>
 
@@ -820,9 +805,9 @@ ob_start();
                             ${cityInput}
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <label for="barangay-${entryCount}" class="form-label">Barangay</label>
-                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]" 
-                                value="${userBarangay}" readonly required>
+                            <label for="barangay-${entryCount}" class="form-label">Coverage/Scope</label>
+                            <input type="text" class="form-control bg-light" id="barangay-${entryCount}" name="barangay[]"
+                                value="Municipality of Baggao" readonly required>
                         </div>
                     </div>
 
