@@ -731,9 +731,17 @@ ob_start();
             <a href="annex6_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-success-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="printAnnex6()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1042,6 +1050,172 @@ function confirmDelete(recordId) {
 // Confirm archive function
 function confirmArchive(recordId) {
     return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
+}
+
+// Print function
+function printAnnex6() {
+    window.open('../print_templates/annex6_print_template.php', '_blank');
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Annex 6 - Infrastructure Damage</title></head>
+        <body>
+            <div style='text-align: center; margin-bottom: 20px;'>
+                <h2>NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h2>
+                <h3>Annex 6: Damage to Infrastructure</h3>
+                <p>Date Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            </div>
+            <table border='1' cellspacing='0' cellpadding='8' style='width: 100%; border-collapse: collapse;'>
+                <thead>
+                    <tr style='background-color: #f0f0f0;'>
+                        <th rowspan='2'>Region</th>
+                        <th rowspan='2'>Province</th>
+                        <th rowspan='2'>City/Municipality</th>
+                        <th rowspan='2'>Barangay</th>
+                        <th rowspan='2'>Type</th>
+                        <th rowspan='2'>Classification</th>
+                        <th rowspan='2'>Name of Infra</th>
+                        <th colspan='3'>Number of Damaged Infra</th>
+                        <th colspan='2'>Extent of Damage</th>
+                        <th rowspan='2'>Cost</th>
+                        <th rowspan='2'>Remarks</th>
+                    </tr>
+                    <tr style='background-color: #f0f0f0;'>
+                        <th>Totally</th>
+                        <th>Partially</th>
+                        <th>Total</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        htmlContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.type || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.name || ''}</td>
+                        <td style='text-align: center;'>${record.totally_damaged || 0}</td>
+                        <td style='text-align: center;'>${record.partially_damaged || 0}</td>
+                        <td style='text-align: center;'>${record.total_damaged || 0}</td>
+                        <td>${record.unit || ''}</td>
+                        <td style='text-align: center;'>${record.quantity || 0}</td>
+                        <td>${record.cost || ''}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob(['\ufeff', htmlContent], {
+        type: 'application/msword'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex6_infrastructure_damage_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+    let excelContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset='utf-8'>
+            <xml>
+                <x:ExcelWorkbook>
+                    <x:ExcelWorksheets>
+                        <x:ExcelWorksheet>
+                            <x:Name>Annex 6</x:Name>
+                            <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+                        </x:ExcelWorksheet>
+                    </x:ExcelWorksheets>
+                </x:ExcelWorkbook>
+            </xml>
+        </head>
+        <body>
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <th rowspan='2'>Region</th>
+                        <th rowspan='2'>Province</th>
+                        <th rowspan='2'>City/Municipality</th>
+                        <th rowspan='2'>Barangay</th>
+                        <th rowspan='2'>Type</th>
+                        <th rowspan='2'>Classification</th>
+                        <th rowspan='2'>Name of Infra</th>
+                        <th colspan='3'>Number of Damaged Infra</th>
+                        <th colspan='2'>Extent of Damage</th>
+                        <th rowspan='2'>Cost</th>
+                        <th rowspan='2'>Remarks</th>
+                    </tr>
+                    <tr>
+                        <th>Totally</th>
+                        <th>Partially</th>
+                        <th>Total</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        excelContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.type || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.name || ''}</td>
+                        <td>${record.totally_damaged || 0}</td>
+                        <td>${record.partially_damaged || 0}</td>
+                        <td>${record.total_damaged || 0}</td>
+                        <td>${record.unit || ''}</td>
+                        <td>${record.quantity || 0}</td>
+                        <td>${record.cost || ''}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    excelContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob([excelContent], {
+        type: 'application/vnd.ms-excel'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex6_infrastructure_damage_' + new Date().toISOString().split('T')[0] + '.xls';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 // Export to CSV function

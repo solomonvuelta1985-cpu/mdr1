@@ -734,9 +734,17 @@ ob_start();
             <a href="annex7_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-success-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="printAnnex7()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1046,6 +1054,148 @@ function confirmDelete(recordId) {
 // Confirm archive function
 function confirmArchive(recordId) {
     return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
+}
+
+// Print function
+function printAnnex7() {
+    window.open('../print_templates/annex7_print_template.php', '_blank');
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Annex 7 - Damage to Other Assets</title></head>
+        <body>
+            <div style='text-align: center; margin-bottom: 20px;'>
+                <h2>NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h2>
+                <h3>Annex 7: Damage to Other Assets</h3>
+                <p>Date Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            </div>
+            <table border='1' cellspacing='0' cellpadding='8' style='width: 100%; border-collapse: collapse;'>
+                <thead>
+                    <tr style='background-color: #f0f0f0;'>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City/Municipality</th>
+                        <th>Barangay</th>
+                        <th>Classification</th>
+                        <th>Particulars / Name of Asset</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        htmlContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.particulars || ''}</td>
+                        <td>${record.unit || ''}</td>
+                        <td style='text-align: center;'>${record.quantity || 0}</td>
+                        <td>${record.cost || ''}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob(['\ufeff', htmlContent], {
+        type: 'application/msword'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex7_other_assets_damage_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+    let excelContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset='utf-8'>
+            <xml>
+                <x:ExcelWorkbook>
+                    <x:ExcelWorksheets>
+                        <x:ExcelWorksheet>
+                            <x:Name>Annex 7</x:Name>
+                            <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+                        </x:ExcelWorksheet>
+                    </x:ExcelWorksheets>
+                </x:ExcelWorkbook>
+            </xml>
+        </head>
+        <body>
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City/Municipality</th>
+                        <th>Barangay</th>
+                        <th>Classification</th>
+                        <th>Particulars / Name of Asset</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        excelContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.particulars || ''}</td>
+                        <td>${record.unit || ''}</td>
+                        <td>${record.quantity || 0}</td>
+                        <td>${record.cost || ''}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    excelContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob([excelContent], {
+        type: 'application/vnd.ms-excel'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex7_other_assets_damage_' + new Date().toISOString().split('T')[0] + '.xls';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 // Export to CSV function

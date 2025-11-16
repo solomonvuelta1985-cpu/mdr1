@@ -11,7 +11,8 @@
       "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex1_related_incidents;\")",
       "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex3_casualties;\")",
       "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex20_assistance_provided;\")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\" -u root annex_management_system -e \"SHOW COLUMNS FROM annex2_affected_population;\")"
     ],
     "deny": [],
     "ask": []

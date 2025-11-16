@@ -3,6 +3,8 @@ require_once '../includes/config.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 require_once '../includes/file_security.php'; // SECURITY FIX: Secure file operations
+require_once '../includes/annex8_status_history.php'; // Status history tracking
+require_once '../includes/notifications.php'; // Notification system
 
 require_login();
 
@@ -236,11 +238,51 @@ try {
 
         $changes_str = $changes ? implode(', ', $changes) : 'No significant changes';
 
+        // Log status change to history if status changed
+        if ($status !== $original_record['status']) {
+            // Determine which date to use based on new status
+            $status_date = ($status === 'Not Passable') ? $date_not_passable : $date_passable;
+
+            // Use current time if no date provided
+            if (!$status_date) {
+                $status_date = date('Y-m-d H:i:s');
+            }
+
+            // Log the status change
+            $status_logged = log_status_change(
+                $record_id,
+                $status,
+                $status_date,
+                $remarks,
+                $_SESSION['user_id']
+            );
+
+            if (!$status_logged) {
+                error_log("Failed to log status change for Annex8 record #{$record_id}");
+            }
+        }
+
         // Log successful update
         log_audit_action(
             $_SESSION['user_id'],
             'annex8_update',
             "Updated record #{$record_id} ({$original_record['barangay']}). Changes: {$changes_str}"
+        );
+
+        // Create notification for admins and staff
+        $action_type = ($status !== $original_record['status']) ? 'status_changed' : 'updated';
+        $notification_message = "{$type}: {$road_section} - {$changes_str}";
+        create_notification(
+            'annex8_update',
+            '8',
+            'Status of Roads and Bridges',
+            $action_type,
+            $original_record['barangay'],
+            $_SESSION['user_id'],
+            $_SESSION['full_name'] ?? 'Unknown User',
+            $record_id,
+            $notification_message,
+            is_priority_annex('8')
         );
 
         // Register this as a valid rate-limit attempt

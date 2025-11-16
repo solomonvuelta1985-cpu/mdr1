@@ -63,25 +63,40 @@ if (!function_exists('set_flash')) {
 
 if (!function_exists('show_flash')) {
     /**
-     * Show flash message
+     * Show flash message with auto-dismiss
      */
     function show_flash() {
         if (isset($_SESSION['flash_message'])) {
             $message = $_SESSION['flash_message'];
             $type = $_SESSION['flash_type'] ?? 'info';
-            
+
             $alert_class = match($type) {
                 'success' => 'alert-success',
                 'error' => 'alert-danger',
                 'warning' => 'alert-warning',
                 default => 'alert-info'
             };
-            
-            echo "<div class='alert $alert_class alert-dismissible fade show' role='alert'>
+
+            // Generate unique ID for this alert
+            $alert_id = 'alert-' . uniqid();
+
+            echo "<div id='$alert_id' class='alert $alert_class alert-dismissible fade show' role='alert'>
                     $message
                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                  </div>";
-            
+                  </div>
+                  <script>
+                    (function() {
+                        var alertElement = document.getElementById('$alert_id');
+                        if (alertElement) {
+                            // Auto-dismiss after 4 seconds (4000ms)
+                            setTimeout(function() {
+                                var bsAlert = new bootstrap.Alert(alertElement);
+                                bsAlert.close();
+                            }, 4000);
+                        }
+                    })();
+                  </script>";
+
             // Clear flash message
             unset($_SESSION['flash_message'], $_SESSION['flash_type']);
         }

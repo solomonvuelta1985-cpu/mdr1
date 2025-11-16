@@ -2,6 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../includes/notifications.php'; // Notification system
 
 require_login();
 
@@ -32,17 +33,27 @@ try {
         exit;
     }
 
-    //   Verify ownership (users can delete their own only)
-    if (!is_admin()) {
-        $stmt = db_query("SELECT created_by FROM annex8_road_bridge_status WHERE id = ?", [$report_id]);
-        $report = $stmt ? $stmt->fetch() : null;
+    //   Verify ownership and fetch record details for notification
+    $stmt = db_query("
+        SELECT a.created_by, a.barangay, a.type, a.road_section
+        FROM annex8_road_bridge_status a
+        WHERE a.id = ?
+    ", [$report_id]);
+    $report = $stmt ? $stmt->fetch() : null;
 
+    if (!is_admin()) {
         if (!$report || $report['created_by'] != $_SESSION['user_id']) {
             set_flash('You are not authorized to delete this report', 'error');
             log_security_event($_SESSION['user_id'], 'unauthorized_delete_attempt', "User tried to delete Annex8 ID {$report_id}");
             header('Location: ../public/annex8.php');
             exit;
         }
+    }
+
+    if (!$report) {
+        set_flash('Report not found', 'error');
+        header('Location: ../public/annex8.php');
+        exit;
     }
 
     //   Soft delete the record
@@ -54,6 +65,21 @@ try {
             $_SESSION['user_id'],
             'annex8_delete',
             "Deleted Annex8 report ID {$report_id}"
+        );
+
+        // Create notification for admins and staff
+        $notification_message = "{$report['type']}: {$report['road_section']} - Deleted";
+        create_notification(
+            'annex8_delete',
+            '8',
+            'Status of Roads and Bridges',
+            'deleted',
+            $report['barangay'],
+            $_SESSION['user_id'],
+            $_SESSION['full_name'] ?? 'Unknown User',
+            $report_id,
+            $notification_message,
+            is_priority_annex('8')
         );
 
         // Count this attempt for rate tracking

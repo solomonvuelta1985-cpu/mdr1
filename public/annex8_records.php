@@ -757,9 +757,17 @@ ob_start();
             <a href="annex8_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-success-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="printAnnex8()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1110,6 +1118,158 @@ function confirmArchive(recordId) {
 function showImageModal(imagePath, title) {
     document.getElementById('modalImage').src = '../uploads/' + imagePath;
     document.getElementById('imageModalLabel').textContent = title;
+}
+
+// Print function
+function printAnnex8() {
+    window.open('../print_templates/annex8_print_template.php', '_blank');
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Annex 8 - Status of Roads and Bridges</title></head>
+        <body>
+            <div style='text-align: center; margin-bottom: 20px;'>
+                <h2>NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h2>
+                <h3>Annex 8: Status of Roads and Bridges</h3>
+                <p>Date Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            </div>
+            <table border='1' cellspacing='0' cellpadding='8' style='width: 100%; border-collapse: collapse;'>
+                <thead>
+                    <tr style='background-color: #f0f0f0;'>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City/Municipality</th>
+                        <th>Barangay</th>
+                        <th>Type</th>
+                        <th>Classification</th>
+                        <th>Road Section / Bridge Name</th>
+                        <th>Status</th>
+                        <th>Date / Time Not Passable</th>
+                        <th>Date / Time Passable</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        const dateNotPassable = record.date_not_passable ? new Date(record.date_not_passable).toLocaleString() : '';
+        const datePassable = record.date_passable ? new Date(record.date_passable).toLocaleString() : '';
+
+        htmlContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.type || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.road_section || ''}</td>
+                        <td>${record.status || ''}</td>
+                        <td>${dateNotPassable}</td>
+                        <td>${datePassable}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob(['\ufeff', htmlContent], {
+        type: 'application/msword'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex8_road_bridge_status_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+    let excelContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset='utf-8'>
+            <xml>
+                <x:ExcelWorkbook>
+                    <x:ExcelWorksheets>
+                        <x:ExcelWorksheet>
+                            <x:Name>Annex 8</x:Name>
+                            <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+                        </x:ExcelWorksheet>
+                    </x:ExcelWorksheets>
+                </x:ExcelWorkbook>
+            </xml>
+        </head>
+        <body>
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City/Municipality</th>
+                        <th>Barangay</th>
+                        <th>Type</th>
+                        <th>Classification</th>
+                        <th>Road Section / Bridge Name</th>
+                        <th>Status</th>
+                        <th>Date / Time Not Passable</th>
+                        <th>Date / Time Passable</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    records.forEach(record => {
+        const dateNotPassable = record.date_not_passable ? new Date(record.date_not_passable).toLocaleString() : '';
+        const datePassable = record.date_passable ? new Date(record.date_passable).toLocaleString() : '';
+
+        excelContent += `
+                    <tr>
+                        <td>${record.region || ''}</td>
+                        <td>${record.province || ''}</td>
+                        <td>${record.city || ''}</td>
+                        <td>${record.barangay || record.user_barangay || ''}</td>
+                        <td>${record.type || ''}</td>
+                        <td>${record.classification || ''}</td>
+                        <td>${record.road_section || ''}</td>
+                        <td>${record.status || ''}</td>
+                        <td>${dateNotPassable}</td>
+                        <td>${datePassable}</td>
+                        <td>${record.remarks || ''}</td>
+                    </tr>`;
+    });
+
+    excelContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+    const blob = new Blob([excelContent], {
+        type: 'application/vnd.ms-excel'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex8_road_bridge_status_' + new Date().toISOString().split('T')[0] + '.xls';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 // Export to CSV function

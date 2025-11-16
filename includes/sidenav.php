@@ -833,21 +833,59 @@
         <!-- Top Navigation Bar -->
         <nav class="top-navbar">
             <div class="container-fluid" style="padding: 0;">
-                <div class="d-flex align-items-center">
-                    <!-- Sidebar Toggle Button -->
-                    <button type="button" id="sidebarCollapse" class="btn">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <div class="ms-3">
-                        <h4 class="mb-0">MDRRM-ARMS</h4>
-                        <small class="text-muted">
-                            Welcome, <?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?> 
-                            (<?php echo htmlspecialchars($_SESSION['user_role'] ?? 'User'); ?>)
-                            <?php if (!empty($_SESSION['barangay'])): ?>
-                                - Barangay: <?php echo htmlspecialchars($_SESSION['barangay']); ?>
-                            <?php endif; ?>
-                        </small>
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <div class="d-flex align-items-center">
+                        <!-- Sidebar Toggle Button -->
+                        <button type="button" id="sidebarCollapse" class="btn">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <div class="ms-3">
+                            <h4 class="mb-0">MDRRM-ARMS</h4>
+                            <small class="text-muted">
+                                Welcome, <?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?>
+                                (<?php echo htmlspecialchars($_SESSION['user_role'] ?? 'User'); ?>)
+                                <?php if (!empty($_SESSION['barangay'])): ?>
+                                    - Barangay: <?php echo htmlspecialchars($_SESSION['barangay']); ?>
+                                <?php endif; ?>
+                            </small>
+                        </div>
                     </div>
+
+                    <?php
+                    // Show notification bell for admin and staff only
+                    $show_notifications = isset($_SESSION['user_role']) &&
+                                        ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'staff');
+                    ?>
+
+                    <?php if ($show_notifications): ?>
+                    <div class="notification-bell-container" style="position: relative; margin-right: 15px;">
+                        <button class="btn btn-link" id="notificationBell" type="button" style="position: relative; color: var(--primary-color); font-size: 1.3rem;">
+                            <i class="bi bi-bell"></i>
+                            <span class="notification-badge" id="notificationBadge" style="display: none; position: absolute; top: -5px; right: -8px; background: #dc3545; color: white; border-radius: 10px; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; min-width: 18px; text-align: center;">0</span>
+                        </button>
+
+                        <div class="notification-dropdown" id="notificationDropdown" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 10px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 400px; max-height: 500px; overflow: hidden; z-index: 1050;">
+                            <div class="notification-header" style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; background: #f9fafb;">
+                                <h6 style="margin: 0; font-size: 14px; font-weight: 600; color: #111827;">Notifications</h6>
+                                <button class="btn btn-link btn-sm" id="markAllRead" style="padding: 0; color: #0d6efd; font-size: 12px; text-decoration: none;">Mark all as read</button>
+                            </div>
+                            <div class="notification-list" id="notificationList" style="max-height: 400px; overflow-y: auto;">
+                                <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
+                                    <i class="bi bi-bell-slash" style="font-size: 3rem; margin-bottom: 12px; opacity: 0.3;"></i>
+                                    <p>No notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barangay Activity Monitor Button -->
+                    <div class="activity-monitor-container" style="position: relative;">
+                        <button class="btn btn-link" id="activityMonitorBtn" type="button" data-bs-toggle="modal" data-bs-target="#activityMonitorModal" style="position: relative; color: var(--primary-color); font-size: 1.3rem;">
+                            <i class="bi bi-graph-up"></i>
+                            <span class="activity-badge" id="activityBadge" style="display: none; position: absolute; top: -5px; right: -8px; background: #f59e0b; color: white; border-radius: 10px; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; min-width: 18px; text-align: center;">0</span>
+                        </button>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>
@@ -1071,7 +1109,7 @@
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.remove('active');
                     });
-                    
+
                     // Add active class to parent dropdown toggle
                     const parentDropdown = this.closest('.nav-item').querySelector('.nav-link');
                     if (parentDropdown) {
@@ -1081,5 +1119,454 @@
             });
         });
     </script>
+
+    <?php if ($show_notifications ?? false): ?>
+    <!-- Notification System JavaScript -->
+    <script>
+        (function() {
+            const notificationBell = document.getElementById('notificationBell');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            const notificationBadge = document.getElementById('notificationBadge');
+            const notificationList = document.getElementById('notificationList');
+            const markAllReadBtn = document.getElementById('markAllRead');
+
+            if (!notificationBell) return; // Exit if elements not found
+
+            let notifications = [];
+            let dropdownOpen = false;
+
+            // Toggle dropdown
+            notificationBell.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownOpen = !dropdownOpen;
+                notificationDropdown.style.display = dropdownOpen ? 'block' : 'none';
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (dropdownOpen && !notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+                    dropdownOpen = false;
+                    notificationDropdown.style.display = 'none';
+                }
+            });
+
+            // Fetch notifications
+            function fetchNotifications() {
+                console.log('Fetching notifications from: ../api/notifications_fetch.php');
+                fetch('../api/notifications_fetch.php')
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        if (!response.ok) {
+                            throw new Error('HTTP error! status: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Received notification data:', data);
+                        notifications = data.notifications || [];
+                        updateBadge(data.count || 0);
+                        renderNotifications();
+                    })
+                    .catch(error => {
+                        console.error('Failed to fetch notifications:', error);
+                        console.error('Error details:', error.message);
+                    });
+            }
+
+            // Update badge count
+            function updateBadge(count) {
+                if (count > 0) {
+                    notificationBadge.textContent = count > 99 ? '99+' : count;
+                    notificationBadge.style.display = 'block';
+                } else {
+                    notificationBadge.style.display = 'none';
+                }
+            }
+
+            // Render notifications list
+            function renderNotifications() {
+                if (notifications.length === 0) {
+                    notificationList.innerHTML = `
+                        <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
+                            <i class="bi bi-bell-slash" style="font-size: 3rem; margin-bottom: 12px; opacity: 0.3;"></i>
+                            <p>No notifications</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const html = notifications.map(notif => {
+                    const bgColor = !notif.is_read ? '#eff6ff' : 'white';
+                    const borderLeft = notif.is_priority ? '4px solid #dc3545' : '0';
+                    const priorityBadge = notif.is_priority ? '<span style="display: inline-block; padding: 2px 6px; font-size: 10px; font-weight: 600; border-radius: 3px; margin-left: 6px; background: #fee2e2; color: #991b1b;">PRIORITY</span>' : '';
+
+                    return `
+                        <div class="notification-item"
+                             data-id="${notif.id}"
+                             data-record-id="${notif.record_id}"
+                             data-annex="${notif.annex_number}"
+                             style="padding: 12px 16px; border-bottom: 1px solid #f3f4f6; cursor: pointer; background: ${bgColor}; border-left: ${borderLeft}; transition: background 0.2s;"
+                             onmouseover="this.style.background='#f9fafb'"
+                             onmouseout="this.style.background='${bgColor}'">
+                            <div style="font-size: 13px; color: #374151; margin-bottom: 4px;">
+                                <strong>Barangay ${notif.barangay}</strong> ${notif.action_text} in
+                                <strong>Annex ${notif.annex_number}</strong>${priorityBadge}
+                            </div>
+                            <div style="font-size: 13px; color: #374151; margin-bottom: 4px;">
+                                ${notif.message}
+                            </div>
+                            <div style="font-size: 11px; color: #6b7280; display: flex; justify-content: space-between; align-items: center;">
+                                <span>By: ${notif.submitted_by_name}</span>
+                                <span style="color: #9ca3af;">${notif.time_ago}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                notificationList.innerHTML = html;
+
+                // Add click handlers to notification items
+                notificationList.querySelectorAll('.notification-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const notifId = this.dataset.id;
+                        const recordId = this.dataset.recordId;
+                        const annexNumber = this.dataset.annex;
+
+                        // Mark as read
+                        markAsRead(notifId);
+
+                        // Navigate to the record
+                        const recordsPage = `annex${annexNumber}_records.php`;
+                        window.location.href = recordsPage + '?highlight=' + recordId;
+                    });
+                });
+            }
+
+            // Mark single notification as read
+            function markAsRead(notificationId) {
+                fetch('../api/notifications_mark_read.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'mark_one',
+                        notification_id: notificationId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const notif = notifications.find(n => n.id == notificationId);
+                        if (notif) {
+                            notif.is_read = true;
+                        }
+                        fetchNotifications();
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to mark notification as read:', error);
+                });
+            }
+
+            // Mark all notifications as read
+            markAllReadBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                fetch('../api/notifications_mark_read.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'mark_all'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        notifications.forEach(n => n.is_read = true);
+                        fetchNotifications();
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to mark all as read:', error);
+                });
+            });
+
+            // Auto-refresh every 30 seconds
+            fetchNotifications(); // Initial fetch
+            setInterval(fetchNotifications, 30000); // Refresh every 30 seconds
+        })();
+    </script>
+    <?php endif; ?>
+
+    <?php if ($show_notifications ?? false): ?>
+    <!-- Barangay Activity Monitor Modal -->
+    <div class="modal fade" id="activityMonitorModal" tabindex="-1" aria-labelledby="activityMonitorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="activityMonitorModalLabel">
+                        <i class="bi bi-graph-up me-2"></i>Barangay Activity Monitor
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Summary Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-2">
+                            <div class="card border-success" style="border-width: 2px;">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-success mb-0" id="activeOnlineCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">🟢 Online & Active</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card border-info" style="border-width: 2px;">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-info mb-0" id="onlineQuietCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">🔵 Online</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card border-success" style="border-width: 1px;">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-success mb-0" id="activeCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">Active</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card border-warning">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-warning mb-0" id="quietCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">⚠️ Quiet</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card border-danger">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-danger mb-0" id="criticalCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">🚨 Critical</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card border-secondary">
+                                <div class="card-body text-center p-2">
+                                    <h4 class="text-secondary mb-0" id="noActivityCount">-</h4>
+                                    <small class="text-muted" style="font-size: 0.7rem;">⚫ None</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Online Barangays -->
+                    <div id="activeOnlineSection" style="display: none;">
+                        <h6 class="text-success"><i class="bi bi-check-circle-fill me-2"></i>🟢 ACTIVE ONLINE - Recently Submitted</h6>
+                        <div class="list-group mb-3" id="activeOnlineList"></div>
+                    </div>
+
+                    <!-- Online Quiet Barangays -->
+                    <div id="onlineQuietSection" style="display: none;">
+                        <h6 class="text-info"><i class="bi bi-info-circle-fill me-2"></i>🔵 ONLINE - No Recent Submission</h6>
+                        <div class="list-group mb-3" id="onlineQuietList"></div>
+                    </div>
+
+                    <!-- Critical Barangays -->
+                    <div id="criticalSection" style="display: none;">
+                        <h6 class="text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i>🚨 CRITICAL - Needs Immediate Attention</h6>
+                        <div class="list-group mb-3" id="criticalList"></div>
+                    </div>
+
+                    <!-- Quiet Barangays -->
+                    <div id="quietSection" style="display: none;">
+                        <h6 class="text-warning"><i class="bi bi-exclamation-circle-fill me-2"></i>⚠️ QUIET - Needs Check</h6>
+                        <div class="list-group mb-3" id="quietList"></div>
+                    </div>
+
+                    <!-- Active Barangays -->
+                    <div id="activeSection" style="display: none;">
+                        <h6 class="text-success"><i class="bi bi-check-circle-fill me-2"></i>ACTIVE - Recently Updated</h6>
+                        <div class="list-group mb-3" id="activeList"></div>
+                    </div>
+
+                    <!-- No Activity Barangays -->
+                    <div id="noActivitySection" style="display: none;">
+                        <h6 class="text-secondary"><i class="bi bi-dash-circle-fill me-2"></i>NO ACTIVITY RECORDED</h6>
+                        <div class="list-group mb-3" id="noActivityList"></div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="activityLoading" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2 text-muted">Loading barangay activity...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <small class="text-muted me-auto">Last updated: <span id="lastUpdated">-</span></small>
+                    <button type="button" class="btn btn-sm btn-primary" id="refreshActivity">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Monitor JavaScript -->
+    <script>
+        (function() {
+            const activityModal = document.getElementById('activityMonitorModal');
+            const activityBadge = document.getElementById('activityBadge');
+            const refreshBtn = document.getElementById('refreshActivity');
+
+            let activityData = null;
+
+            // Fetch activity data
+            function fetchActivityData() {
+                document.getElementById('activityLoading').style.display = 'block';
+
+                fetch('../api/barangay_activity_fetch.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        activityData = data;
+                        updateBadge(data.alert_count);
+                        renderActivityModal(data);
+                        document.getElementById('activityLoading').style.display = 'none';
+                        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+                    })
+                    .catch(error => {
+                        console.error('Failed to fetch barangay activity:', error);
+                        document.getElementById('activityLoading').style.display = 'none';
+                    });
+            }
+
+            // Update badge
+            function updateBadge(count) {
+                if (count > 0) {
+                    activityBadge.textContent = count > 99 ? '99+' : count;
+                    activityBadge.style.display = 'block';
+                } else {
+                    activityBadge.style.display = 'none';
+                }
+            }
+
+            // Render activity data in modal
+            function renderActivityModal(data) {
+                // Update summary cards
+                document.getElementById('activeOnlineCount').textContent = data.active_online_count;
+                document.getElementById('onlineQuietCount').textContent = data.online_quiet_count;
+                document.getElementById('activeCount').textContent = data.active_count;
+                document.getElementById('quietCount').textContent = data.quiet_count;
+                document.getElementById('criticalCount').textContent = data.critical_count;
+                document.getElementById('noActivityCount').textContent = data.no_activity_count;
+
+                // Render active online barangays
+                renderEnhancedSection('active_online', data.active_online, 'activeOnlineSection', 'activeOnlineList', 'success');
+
+                // Render online quiet barangays
+                renderEnhancedSection('online_quiet', data.online_quiet, 'onlineQuietSection', 'onlineQuietList', 'info');
+
+                // Render critical barangays
+                renderEnhancedSection('critical', data.critical, 'criticalSection', 'criticalList', 'danger');
+
+                // Render quiet barangays
+                renderEnhancedSection('quiet', data.quiet, 'quietSection', 'quietList', 'warning');
+
+                // Render active barangays
+                renderEnhancedSection('active', data.active, 'activeSection', 'activeList', 'success');
+
+                // Render no activity barangays
+                renderEnhancedSection('no_activity', data.no_activity, 'noActivitySection', 'noActivityList', 'secondary');
+            }
+
+            // Render enhanced section with login + submission data
+            function renderEnhancedSection(type, items, sectionId, listId, colorClass) {
+                const section = document.getElementById(sectionId);
+                const list = document.getElementById(listId);
+
+                if (items.length === 0) {
+                    section.style.display = 'none';
+                    return;
+                }
+
+                section.style.display = 'block';
+                list.innerHTML = items.map(item => {
+                    let statusIcon = '';
+                    let statusText = '';
+                    let detailsHTML = '';
+
+                    // Online indicator
+                    if (item.is_online) {
+                        statusIcon = '<span class="badge bg-success" style="font-size: 0.7rem;">● ONLINE</span>';
+                    }
+
+                    // Build details based on what data is available
+                    const details = [];
+
+                    if (item.last_submission) {
+                        const hours = parseFloat(item.hours_since_submission);
+                        details.push(`Last submit: ${item.last_annex || 'Unknown'} (${hours.toFixed(1)}h ago)`);
+                    }
+
+                    if (item.last_login && item.activity_type === 'login') {
+                        const hours = parseFloat(item.hours_since_login);
+                        details.push(`Last login: ${hours.toFixed(1)}h ago`);
+                    }
+
+                    if (details.length === 0) {
+                        details.push('No activity recorded');
+                    }
+
+                    detailsHTML = details.join(' • ');
+
+                    // Time badge
+                    let timeBadge = '';
+                    if (item.hours_since_activity !== null) {
+                        timeBadge = `${item.hours_since_activity.toFixed(1)}h ago`;
+                    } else {
+                        timeBadge = 'No data';
+                    }
+
+                    return `
+                        <div class="list-group-item list-group-item-${colorClass} d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    ${item.barangay}
+                                    ${statusIcon}
+                                </div>
+                                <small style="font-size: 0.75rem;">${detailsHTML}</small>
+                            </div>
+                            <span class="badge bg-${colorClass} rounded-pill">${timeBadge}</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Refresh button click
+            refreshBtn.addEventListener('click', function() {
+                fetchActivityData();
+            });
+
+            // Fetch when modal is opened
+            activityModal.addEventListener('show.bs.modal', function() {
+                fetchActivityData();
+            });
+
+            // Initial fetch for badge
+            fetchActivityData();
+
+            // Auto-refresh every 60 seconds
+            setInterval(fetchActivityData, 60000);
+        })();
+    </script>
+    <?php endif; ?>
 </body>
 </html>

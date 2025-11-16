@@ -3,6 +3,8 @@ require_once '../includes/config.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 require_once '../includes/file_security.php'; // SECURITY FIX: Secure file operations
+require_once '../includes/annex8_status_history.php'; // Status history tracking
+require_once '../includes/notifications.php'; // Notification system
 
 require_login();
 
@@ -206,12 +208,51 @@ try {
             if ($stmt && $stmt->rowCount() > 0) {
                 $success_count++;
                 $submitted_barangays[] = $barangay;
-                
+
+                // Get the ID of the newly inserted record
+                $new_record_id = $pdo->lastInsertId();
+
+                // Log initial status to history
+                $status_date = ($status === 'Not Passable') ? $date_not_passable : $date_passable;
+
+                // Use current time if no date provided
+                if (!$status_date) {
+                    $status_date = date('Y-m-d H:i:s');
+                }
+
+                // Log the initial status change
+                $status_logged = log_status_change(
+                    $new_record_id,
+                    $status,
+                    $status_date,
+                    $remarks,
+                    $_SESSION['user_id']
+                );
+
+                if (!$status_logged) {
+                    error_log("Failed to log initial status for Annex8 record #{$new_record_id}");
+                }
+
                 // Log successful submission for this entry
                 log_audit_action(
-                    $_SESSION['user_id'], 
-                    'annex8_submission', 
+                    $_SESSION['user_id'],
+                    'annex8_submission',
                     "Submitted road/bridge status for {$barangay}: {$type} - {$road_section} ({$status})"
+                );
+
+                // Create notification for admins and staff
+                $notification_message = "{$type}: {$road_section} - Status: {$status}";
+                create_notification(
+                    'annex8_submission',
+                    '8',
+                    'Status of Roads and Bridges',
+                    'created',
+                    $barangay,
+                    $_SESSION['user_id'],
+                    $_SESSION['full_name'] ?? 'Unknown User',
+                    $new_record_id,
+                    $notification_message,
+                    is_priority_annex('8')
                 );
             } else {
                 log_security_event($_SESSION['user_id'], 'db_insert_failed', "Failed to insert entry index {$index} for barangay {$barangay}");

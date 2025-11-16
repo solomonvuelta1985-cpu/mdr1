@@ -710,9 +710,20 @@ ob_start();
             <a href="annex3_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+
+            <!-- Print/Export Dropdown -->
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-info-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="printAnnex3()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1010,6 +1021,149 @@ function confirmDelete(recordId) {
 // Confirm archive function
 function confirmArchive(recordId) {
     return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
+}
+
+// Print function
+function printAnnex3() {
+    // Open print template in new window
+    const printWindow = window.open('../print_templates/annex3_print_template.php', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+
+    // Fallback if popup is blocked
+    if (!printWindow) {
+        alert('Please allow popups for this site to use the print feature.');
+        // Alternative: redirect to print template
+        window.location.href = '../print_templates/annex3_print_template.php';
+    }
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset="utf-8">
+            <title>Annex 3 - Casualties</title>
+            <style>
+                body { font-family: Arial, sans-serif; font-size: 10pt; }
+                table { border-collapse: collapse; width: 100%; border: 1.5px solid #000; }
+                th, td { border: 0.5px solid #000; padding: 4px 6px; text-align: center; font-size: 8pt; }
+                th { background-color: white; font-weight: bold; }
+                .header { text-align: center; margin-bottom: 20px; }
+                .text-left { text-align: left; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1 style="font-size: 11pt; margin-bottom: 5px;">NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h1>
+                <h2 style="font-size: 11pt;">Annex 3: Casualties</h2>
+                <p style="font-size: 9pt;">Generated on: ${new Date().toLocaleString()}</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Region</th>
+                        <th rowspan="2">Province</th>
+                        <th rowspan="2">City / Municipality</th>
+                        <th rowspan="2">Barangay</th>
+                        <th rowspan="2">Category<br>(dead, injured, ill, or missing)</th>
+                        <th rowspan="2">Surname</th>
+                        <th rowspan="2">First Name</th>
+                        <th rowspan="2">Middle Name</th>
+                        <th rowspan="2">Age</th>
+                        <th rowspan="2">Sex</th>
+                        <th rowspan="2">Address</th>
+                        <th rowspan="2">Cause</th>
+                        <th rowspan="2">Remarks</th>
+                        <th rowspan="2">Source of Data</th>
+                        <th rowspan="2">Validated?<br>(yes or no)</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    records.forEach(record => {
+        htmlContent += `
+            <tr>
+                <td class="text-left">${record.region || ''}</td>
+                <td class="text-left">${record.province || ''}</td>
+                <td class="text-left">${record.city || ''}</td>
+                <td class="text-left">${record.barangay || ''}</td>
+                <td>${record.category || ''}</td>
+                <td class="text-left">${record.surname || ''}</td>
+                <td class="text-left">${record.first_name || ''}</td>
+                <td class="text-left">${record.middle_name || ''}</td>
+                <td>${record.age || ''}</td>
+                <td>${record.sex || ''}</td>
+                <td class="text-left">${record.address || ''}</td>
+                <td class="text-left">${record.cause || ''}</td>
+                <td class="text-left">${record.remarks || ''}</td>
+                <td class="text-left">${record.source || ''}</td>
+                <td>${record.validated || ''}</td>
+            </tr>
+        `;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex3_casualties_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let csvContent = "data:application/vnd.ms-excel;charset=utf-8,";
+
+    // Headers - matching the NDRRMC template structure
+    csvContent += "Region\tProvince\tCity/Municipality\tBarangay\t";
+    csvContent += "Category (dead, injured, ill, or missing)\tSurname\tFirst Name\tMiddle Name\t";
+    csvContent += "Age\tSex\tAddress\tCause\tRemarks\t";
+    csvContent += "Source of Data\tValidated? (yes or no)\n";
+
+    // Data
+    records.forEach(record => {
+        const row = [
+            record.region || '',
+            record.province || '',
+            record.city || '',
+            record.barangay || '',
+            record.category || '',
+            record.surname || '',
+            record.first_name || '',
+            record.middle_name || '',
+            record.age || '',
+            record.sex || '',
+            record.address || '',
+            record.cause || '',
+            record.remarks || '',
+            record.source || '',
+            record.validated || ''
+        ].join('\t');
+        csvContent += row + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "annex3_casualties_" + new Date().toISOString().split('T')[0] + ".xls");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Export to CSV function

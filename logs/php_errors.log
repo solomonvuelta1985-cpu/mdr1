@@ -2594,3 +2594,287 @@ Stack trace:
 [15-Nov-2025 18:07:48 Asia/Manila] Updating database with image_path: NULL
 [15-Nov-2025 18:07:48 Asia/Manila] Database update successful!
 [15-Nov-2025 18:07:48 Asia/Manila] === ANNEX9 UPDATE FINISHED ===
+[15-Nov-2025 18:44:29 Asia/Manila] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city_municipality' in 'order clause'
+[15-Nov-2025 18:44:29 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetchAll() on bool in C:\xampp\htdocs\mdr1\print_templates\annex2_print_template.php:35
+[15-Nov-2025 18:44:29 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in C:\xampp\htdocs\mdr1\print_templates\annex2_print_template.php:35
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mdr1\print_templates\annex2_print_template.php on line 35
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "city_municipality" in C:\xampp\htdocs\mdr1\public\annex2_records.php:494
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "city_municipality" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 494
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "affected_barangays" in C:\xampp\htdocs\mdr1\public\annex2_records.php:495
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "affected_barangays" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 495
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "affected_families" in C:\xampp\htdocs\mdr1\public\annex2_records.php:496
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "affected_families" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 496
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "affected_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php:497
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "affected_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 497
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "evacuation_centers" in C:\xampp\htdocs\mdr1\public\annex2_records.php:498
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "evacuation_centers" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 498
+[15-Nov-2025 18:47:42 Asia/Manila] Error [2]: Undefined array key "displaced_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php:499
+[15-Nov-2025 18:47:42 Asia/Manila] PHP Warning:  Undefined array key "displaced_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 499
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "city_municipality" in C:\xampp\htdocs\mdr1\public\annex2_records.php:494
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "city_municipality" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 494
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "affected_barangays" in C:\xampp\htdocs\mdr1\public\annex2_records.php:495
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "affected_barangays" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 495
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "affected_families" in C:\xampp\htdocs\mdr1\public\annex2_records.php:496
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "affected_families" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 496
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "affected_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php:497
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "affected_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 497
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "evacuation_centers" in C:\xampp\htdocs\mdr1\public\annex2_records.php:498
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "evacuation_centers" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 498
+[15-Nov-2025 18:47:56 Asia/Manila] Error [2]: Undefined array key "displaced_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php:499
+[15-Nov-2025 18:47:56 Asia/Manila] PHP Warning:  Undefined array key "displaced_persons" in C:\xampp\htdocs\mdr1\public\annex2_records.php on line 499
+[15-Nov-2025 21:01:52 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 21:06:01 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[15-Nov-2025 21:22:45 Asia/Manila] Annex4 Data Correction: Record #8 - Form submitted total: 0, Server calculated: 2. Using server calculation.
+[15-Nov-2025 21:25:48 Asia/Manila] Annex4 Data Correction: Record #8 - Form submitted total: 2, Server calculated: 3. Using server calculation.
+[16-Nov-2025 08:01:27 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[16-Nov-2025 08:05:25 Asia/Manila] Error [2]: Undefined array key "migrated" in C:\xampp\htdocs\mdr1\migrations\migrate_existing_annex8_status.php:26
+[16-Nov-2025 08:05:25 Asia/Manila] PHP Warning:  Undefined array key "migrated" in C:\xampp\htdocs\mdr1\migrations\migrate_existing_annex8_status.php on line 26
+[16-Nov-2025 08:05:25 Asia/Manila] Error [2]: Undefined array key "errors" in C:\xampp\htdocs\mdr1\migrations\migrate_existing_annex8_status.php:28
+[16-Nov-2025 08:05:25 Asia/Manila] PHP Warning:  Undefined array key "errors" in C:\xampp\htdocs\mdr1\migrations\migrate_existing_annex8_status.php on line 28
+[16-Nov-2025 08:50:43 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[16-Nov-2025 08:52:54 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8d20e19b8fc57df7cf425bb96337dd498403f13124ffc22bcd1cba5d9e8445d2
+[16-Nov-2025 09:01:41 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[16-Nov-2025 09:02:07 Asia/Manila] === CSRF DEBUG START ===
+[16-Nov-2025 09:02:07 Asia/Manila] Session ID: 8SpfV1K0iPG0W99UDvADf6m0kqTM6UODEOcfBbuY1k2v6NNd
+[16-Nov-2025 09:02:07 Asia/Manila] User ID: 13
+[16-Nov-2025 09:02:07 Asia/Manila] CSRF Token in POST: 74e76c2abcb66c2ff8db08a64ba68fcbc515a6b0a3f8f42dd57e52463f47704b
+[16-Nov-2025 09:02:07 Asia/Manila] CSRF Token in SESSION: 74e76c2abcb66c2ff8db08a64ba68fcbc515a6b0a3f8f42dd57e52463f47704b
+[16-Nov-2025 09:02:07 Asia/Manila] Tokens match: YES
+[16-Nov-2025 09:02:07 Asia/Manila] === CSRF DEBUG END ===
+[16-Nov-2025 09:02:07 Asia/Manila] CSRF SUCCESS: Token validated
+[16-Nov-2025 09:04:23 Asia/Manila] === CSRF DEBUG START ===
+[16-Nov-2025 09:04:23 Asia/Manila] Session ID: 8SpfV1K0iPG0W99UDvADf6m0kqTM6UODEOcfBbuY1k2v6NNd
+[16-Nov-2025 09:04:23 Asia/Manila] User ID: 13
+[16-Nov-2025 09:04:23 Asia/Manila] CSRF Token in POST: 74e76c2abcb66c2ff8db08a64ba68fcbc515a6b0a3f8f42dd57e52463f47704b
+[16-Nov-2025 09:04:23 Asia/Manila] CSRF Token in SESSION: 74e76c2abcb66c2ff8db08a64ba68fcbc515a6b0a3f8f42dd57e52463f47704b
+[16-Nov-2025 09:04:23 Asia/Manila] Tokens match: YES
+[16-Nov-2025 09:04:23 Asia/Manila] === CSRF DEBUG END ===
+[16-Nov-2025 09:04:23 Asia/Manila] CSRF SUCCESS: Token validated
+[16-Nov-2025 09:05:14 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
+[16-Nov-2025 09:21:27 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+[16-Nov-2025 09:33:22 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:22 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:22 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:26 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:26 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:26 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:29 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:29 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:29 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:29 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:29 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:29 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:30 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:30 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:30 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:30 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:33:30 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:33:30 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:33:30 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:34:23 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:34:23 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:34:23 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:35:23 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:35:23 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:35:23 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:36:23 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:36:23 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:36:23 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:36:46 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:36:46 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:36:46 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:36:48 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:36:48 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:36:48 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:37:23 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:37:23 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+[16-Nov-2025 09:37:23 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:255
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 255
+[16-Nov-2025 09:37:50 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:37:50 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:37:50 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:37:53 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:37:53 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:37:53 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:38:50 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:38:50 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:38:50 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:38:51 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:38:51 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:38:51 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:38:54 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:38:54 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:38:54 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:01 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:01 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:01 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:01 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:01 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:02 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:02 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:02 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:02 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:22 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:22 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:22 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:39:24 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:39:24 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:39:24 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:40:58 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:40:58 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:40:58 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:41:59 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:41:59 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:41:59 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:42:59 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:42:59 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:42:59 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:43:38 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:43:38 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:43:38 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:43:41 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:43:41 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:43:41 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:44:39 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:44:39 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:44:39 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:45:39 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:45:39 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:45:39 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366
+[16-Nov-2025 09:46:39 Asia/Manila] Database error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'annex_management_system.annex5_cost_of_damages' doesn't exist
+[16-Nov-2025 09:46:39 Asia/Manila] CRITICAL ERROR: Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+[16-Nov-2025 09:46:39 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in C:\xampp\htdocs\mdr1\includes\notifications.php:366
+Stack trace:
+#0 C:\xampp\htdocs\mdr1\api\barangay_activity_fetch.php(24): get_barangay_activity_enhanced(3)
+#1 {main}
+  thrown in C:\xampp\htdocs\mdr1\includes\notifications.php on line 366

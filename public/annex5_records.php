@@ -720,9 +720,20 @@ ob_start();
             <a href="annex5_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+
+            <!-- Print/Export Dropdown -->
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-info-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="printAnnex5()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1023,6 +1034,158 @@ function confirmDelete(recordId) {
 // Confirm archive function
 function confirmArchive(recordId) {
     return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
+}
+
+// Print function
+function printAnnex5() {
+    // Open print template in new window
+    const printWindow = window.open('../print_templates/annex5_print_template.php', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+
+    // Fallback if popup is blocked
+    if (!printWindow) {
+        alert('Please allow popups for this site to use the print feature.');
+        // Alternative: redirect to print template
+        window.location.href = '../print_templates/annex5_print_template.php';
+    }
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset="utf-8">
+            <title>Annex 5 - Damage and Losses to Agriculture</title>
+            <style>
+                body { font-family: Arial, sans-serif; font-size: 10pt; }
+                table { border-collapse: collapse; width: 100%; border: 1.5px solid #000; }
+                th, td { border: 0.5px solid #000; padding: 4px 6px; text-align: center; font-size: 7pt; }
+                th { background-color: white; font-weight: bold; }
+                .header { text-align: center; margin-bottom: 20px; }
+                .text-left { text-align: left; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1 style="font-size: 11pt; margin-bottom: 5px;">NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h1>
+                <h2 style="font-size: 11pt;">Annex 5: Damage and Losses to Agriculture</h2>
+                <p style="font-size: 9pt;">Generated on: ${new Date().toLocaleString()}</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Region</th>
+                        <th rowspan="2">Province</th>
+                        <th rowspan="2">City / Municipality</th>
+                        <th rowspan="2">Barangay</th>
+                        <th rowspan="2">Classification</th>
+                        <th rowspan="2">Type</th>
+                        <th rowspan="2">Number of fisherfolks or farmers affected</th>
+                        <th colspan="3">Affected crop area (ha)</th>
+                        <th rowspan="2">Production Loss in volume (MT)</th>
+                        <th rowspan="2">Number of heads (livestock and poultry)</th>
+                        <th colspan="3">Number of damaged infrastructures, machineries and equipment</th>
+                        <th rowspan="2">Production loss / cost damage in value</th>
+                    </tr>
+                    <tr>
+                        <th>With no chance of recovery</th>
+                        <th>With chance of recovery</th>
+                        <th>Total</th>
+                        <th>Totally</th>
+                        <th>Partially</th>
+                        <th>total</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    records.forEach(record => {
+        htmlContent += `
+            <tr>
+                <td class="text-left">${record.region || ''}</td>
+                <td class="text-left">${record.province || ''}</td>
+                <td class="text-left">${record.city || ''}</td>
+                <td class="text-left">${record.barangay || record.user_barangay || ''}</td>
+                <td>${record.classification || ''}</td>
+                <td>${record.type || ''}</td>
+                <td>${record.affected_people || '0'}</td>
+                <td>${record.no_recovery_area || '0'}</td>
+                <td>${record.with_recovery_area || '0'}</td>
+                <td>${record.total_crop_area || '0'}</td>
+                <td>${record.production_loss_volume || '0'}</td>
+                <td>${record.animal_heads || '0'}</td>
+                <td>${record.totally_damaged || '0'}</td>
+                <td>${record.partially_damaged || '0'}</td>
+                <td>${record.total_damaged || '0'}</td>
+                <td class="text-left">${record.damage_value || ''}</td>
+            </tr>
+        `;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex5_agriculture_damage_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let csvContent = "data:application/vnd.ms-excel;charset=utf-8,";
+
+    // Headers - matching the NDRRMC template structure
+    csvContent += "Region\tProvince\tCity/Municipality\tBarangay\tClassification\tType\t";
+    csvContent += "Number of fisherfolks or farmers affected\t";
+    csvContent += "With no chance of recovery (ha)\tWith chance of recovery (ha)\tTotal (ha)\t";
+    csvContent += "Production Loss in volume (MT)\tNumber of heads (livestock and poultry)\t";
+    csvContent += "Totally Damaged\tPartially Damaged\tTotal Damaged\t";
+    csvContent += "Production loss / cost damage in value\n";
+
+    // Data
+    records.forEach(record => {
+        const row = [
+            record.region || '',
+            record.province || '',
+            record.city || '',
+            record.barangay || record.user_barangay || '',
+            record.classification || '',
+            record.type || '',
+            record.affected_people || '0',
+            record.no_recovery_area || '0',
+            record.with_recovery_area || '0',
+            record.total_crop_area || '0',
+            record.production_loss_volume || '0',
+            record.animal_heads || '0',
+            record.totally_damaged || '0',
+            record.partially_damaged || '0',
+            record.total_damaged || '0',
+            record.damage_value || ''
+        ].join('\t');
+        csvContent += row + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "annex5_agriculture_damage_" + new Date().toISOString().split('T')[0] + ".xls");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Export to CSV function

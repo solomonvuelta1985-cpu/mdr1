@@ -300,8 +300,8 @@ $token = generate_token();
                                         <td><?= htmlspecialchars($user['contact_number']) ?></td>
                                         <td>
                                             <span class="role-<?= $user['user_role'] ?>">
-                                                <i class="fas fa-<?= $user['user_role'] === 'admin' ? 'crown' : 'user' ?> me-1"></i>
-                                                <?= ucfirst($user['user_role']) ?>
+                                                <i class="fas fa-<?= $user['user_role'] === 'admin' ? 'crown' : ($user['user_role'] === 'staff' ? 'user-shield' : 'user') ?> me-1"></i>
+                                                <?= $user['user_role'] === 'staff' ? 'Special Access / Staff' : ucfirst($user['user_role']) ?>
                                             </span>
                                         </td>
                                         <td>
@@ -458,6 +458,7 @@ $token = generate_token();
                                 <select class="form-select" id="create_user_role" name="user_role" required>
                                     <option value="">Select Role</option>
                                     <option value="user">User</option>
+                                    <option value="staff">Special Access / Staff</option>
                                     <option value="admin">Administrator</option>
                                 </select>
                             </div>
@@ -534,6 +535,7 @@ $token = generate_token();
                                 <select class="form-select" id="edit_user_role" name="user_role" required>
                                     <option value="">Select Role</option>
                                     <option value="user">User</option>
+                                    <option value="staff">Special Access / Staff</option>
                                     <option value="admin">Administrator</option>
                                 </select>
                             </div>

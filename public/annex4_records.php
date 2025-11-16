@@ -654,9 +654,20 @@ ob_start();
             <a href="annex4_archived.php" class="btn-custom btn-secondary-custom">
                 <i class="fas fa-archive"></i> View Archived
             </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+
+            <!-- Print/Export Dropdown -->
+            <div class="btn-group">
+                <button type="button" class="btn-custom btn-info-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print/Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="printAnnex4()"><i class="fas fa-print"></i> Print</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToWord()"><i class="fas fa-file-word"></i> Export to Word</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Export to Excel</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="exportToCSV()"><i class="fas fa-file-csv"></i> Export to CSV</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -948,6 +959,139 @@ function confirmDelete(recordId) {
 // Confirm archive function
 function confirmArchive(recordId) {
     return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later from the archived records page.');
+}
+
+// Print function
+function printAnnex4() {
+    // Open print template in new window
+    const printWindow = window.open('../print_templates/annex4_print_template.php', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+
+    // Fallback if popup is blocked
+    if (!printWindow) {
+        alert('Please allow popups for this site to use the print feature.');
+        // Alternative: redirect to print template
+        window.location.href = '../print_templates/annex4_print_template.php';
+    }
+}
+
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset="utf-8">
+            <title>Annex 4 - Damaged Houses</title>
+            <style>
+                body { font-family: Arial, sans-serif; font-size: 10pt; }
+                table { border-collapse: collapse; width: 100%; border: 1.5px solid #000; }
+                th, td { border: 0.5px solid #000; padding: 4px 6px; text-align: center; font-size: 8pt; }
+                th { background-color: white; font-weight: bold; }
+                .header { text-align: center; margin-bottom: 20px; }
+                .text-left { text-align: left; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1 style="font-size: 11pt; margin-bottom: 5px;">NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h1>
+                <h2 style="font-size: 11pt;">Annex 4: Damaged Houses</h2>
+                <p style="font-size: 9pt;">Generated on: ${new Date().toLocaleString()}</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City / Municipality</th>
+                        <th>Barangay</th>
+                        <th colspan="3">Number of Damaged Houses</th>
+                        <th>Cost</th>
+                        <th>Remarks</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Totally</th>
+                        <th>Partially</th>
+                        <th>Total</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    records.forEach(record => {
+        htmlContent += `
+            <tr>
+                <td class="text-left">${record.region || ''}</td>
+                <td class="text-left">${record.province || ''}</td>
+                <td class="text-left">${record.city || ''}</td>
+                <td class="text-left">${record.barangay || record.user_barangay || ''}</td>
+                <td>${record.totally_damaged || '0'}</td>
+                <td>${record.partially_damaged || '0'}</td>
+                <td>${record.total_damaged || '0'}</td>
+                <td class="text-left">${record.cost || ''}</td>
+                <td class="text-left">${record.remarks || ''}</td>
+            </tr>
+        `;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex4_damaged_houses_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let csvContent = "data:application/vnd.ms-excel;charset=utf-8,";
+
+    // Headers - matching the NDRRMC template structure
+    csvContent += "Region\tProvince\tCity/Municipality\tBarangay\t";
+    csvContent += "Totally Damaged\tPartially Damaged\tTotal Damaged\t";
+    csvContent += "Cost\tRemarks\n";
+
+    // Data
+    records.forEach(record => {
+        const row = [
+            record.region || '',
+            record.province || '',
+            record.city || '',
+            record.barangay || record.user_barangay || '',
+            record.totally_damaged || '0',
+            record.partially_damaged || '0',
+            record.total_damaged || '0',
+            record.cost || '',
+            (record.remarks || '').replace(/\t/g, ' ').replace(/\n/g, ' ')
+        ].join('\t');
+        csvContent += row + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "annex4_damaged_houses_" + new Date().toISOString().split('T')[0] + ".xls");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Export to CSV function

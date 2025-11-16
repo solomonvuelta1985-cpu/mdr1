@@ -10,889 +10,572 @@ require_once '../includes/auth.php';
 // Check if user is logged in, redirect to login if not
 require_login();
 
-// RATE LIMITING: Check if user is not flooding the page with requests
-$user_id = $_SESSION['user_id'] ?? 0;
-if (!check_rate_limit($user_id, 'annex2_records_access', 100, 3600)) {
-    log_security_event($user_id, 'rate_limit_exceeded', 'Annex2 records page access rate limit exceeded');
-    set_flash('Too many requests. Please try again later.', 'error');
-    header('Location: dashboard.php');
-    exit;
-}
-
-// AUDIT LOG: Page access
-log_audit_action(
-    $_SESSION['user_id'],
-    'annex2_records_access',
-    'Accessed Annex 2 affected population records page'
-);
-
-// SECURITY LOG: Page access
-log_security_event(
-    $_SESSION['user_id'],
-    'page_access',
-    'Accessed Annex 2 records page'
-);
-
-// Database connection
-$pdo = $pdo;
-
 // Get current user's data for filtering
 $user_location = get_user_location_data($_SESSION['user_id']);
 $is_admin = ($_SESSION['user_role'] === 'admin');
 
-// Ensure is_archived column exists
-try {
-    $column_check = $pdo->query("SHOW COLUMNS FROM annex2_affected_population LIKE 'is_archived'");
-    if ($column_check->rowCount() == 0) {
-        // SECURITY: Do NOT modify database schema from web application
-        error_log("CRITICAL: Missing is_archived column. Run migrations manually");
-        set_flash('Database schema error. Contact administrator.', 'error');
-        header('Location: dashboard.php');
-        exit;
-    }
-} catch (PDOException $e) {
-    error_log("Failed to check is_archived column: " . $e->getMessage());
-}
-
-// Handle record actions
+// Handle record actions (delete or archive)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // CSRF Token Verification
+
+    // Log suspicious method calls
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        log_security_event($_SESSION['user_id'], 'invalid_method', 'Annex2 records accessed using non-POST method');
+        set_flash('Invalid request method', 'error');
+        header('Location: annex2_records.php');
+        exit;
+    }
+
+    // Verify CSRF token
     if (!verify_token($_POST['csrf_token'] ?? '')) {
+        log_security_event($_SESSION['user_id'], 'csrf_failure', 'Annex2 records action CSRF token mismatch');
         set_flash('Security token validation failed', 'error');
-        log_security_event($_SESSION['user_id'], 'csrf_failure', 'Annex2 records CSRF token mismatch');
         header('Location: annex2_records.php');
         exit;
     }
-    
-    // RATE LIMITING: Check action-specific rate limits
-    if (!check_rate_limit($user_id, 'annex2_post_action', 30, 3600)) {
-        log_security_event($user_id, 'rate_limit_exceeded', 'Annex2 POST action rate limit exceeded');
-        set_flash('Too many actions. Please try again later.', 'error');
+
+    // Determine action type for rate limiting
+    $action_type = isset($_POST['delete_id']) ? 'annex2_delete' : (isset($_POST['archive_id']) ? 'annex2_archive' : null);
+    if ($action_type && !check_rate_limit($_SESSION['user_id'], $action_type, 10, 3600)) { // 10 per hour
+        log_security_event($_SESSION['user_id'], 'rate_limit_exceeded', "Annex2 {$action_type} rate limit exceeded");
+        set_flash('Too many attempts. Please try again later.', 'error');
         header('Location: annex2_records.php');
         exit;
     }
-    
-    // Handle delete action
+
+    // Handle Delete Action
     if (isset($_POST['delete_id'])) {
-        $delete_id = filter_var($_POST['delete_id'], FILTER_VALIDATE_INT);
-        
-        if (!$delete_id) {
-            set_flash('Invalid record ID', 'error');
-            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid delete_id for Annex2');
-            header('Location: annex2_records.php');
-            exit;
-        }
-        
-        // RATE LIMITING: Specific check for delete operations
-        if (!check_rate_limit($user_id, 'annex2_delete', 10, 3600)) {
-            log_security_event($user_id, 'rate_limit_exceeded', 'Annex2 delete rate limit exceeded');
-            set_flash('Too many delete attempts. Please try again later.', 'error');
-            header('Location: annex2_records.php');
-            exit;
-        }
-        
-        // Check if user owns the record (unless admin)
+        $delete_id = sanitize($_POST['delete_id']);
+
+        // Verify ownership
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT * FROM annex2_affected_population WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
-            $record = $check_stmt->fetch();
-            
-            if (!$record) {
+            $check_stmt = db_query("SELECT id FROM annex2_affected_population WHERE id = ? AND created_by = ?", [$delete_id, $_SESSION['user_id']]);
+            if (!$check_stmt->fetch()) {
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted delete of record #{$delete_id}");
                 set_flash('Record not found or access denied', 'error');
-                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to delete Annex2 record #{$delete_id} without permission");
                 header('Location: annex2_records.php');
                 exit;
             }
-        } else {
-            $check_stmt = db_query("SELECT * FROM annex2_affected_population WHERE id = ?", [$delete_id]);
-            $record = $check_stmt->fetch();
         }
-        
-        if ($record) {
-            $stmt = db_query("DELETE FROM annex2_affected_population WHERE id = ?", [$delete_id]);
-            
-            if ($stmt && $stmt->rowCount() > 0) {
-                // AUDIT LOG: Record deletion
-                log_audit_action(
-                    $_SESSION['user_id'],
-                    'annex2_delete',
-                    "Permanently deleted record #{$delete_id} for {$record['barangay']}"
-                );
-                
-                // SECURITY LOG: Successful deletion
-                log_security_event(
-                    $_SESSION['user_id'],
-                    'annex2_delete_success',
-                    "Successfully deleted Annex2 record #{$delete_id}"
-                );
-                
-                set_flash('Record deleted successfully', 'success');
-            } else {
-                set_flash('Failed to delete record', 'error');
-                log_security_event($_SESSION['user_id'], 'delete_failure', "Failed to delete Annex2 record #{$delete_id}");
-            }
+
+        // Execute deletion
+        $stmt = db_query("DELETE FROM annex2_affected_population WHERE id = ?", [$delete_id]);
+
+        if ($stmt && $stmt->rowCount() > 0) {
+            log_audit_action($_SESSION['user_id'], 'annex2_delete', "Deleted record #{$delete_id}");
+            log_security_event($_SESSION['user_id'], 'annex2_delete_success', "Successfully deleted Annex2 record #{$delete_id}");
+            set_flash('Record deleted successfully', 'success');
         } else {
-            set_flash('Record not found', 'error');
+            log_security_event($_SESSION['user_id'], 'annex2_delete_failed', "Failed to delete record #{$delete_id}");
+            set_flash('Failed to delete record', 'error');
         }
+
         header('Location: annex2_records.php');
         exit;
     }
-    
-    // Handle archive action
+
+    // Handle Archive Action
     if (isset($_POST['archive_id'])) {
-        $archive_id = filter_var($_POST['archive_id'], FILTER_VALIDATE_INT);
-        
-        if (!$archive_id) {
-            set_flash('Invalid record ID', 'error');
-            log_security_event($_SESSION['user_id'], 'invalid_input', 'Invalid archive_id for Annex2');
-            header('Location: annex2_records.php');
-            exit;
-        }
-        
-        // RATE LIMITING: Specific check for archive operations
-        if (!check_rate_limit($user_id, 'annex2_archive', 20, 3600)) {
-            log_security_event($user_id, 'rate_limit_exceeded', 'Annex2 archive rate limit exceeded');
-            set_flash('Too many archive attempts. Please try again later.', 'error');
-            header('Location: annex2_records.php');
-            exit;
-        }
-        
-        // Check if user owns the record (unless admin)
+        $archive_id = sanitize($_POST['archive_id']);
+
+        // Verify ownership
         if (!$is_admin) {
-            $check_stmt = db_query("SELECT * FROM annex2_affected_population WHERE id = ? AND created_by = ?", [$archive_id, $_SESSION['user_id']]);
-            $record = $check_stmt->fetch();
-            
-            if (!$record) {
+            $check_stmt = db_query("SELECT id FROM annex2_affected_population WHERE id = ? AND created_by = ?", [$archive_id, $_SESSION['user_id']]);
+            if (!$check_stmt->fetch()) {
+                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted archive of record #{$archive_id}");
                 set_flash('Record not found or access denied', 'error');
-                log_security_event($_SESSION['user_id'], 'unauthorized_access', "Attempted to archive Annex2 record #{$archive_id} without permission");
                 header('Location: annex2_records.php');
                 exit;
             }
-        } else {
-            $check_stmt = db_query("SELECT * FROM annex2_affected_population WHERE id = ?", [$archive_id]);
-            $record = $check_stmt->fetch();
         }
-        
-        if ($record) {
-            // Archive the record
-            $stmt = db_query("UPDATE annex2_affected_population SET is_archived = 1 WHERE id = ?", [$archive_id]);
-            
-            if ($stmt && $stmt->rowCount() > 0) {
-                // AUDIT LOG: Record archival
-                log_audit_action(
-                    $_SESSION['user_id'],
-                    'annex2_archive',
-                    "Archived record #{$archive_id} for {$record['barangay']}"
-                );
-                
-                // SECURITY LOG: Successful archival
-                log_security_event(
-                    $_SESSION['user_id'],
-                    'annex2_archive_success',
-                    "Successfully archived Annex2 record #{$archive_id}"
-                );
-                
-                set_flash('Record archived successfully', 'success');
-            } else {
-                set_flash('Failed to archive record', 'error');
-                log_security_event($_SESSION['user_id'], 'archive_failure', "Failed to archive Annex2 record #{$archive_id}");
-            }
+
+        // Execute archive
+        $stmt = db_query("UPDATE annex2_affected_population SET is_archived = 1 WHERE id = ?", [$archive_id]);
+
+        if ($stmt && $stmt->rowCount() > 0) {
+            log_audit_action($_SESSION['user_id'], 'annex2_archive', "Archived record #{$archive_id}");
+            log_security_event($_SESSION['user_id'], 'annex2_archive_success', "Successfully archived Annex2 record #{$archive_id}");
+            set_flash('Record archived successfully', 'success');
         } else {
-            set_flash('Record not found', 'error');
+            log_security_event($_SESSION['user_id'], 'annex2_archive_failed', "Failed to archive record #{$archive_id}");
+            set_flash('Failed to archive record', 'error');
         }
+
         header('Location: annex2_records.php');
         exit;
     }
 }
 
-// Generate CSRF token
 $csrf_token = generate_token();
 
-// Fetch records based on user role
 if ($is_admin) {
-    // Admin can see all non-archived records
     $stmt = db_query("
         SELECT a.*, u.full_name, u.barangay as user_barangay 
         FROM annex2_affected_population a 
         LEFT JOIN users u ON a.created_by = u.id 
-        WHERE (a.is_archived = 0 OR a.is_archived IS NULL)
+        WHERE a.is_archived = 0 
         ORDER BY a.created_at DESC
     ");
 } else {
-    // Regular users can only see their own non-archived records
     $stmt = db_query("
         SELECT * FROM annex2_affected_population 
-        WHERE created_by = ? AND (is_archived = 0 OR is_archived IS NULL)
+        WHERE created_by = ? AND is_archived = 0 
         ORDER BY created_at DESC
     ", [$_SESSION['user_id']]);
 }
 
 $records = $stmt->fetchAll();
 
-// Calculate total statistics
-$total_records = count($records);
-
-// For cumulative data, we need to get the LATEST record per barangay to avoid double-counting
-// Group records by barangay and get the most recent cumulative values
-$latest_by_barangay = [];
-foreach ($records as $record) {
-    $barangay_key = $record['barangay'];
-    // If this barangay doesn't exist yet, or this record is newer, use it
-    if (!isset($latest_by_barangay[$barangay_key]) ||
-        strtotime($record['created_at']) > strtotime($latest_by_barangay[$barangay_key]['created_at'])) {
-        $latest_by_barangay[$barangay_key] = $record;
-    }
-}
-
-// Now sum up the latest cumulative values from each barangay
-$total_affected_families_cumulative = 0;
-$total_affected_persons_cumulative = 0;
-$total_ecs_cumulative = 0;
-$total_displaced_families = 0;
-$total_displaced_persons = 0;
-
-foreach ($latest_by_barangay as $record) {
-    $total_affected_families_cumulative += $record['affected_families_cumulative'] ?? 0;
-    $total_affected_persons_cumulative += $record['affected_persons_cumulative'] ?? 0;
-    $total_ecs_cumulative += $record['num_ecs_cumulative'] ?? 0;
-    $total_displaced_families += $record['total_families_cumulative'] ?? 0;
-    $total_displaced_persons += $record['total_persons_cumulative'] ?? 0;
-}
-
 // Start output buffering
 ob_start();
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
     body {
-        background-color: #f5f5f5;
+        background-color: #f8f9fa;
         padding: clamp(15px, 3vw, 20px);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: Arial, sans-serif;
     }
     .records-container {
         background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        padding: clamp(20px, 4vw, 30px);
+        border-radius: 10px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        padding: clamp(20px, 4vw, 25px);
         margin: 0 auto;
         width: 100%;
         max-width: 98vw;
     }
     .header-section {
-        margin-bottom: clamp(25px, 5vw, 30px);
-        padding-bottom: clamp(15px, 3vw, 20px);
-        border-bottom: 2px solid #e0e0e0;
+        text-align: center;
+        margin-bottom: clamp(20px, 4vw, 25px);
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: clamp(10px, 2.5vw, 15px);
     }
     .header-section h1 {
-        font-size: clamp(1.5rem, 4vw, 1.75rem);
-        font-weight: 600;
-        color: #212529;
-        margin-bottom: clamp(5px, 1.5vw, 8px);
+        font-size: clamp(1.5rem, 4vw, 1.8rem);
+        font-weight: bold;
+        margin-bottom: 8px;
     }
-    .header-section p {
-        color: #6c757d;
-        margin: 0;
-        font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+    .header-section h2 {
+        font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+        font-weight: bold;
+        color: #333;
     }
-    .stats-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: clamp(12px, 2.5vw, 15px);
-        margin-bottom: clamp(25px, 5vw, 30px);
-    }
-    .stat-card {
-        background-color: #ffffff;
-        border: 1px solid #dee2e6;
-        padding: clamp(15px, 3.5vw, 20px);
-        border-radius: 6px;
-        border-left: 4px solid #0d6efd;
-        transition: box-shadow 0.2s;
-    }
-    .stat-card:hover {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .stat-card h3 {
-        font-size: clamp(1.5rem, 4vw, 1.75rem);
-        margin-bottom: clamp(5px, 1.5vw, 8px);
-        font-weight: 600;
-        color: #212529;
-    }
-    .stat-card p {
-        margin: 0;
-        color: #6c757d;
-        font-size: clamp(0.85rem, 2.3vw, 0.9rem);
-    }
-    .stat-card:nth-child(1) { border-left-color: #0d6efd; }
-    .stat-card:nth-child(2) { border-left-color: #dc3545; }
-    .stat-card:nth-child(3) { border-left-color: #198754; }
-    .stat-card:nth-child(4) { border-left-color: #ffc107; }
-    .stat-card:nth-child(5) { border-left-color: #6f42c1; }
-    .action-section {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: clamp(10px, 2.5vw, 15px);
-        margin-bottom: clamp(20px, 4vw, 25px);
-        padding: clamp(15px, 3vw, 20px);
-        background-color: #f8f9fa;
-        border-radius: 6px;
-    }
-    .search-box {
-        flex: 1;
-        min-width: 250px;
-    }
-    .search-box input {
-        width: 100%;
-        padding: clamp(8px, 2vw, 10px);
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        font-size: clamp(0.85rem, 2.3vw, 0.9rem);
-    }
-    .search-box input:focus {
-        outline: none;
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
-    }
-    .action-buttons {
-        display: flex;
-        gap: clamp(8px, 2vw, 10px);
-        flex-wrap: wrap;
-    }
-    .btn-custom {
-        padding: clamp(8px, 2vw, 10px) clamp(15px, 3.5vw, 18px);
-        font-size: clamp(0.85rem, 2.3vw, 0.9rem);
-        border-radius: 4px;
-        text-decoration: none;
-        transition: all 0.2s;
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: clamp(5px, 1.5vw, 8px);
-        white-space: nowrap;
-        font-weight: 500;
-    }
-    .btn-primary-custom {
-        background-color: #0d6efd;
-        color: white;
-        border: 1px solid #0d6efd;
-    }
-    .btn-primary-custom:hover {
-        background-color: #0b5ed7;
-        border-color: #0a58ca;
-    }
-    .btn-secondary-custom {
-        background-color: #6c757d;
-        color: white;
-        border: 1px solid #6c757d;
-    }
-    .btn-secondary-custom:hover {
-        background-color: #5c636a;
-        border-color: #565e64;
-    }
-    .btn-success-custom {
-        background-color: #198754;
-        color: white;
-        border: 1px solid #198754;
-    }
-    .btn-success-custom:hover {
-        background-color: #157347;
-        border-color: #146c43;
-    }
+    
+    /* Table Styles */
     .table-container {
         overflow-x: auto;
-        border-radius: 6px;
+        border-radius: 8px;
         border: 1px solid #dee2e6;
-        background-color: white;
     }
-    .custom-table {
+    .records-table {
         width: 100%;
-        border-collapse: collapse;
-        background-color: white;
-        font-size: clamp(0.8rem, 2.2vw, 0.875rem);
+        margin-bottom: 0;
     }
-    .custom-table thead {
+    .records-table th {
         background-color: #f8f9fa;
         border-bottom: 2px solid #dee2e6;
-    }
-    .custom-table th {
-        padding: clamp(12px, 2.5vw, 15px);
-        text-align: left;
         font-weight: 600;
-        white-space: nowrap;
         color: #495057;
-        border-bottom: 2px solid #dee2e6;
+        padding: 12px 15px;
+        white-space: nowrap;
     }
-    .custom-table td {
-        padding: clamp(10px, 2.5vw, 12px);
+    .records-table td {
+        padding: 12px 15px;
+        vertical-align: top;
         border-bottom: 1px solid #dee2e6;
-        color: #212529;
     }
-    .custom-table tbody tr:hover {
+    .records-table tbody tr:hover {
         background-color: #f8f9fa;
     }
-    .custom-table tbody tr:last-child td {
+    .records-table tbody tr:last-child td {
         border-bottom: none;
     }
-    .badge {
-        padding: clamp(4px, 1.2vw, 5px) clamp(8px, 2vw, 10px);
-        border-radius: 4px;
-        font-size: clamp(0.7rem, 2vw, 0.75rem);
-        font-weight: 500;
-        white-space: nowrap;
-    }
-    .badge-cumulative { 
-        background-color: #cfe2ff; 
-        color: #084298;
-        border: 1px solid #b6d4fe;
-    }
-    .badge-current { 
-        background-color: #fff3cd; 
-        color: #997404;
-        border: 1px solid #ffe69c;
+    
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: nowrap;
     }
     .btn-table {
-        padding: clamp(5px, 1.5vw, 6px) clamp(10px, 2.5vw, 12px);
-        font-size: clamp(0.75rem, 2vw, 0.8rem);
-        border: 1px solid;
+        padding: 6px 12px;
+        font-size: 0.875rem;
+        border: none;
         border-radius: 4px;
-        cursor: pointer;
         transition: all 0.2s;
-        margin: 2px;
-        font-weight: 500;
+        cursor: pointer;
     }
     .btn-view {
         background-color: #0dcaf0;
         color: #000;
-        border-color: #0dcaf0;
     }
     .btn-view:hover {
         background-color: #31d2f2;
-        border-color: #25cff2;
     }
     .btn-edit {
-        background-color: #ffc107;
-        color: #000;
-        border-color: #ffc107;
+        background-color: #0d6efd;
+        color: white;
     }
     .btn-edit:hover {
-        background-color: #ffca2c;
-        border-color: #ffc720;
-    }
-    .btn-archive {
-        background-color: #6c757d;
-        color: white;
-        border-color: #6c757d;
-    }
-    .btn-archive:hover {
-        background-color: #5c636a;
-        border-color: #565e64;
+        background-color: #0b5ed7;
     }
     .btn-delete {
         background-color: #dc3545;
         color: white;
-        border-color: #dc3545;
     }
     .btn-delete:hover {
         background-color: #bb2d3b;
-        border-color: #b02a37;
     }
-    .skeleton {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
+    .btn-archive {
+        background-color: #6c757d;
+        color: white;
     }
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+    .btn-archive:hover {
+        background-color: #5c636a;
     }
-    .table-container.loading tbody tr {
-        opacity: 0.5;
+    
+    /* Export Dropdown */
+    .dropdown-menu {
+        min-width: 160px;
     }
+    .dropdown-item {
+        padding: 8px 16px;
+    }
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+        margin-right: 8px;
+    }
+    
+    /* Print Styles */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .records-container, .records-container * {
+            visibility: visible;
+        }
+        .records-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            box-shadow: none;
+            padding: 0;
+        }
+        .action-buttons, .btn, .stats-card, .alert {
+            display: none !important;
+        }
+        .table-container {
+            overflow: visible;
+            border: none;
+        }
+        .records-table {
+            font-size: 12px;
+        }
+        .records-table th, .records-table td {
+            padding: 6px 8px;
+        }
+    }
+    
+    /* Skeleton Loader */
     .skeleton-loader {
         display: none;
     }
+    .skeleton-item {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+    .skeleton-text {
+        height: 16px;
+    }
+    .skeleton-button {
+        height: 32px;
+        width: 70px;
+    }
+    
+    @keyframes loading {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+    
     .loading .skeleton-loader {
         display: table-row-group;
     }
     .loading .table-content {
         display: none;
     }
-    .skeleton-row {
-        display: table-row;
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
     }
-    .skeleton-cell {
-        display: table-cell;
-        padding: clamp(10px, 2.5vw, 12px);
-        border-bottom: 1px solid #dee2e6;
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
     }
-    .skeleton-bar {
-        height: 12px;
-        border-radius: 4px;
-        margin: 4px 0;
+    
+    /* Stats Card */
+    .stats-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
     }
-    .skeleton-bar.short {
-        width: 60%;
+    .stats-number {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
-    .skeleton-bar.medium {
-        width: 80%;
+    .stats-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
     }
-    .skeleton-bar.long {
-        width: 95%;
-    }
+    
+    /* Responsive */
     @media (max-width: 768px) {
-        .stats-cards {
-            grid-template-columns: 1fr;
+        .table-container {
+            font-size: 0.875rem;
         }
-        .action-section {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        .search-box {
-            width: 100%;
+        .records-table th,
+        .records-table td {
+            padding: 8px 10px;
         }
         .action-buttons {
-            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .btn-table {
+            padding: 4px 8px;
+            font-size: 0.8rem;
         }
     }
-
-
-    /* Add to existing CSS */
-.skeleton-card {
-    background-color: #ffffff;
-    border: 1px solid #dee2e6;
-    padding: clamp(15px, 3.5vw, 20px);
-    border-radius: 6px;
-    border-left: 4px solid #e0e0e0;
-}
-
-.skeleton-card-content {
-    height: 100%;
-}
-
-.skeleton-title {
-    height: clamp(1.5rem, 4vw, 1.75rem);
-    margin-bottom: clamp(5px, 1.5vw, 8px);
-    border-radius: 4px;
-}
-
-.skeleton-text {
-    height: clamp(0.85rem, 2.3vw, 0.9rem);
-    border-radius: 4px;
-    margin-bottom: 5px;
-}
-
-.skeleton-text.short {
-    width: 60%;
-}
-
-.skeleton-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-bottom: 8px;
-}
-
-.loading .stats-cards .stat-card {
-    display: none;
-}
-
-.loading .stats-cards .skeleton-card {
-    display: block;
-}
-
-.stats-cards .skeleton-card {
-    display: none;
-}
-
-
-/* Add to existing loading animation styles */
-.stats-cards.loading .stat-card {
-    display: none;
-}
-
-.stats-cards.loading .skeleton-card {
-    display: block;
-}
-
-.stats-cards .skeleton-card {
-    display: none;
-}
 </style>
 
-<div class="records-container">
-    <!-- Header -->
-    <div class="header-section">
-        <h1><i class="fas fa-users"></i> Affected Population Records</h1>
-        <p>Manage and track affected population reports (Annex 2)</p>
-    </div>
+<div class="container-fluid">
+    <div class="records-container">
+        <div class="header-section">
+            <h1>NDRRMC Memorandum Circular No. 05, s. 2025</h1>
+            <h2>Annex 2: Affected Population Records</h2>
+            <?php if ($is_admin): ?>
+                <div class="alert alert-info mt-3">
+                    <strong>Admin Mode:</strong> You are viewing all records from all barangays.
+                </div>
+            <?php endif; ?>
+        </div>
 
-    <?php show_flash(); ?>
+        <!-- Flash Messages -->
+        <?php show_flash(); ?>
 
-    <?php if ($is_admin): ?>
-    <!-- Cumulative Data Info Alert -->
-    <div class="alert alert-info" style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
-        <i class="fas fa-info-circle me-2"></i>
-        <strong>Cumulative Data Calculation:</strong> The totals below show the <strong>latest cumulative values from each barangay</strong>.
-        This prevents double-counting when multiple reports are submitted by the same barangay.
-        Only the most recent report from each barangay is used to calculate municipality-wide totals.
-    </div>
-    <?php endif; ?>
+        <!-- Statistics Card -->
+        <div class="stats-card">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="stats-number"><?php echo count($records); ?></div>
+                    <div class="stats-label">Active Records</div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="stats-number"><?php echo $is_admin ? 'All' : htmlspecialchars($user_location['barangay']); ?></div>
+                    <div class="stats-label">Barangay</div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="stats-number"><?php echo date('M j, Y'); ?></div>
+                    <div class="stats-label">Last Updated</div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="stats-number"><?php echo $is_admin ? count($records) : count($records); ?></div>
+                    <div class="stats-label">Your Records</div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Statistics Cards -->
-<!-- Statistics Cards -->
-<div class="stats-cards" id="statsCards">
-    <!-- Skeleton Cards -->
-    <div class="stat-card skeleton-card">
-        <div class="skeleton-card-content">
-            <div class="skeleton-title skeleton"></div>
-            <div class="skeleton-icon skeleton"></div>
-            <div class="skeleton-text skeleton short"></div>
-        </div>
-    </div>
-    <div class="stat-card skeleton-card">
-        <div class="skeleton-card-content">
-            <div class="skeleton-title skeleton"></div>
-            <div class="skeleton-icon skeleton"></div>
-            <div class="skeleton-text skeleton short"></div>
-        </div>
-    </div>
-    <div class="stat-card skeleton-card">
-        <div class="skeleton-card-content">
-            <div class="skeleton-title skeleton"></div>
-            <div class="skeleton-icon skeleton"></div>
-            <div class="skeleton-text skeleton short"></div>
-        </div>
-    </div>
-    <div class="stat-card skeleton-card">
-        <div class="skeleton-card-content">
-            <div class="skeleton-title skeleton"></div>
-            <div class="skeleton-icon skeleton"></div>
-            <div class="skeleton-text skeleton short"></div>
-        </div>
-    </div>
-    <div class="stat-card skeleton-card">
-        <div class="skeleton-card-content">
-            <div class="skeleton-title skeleton"></div>
-            <div class="skeleton-icon skeleton"></div>
-            <div class="skeleton-text skeleton short"></div>
-        </div>
-    </div>
-
-    <!-- Actual Cards -->
-    <div class="stat-card">
-        <h3><?php echo $total_records; ?></h3>
-        <p><i class="fas fa-file-alt"></i> Total Records</p>
-    </div>
-    <div class="stat-card">
-        <h3><?php echo number_format($total_affected_families_cumulative); ?></h3>
-        <p><i class="fas fa-home"></i> Affected Families</p>
-    </div>
-    <div class="stat-card">
-        <h3><?php echo number_format($total_affected_persons_cumulative); ?></h3>
-        <p><i class="fas fa-users"></i> Affected Persons</p>
-    </div>
-    <div class="stat-card">
-        <h3><?php echo number_format($total_ecs_cumulative); ?></h3>
-        <p><i class="fas fa-building"></i> Evacuation Centers</p>
-    </div>
-    <div class="stat-card">
-        <h3><?php echo number_format($total_displaced_persons); ?></h3>
-        <p><i class="fas fa-people-arrows"></i> Displaced Persons</p>
-    </div>
-</div>
-
-    <!-- Action Section -->
-    <div class="action-section">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search records..." onkeyup="searchRecords()">
-        </div>
-        <div class="action-buttons">
-            <a href="annex2.php" class="btn-custom btn-primary-custom">
-                <i class="fas fa-plus"></i> Add New Record
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-between mb-4 flex-wrap gap-3">
+            <a href="annex2.php" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Add New Record
             </a>
-            <a href="annex2_archived.php" class="btn-custom btn-secondary-custom">
-                <i class="fas fa-archive"></i> View Archived
-            </a>
-            <button onclick="exportToCSV()" class="btn-custom btn-success-custom">
-                <i class="fas fa-file-csv"></i> Export CSV
-            </button>
+            <div class="action-buttons">
+                <!-- Print Button -->
+                <button class="btn btn-outline-secondary" onclick="printAnnex2()">
+                    <i class="fas fa-print me-2"></i>Print
+                </button>
+                
+                <!-- Export Dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-download me-2"></i>Export
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="exportToWord()"><i class="fas fa-file-word text-primary"></i>Export to Word</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="exportToExcel()"><i class="fas fa-file-excel text-success"></i>Export to Excel</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="exportToCSV()"><i class="fas fa-file-csv text-info"></i>Export to CSV</a></li>
+                    </ul>
+                </div>
+                
+                <a href="annex2_archived.php" class="btn btn-outline-warning">
+                    <i class="fas fa-archive me-2"></i>View Archived
+                </a>
+            </div>
         </div>
-    </div>
 
-    <!-- Records Table -->
-    <div class="table-container" id="tableContainer">
-        <table class="custom-table" id="recordsTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Region</th>
-                    <th>Province</th>
-                    <th>City/Municipality</th>
-                    <th>Barangay</th>
-                    <th>Affected Families</th>
-                    <th>Affected Persons</th>
-                    <th>Evacuation Centers</th>
-                    <th>Displaced (Total)</th>
-                    <th>Date Created</th>
-                    <?php if ($is_admin): ?>
-                    <th>Created By</th>
-                    <?php endif; ?>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            
-            <!-- Skeleton Loader -->
-            <tbody class="skeleton-loader" id="skeletonLoader">
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                <tr class="skeleton-row">
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar medium skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar long skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar medium skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton"></div>
-                        <div class="skeleton-bar short skeleton"></div>
-                    </td>
-                    <?php if ($is_admin): ?>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar medium skeleton"></div>
-                    </td>
-                    <?php endif; ?>
-                    <td class="skeleton-cell">
-                        <div class="skeleton-bar short skeleton" style="width: 70px; display: inline-block; margin-right: 5px;"></div>
-                        <div class="skeleton-bar short skeleton" style="width: 70px; display: inline-block; margin-right: 5px;"></div>
-                        <div class="skeleton-bar short skeleton" style="width: 70px; display: inline-block; margin-right: 5px;"></div>
-                        <div class="skeleton-bar short skeleton" style="width: 70px; display: inline-block;"></div>
-                    </td>
-                </tr>
-                <?php endfor; ?>
-            </tbody>
-            
-            <!-- Actual Content -->
-            <tbody class="table-content" id="tableContent">
-                <?php if (empty($records)): ?>
+        <!-- Records Table -->
+        <div class="table-container">
+            <table class="records-table">
+                <thead>
                     <tr>
-                        <td colspan="<?php echo $is_admin ? '12' : '11'; ?>" style="text-align: center; padding: 30px;">
-                            <i class="fas fa-inbox" style="font-size: 3rem; color: #ccc;"></i>
-                            <p style="color: #6c757d; margin-top: 15px;">No affected population records found.</p>
-                            <a href="annex2.php" class="btn-custom btn-primary-custom" style="margin-top: 15px;">
-                                <i class="fas fa-plus"></i> Create First Record
-                            </a>
+                        <th>ID</th>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>City/Municipality</th>
+                        <th>Barangay</th>
+                        <th>Families (Cum/Cur)</th>
+                        <th>Persons (Cum/Cur)</th>
+                        <th>ECs (Cum/Cur)</th>
+                        <th>Total Displaced</th>
+                        <th>Remarks</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                
+                <!-- Skeleton Loader -->
+                <tbody class="skeleton-loader">
+                    <?php for($i = 0; $i < 5; $i++): ?>
+                    <tr>
+                        <td><div class="skeleton-item skeleton-text" style="width: 50px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 80px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 100px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 150px;"></div></td>
+                        <td><div class="skeleton-item skeleton-text" style="width: 120px;"></div></td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <div class="skeleton-item skeleton-button"></div>
+                                <div class="skeleton-item skeleton-button"></div>
+                                <div class="skeleton-item skeleton-button"></div>
+                            </div>
                         </td>
                     </tr>
-                <?php else: ?>
-                    <?php foreach ($records as $record): ?>
+                    <?php endfor; ?>
+                </tbody>
+                
+                <!-- Actual Content -->
+                <tbody class="table-content">
+                    <?php if (empty($records)): ?>
                         <tr>
-                            <td><strong>#<?php echo $record['id']; ?></strong></td>
-                            <td><?php echo htmlspecialchars($record['region']); ?></td>
-                            <td><?php echo htmlspecialchars($record['province']); ?></td>
-                            <td><?php echo htmlspecialchars($record['city']); ?></td>
-                            <td>
-                                <strong><?php echo htmlspecialchars($record['barangay'] ?? $record['user_barangay'] ?? 'N/A'); ?></strong>
-                            </td>
-                            <td>
-                                <span class="badge badge-cumulative" title="Cumulative">
-                                    <?php echo number_format($record['affected_families_cumulative'] ?? 0); ?>
-                                </span>
-                                <br>
-                                <small class="text-muted">Current: <?php echo number_format($record['affected_families_current'] ?? 0); ?></small>
-                            </td>
-                            <td>
-                                <span class="badge badge-cumulative" title="Cumulative">
-                                    <?php echo number_format($record['affected_persons_cumulative'] ?? 0); ?>
-                                </span>
-                                <br>
-                                <small class="text-muted">Current: <?php echo number_format($record['affected_persons_current'] ?? 0); ?></small>
-                            </td>
-                            <td>
-                                <strong><?php echo number_format($record['num_ecs_cumulative'] ?? 0); ?></strong>
-                                <br>
-                                <small class="text-muted">Current: <?php echo number_format($record['num_ecs_current'] ?? 0); ?></small>
-                            </td>
-                            <td>
-                                <strong><?php echo number_format($record['total_families_cumulative'] ?? 0); ?></strong> families
-                                <br>
-                                <small><?php echo number_format($record['total_persons_cumulative'] ?? 0); ?> persons</small>
-                            </td>
-                            <td>
-                                <small><?php echo date('M j, Y', strtotime($record['created_at'])); ?></small>
-                                <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['created_at'])); ?></small>
-                            </td>
-                            <?php if ($is_admin): ?>
-                            <td><?php echo htmlspecialchars($record['full_name'] ?? 'Unknown'); ?></td>
-                            <?php endif; ?>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn btn-table btn-view" onclick="viewRecord(<?php echo $record['id']; ?>)" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-table btn-edit" onclick="editRecord(<?php echo $record['id']; ?>)" title="Edit Record">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <form method="POST" style="display: inline;" onsubmit="return confirmArchive(<?php echo $record['id']; ?>)">
-                                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-                                        <input type="hidden" name="archive_id" value="<?php echo $record['id']; ?>">
-                                        <button type="submit" class="btn btn-table btn-archive" title="Archive Record">
-                                            <i class="fas fa-archive"></i>
-                                        </button>
-                                    </form>
-                                    <form method="POST" style="display: inline;" onsubmit="return confirmDelete(<?php echo $record['id']; ?>)">
-                                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-                                        <input type="hidden" name="delete_id" value="<?php echo $record['id']; ?>">
-                                        <button type="submit" class="btn btn-table btn-delete" title="Delete Record">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                            <td colspan="12">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <h3>No Records Found</h3>
+                                    <p>No affected population reports have been submitted yet.</p>
+                                    <a href="annex2.php" class="btn btn-primary mt-3">
+                                        <i class="fas fa-plus me-2"></i>Create First Report
+                                    </a>
                                 </div>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
-    
-    <!-- Pagination -->
-    <div class="d-flex justify-content-between align-items-center mt-4">
-        <div class="text-muted">
-            Showing <?php echo count($records); ?> records
+                    <?php else: ?>
+                        <?php foreach ($records as $record): ?>
+                            <tr>
+                                <td><strong>#<?php echo $record['id']; ?></strong></td>
+                                <td><?php echo htmlspecialchars($record['region']); ?></td>
+                                <td><?php echo htmlspecialchars($record['province']); ?></td>
+                                <td><?php echo htmlspecialchars($record['city']); ?></td>
+                                <td><?php echo htmlspecialchars($record['barangay']); ?></td>
+                                <td class="text-center">
+                                    <small><?php echo htmlspecialchars($record['affected_families_cumulative'] ?? '0'); ?></small> /
+                                    <small><?php echo htmlspecialchars($record['affected_families_current'] ?? '0'); ?></small>
+                                </td>
+                                <td class="text-center">
+                                    <small><?php echo htmlspecialchars($record['affected_persons_cumulative'] ?? '0'); ?></small> /
+                                    <small><?php echo htmlspecialchars($record['affected_persons_current'] ?? '0'); ?></small>
+                                </td>
+                                <td class="text-center">
+                                    <small><?php echo htmlspecialchars($record['num_ecs_cumulative'] ?? '0'); ?></small> /
+                                    <small><?php echo htmlspecialchars($record['num_ecs_current'] ?? '0'); ?></small>
+                                </td>
+                                <td class="text-center">
+                                    <?php
+                                    $total_displaced = ($record['total_persons_cumulative'] ?? 0);
+                                    echo htmlspecialchars($total_displaced);
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php if (!empty($record['remarks'])): ?>
+                                        <div class="text-truncate" style="max-width: 150px;" title="<?php echo htmlspecialchars($record['remarks']); ?>">
+                                            <?php echo htmlspecialchars($record['remarks']); ?>
+                                        </div>
+                                    <?php else: ?>
+                                        <span class="text-muted">No remarks</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <small><?php echo date('M j, Y', strtotime($record['created_at'])); ?></small>
+                                    <br><small class="text-muted"><?php echo date('g:i A', strtotime($record['created_at'])); ?></small>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-table btn-view" onclick="viewRecord(<?php echo $record['id']; ?>)" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-table btn-edit" onclick="editRecord(<?php echo $record['id']; ?>)" title="Edit Record">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <form method="POST" style="display: inline;" onsubmit="return confirmDelete(<?php echo $record['id']; ?>)">
+                                            <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                                            <input type="hidden" name="delete_id" value="<?php echo $record['id']; ?>">
+                                            <button type="submit" class="btn btn-table btn-delete" title="Delete Record">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        <form method="POST" style="display: inline;" onsubmit="return confirmArchive(<?php echo $record['id']; ?>)">
+                                            <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                                            <input type="hidden" name="archive_id" value="<?php echo $record['id']; ?>">
+                                            <button type="submit" class="btn btn-table btn-archive" title="Archive Record">
+                                                <i class="fas fa-archive"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
-        <nav>
-            <ul class="pagination mb-0">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+        
+        <!-- Pagination (for future use) -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="text-muted">
+                Showing <?php echo count($records); ?> records
+            </div>
+            <nav>
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 
@@ -919,7 +602,7 @@ ob_start();
 
 <!-- Edit Record Modal -->
 <div class="modal fade" id="editRecordModal" tabindex="-1" aria-labelledby="editRecordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editRecordModalLabel">Edit Affected Population Record</h5>
@@ -940,44 +623,22 @@ ob_start();
 
 <script>
 // Skeleton Loader
-// Skeleton Loader
 document.addEventListener('DOMContentLoaded', function() {
-    // Show skeleton loader for both table and cards
-    const tableContainer = document.getElementById('tableContainer');
-    const statsCards = document.getElementById('statsCards');
+    // Show skeleton loader initially
+    document.querySelector('.table-container').classList.add('loading');
     
-    tableContainer.classList.add('loading');
-    statsCards.classList.add('loading');
-    
-    // Simulate loading delay (you can remove this in production)
+    // Simulate loading time
     setTimeout(function() {
-        tableContainer.classList.remove('loading');
-        statsCards.classList.remove('loading');
-    }, 1500);
+        document.querySelector('.table-container').classList.remove('loading');
+    }, 1000);
 });
-
-// Search function
-function searchRecords() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById('recordsTable');
-    const tr = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < tr.length; i++) {
-        let txtValue = tr[i].textContent || tr[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = '';
-        } else {
-            tr[i].style.display = 'none';
-        }
-    }
-}
 
 // View record function
 function viewRecord(recordId) {
     const modal = new bootstrap.Modal(document.getElementById('viewRecordModal'));
     modal.show();
-    
+
+    // Load view content via AJAX
     fetch(`../api/annex2_view.php?id=${recordId}`)
         .then(response => response.text())
         .then(data => {
@@ -986,68 +647,289 @@ function viewRecord(recordId) {
         .catch(error => {
             document.getElementById('viewRecordContent').innerHTML = `
                 <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle"></i> Error loading record details: ${error}
+                    <i class="fas fa-exclamation-triangle"></i> Error loading record details: ${error.message}
                 </div>
             `;
         });
 }
 
-// Edit record function with confirmation prompt
+// Edit record function with confirmation
 function editRecord(recordId) {
-    // Show confirmation dialog before opening edit modal
-    if (confirm('Are you sure you want to edit this record?\n\nThis will allow you to modify the affected population data.')) {
-        const modal = new bootstrap.Modal(document.getElementById('editRecordModal'));
-        modal.show();
-        
-        fetch(`../api/annex2_edit.php?id=${recordId}`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('editRecordContent').innerHTML = data;
-            })
-            .catch(error => {
-                document.getElementById('editRecordContent').innerHTML = `
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle"></i> Error loading record for editing: ${error}
-                    </div>
-                `;
-            });
+    if (!confirm('⚠️ You are about to make changes to Record #' + recordId + '.\n\nClick OK to proceed with editing.')) {
+        return;
+    }
+
+    // Show loading state
+    const modal = new bootstrap.Modal(document.getElementById('editRecordModal'));
+    modal.show();
+
+    // Load edit form via AJAX
+    fetch(`../api/annex2_edit.php?id=${recordId}`)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('editRecordContent').innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById('editRecordContent').innerHTML = `
+                <div class="alert alert-danger">
+                    Error loading record: ${error.message}
+                </div>
+            `;
+        });
+}
+
+// Confirm delete function
+function confirmDelete(recordId) {
+    return confirm('🗑️ Are you sure you want to delete Record #' + recordId + '?\n\nThis action cannot be undone.');
+}
+
+// Confirm archive function
+function confirmArchive(recordId) {
+    return confirm('📁 Are you sure you want to archive Record #' + recordId + '?\n\nArchived records can be restored later.');
+}
+
+// Print function
+function printAnnex2() {
+    // Open print template in new window
+    const printWindow = window.open('../print_templates/annex2_print_template.php', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+
+    // Fallback if popup is blocked
+    if (!printWindow) {
+        alert('Please allow popups for this site to use the print feature.');
+        // Alternative: redirect to print template
+        window.location.href = '../print_templates/annex2_print_template.php';
     }
 }
 
-// Confirmation functions
-function confirmDelete(recordId) {
-    return confirm('Are you sure you want to permanently delete this record? This action cannot be undone.');
+// Export to Word function
+function exportToWord() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+            <meta charset="utf-8">
+            <title>Annex 2 - Affected Population</title>
+            <style>
+                body { font-family: 'Times New Roman', Times, serif; font-size: 10pt; }
+                table { border-collapse: collapse; width: 100%; border: 2px solid #000; }
+                th, td { border: 1px solid #000; padding: 4px 6px; text-align: center; font-size: 8pt; }
+                th { background-color: #f0f0f0; font-weight: bold; }
+                .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+                .text-left { text-align: left; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1 style="font-size: 12pt; margin-bottom: 5px;">NDRRMC Memorandum Circular No. 05, s. 2025 re NDRRMC Reporting Templates</h1>
+                <h2 style="font-size: 11pt;">Annex 2: Affected Population</h2>
+                <p style="font-size: 9pt;">Generated on: ${new Date().toLocaleString()}</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="3">Region</th>
+                        <th rowspan="3">Province</th>
+                        <th rowspan="3">City / Municipality</th>
+                        <th rowspan="3">Barangay</th>
+                        <th rowspan="2" colspan="2">Affected Families</th>
+                        <th rowspan="2" colspan="2">Affected Persons</th>
+                        <th rowspan="2" colspan="2">No of ECs</th>
+                        <th colspan="4">Inside ECs</th>
+                        <th colspan="4">Outside ECs</th>
+                        <th colspan="4">Total Displaced</th>
+                        <th rowspan="3">Remarks</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Families</th>
+                        <th colspan="2">Persons</th>
+                        <th colspan="2">Families</th>
+                        <th colspan="2">Persons</th>
+                        <th colspan="2">Families</th>
+                        <th colspan="2">Persons</th>
+                    </tr>
+                    <tr>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                        <th>Cumulative</th>
+                        <th>Current</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    records.forEach(record => {
+        htmlContent += `
+            <tr>
+                <td class="text-left">${record.region || ''}</td>
+                <td class="text-left">${record.province || ''}</td>
+                <td class="text-left">${record.city || ''}</td>
+                <td class="text-left">${record.barangay || ''}</td>
+                <td>${record.affected_families_cumulative || '0'}</td>
+                <td>${record.affected_families_current || '0'}</td>
+                <td>${record.affected_persons_cumulative || '0'}</td>
+                <td>${record.affected_persons_current || '0'}</td>
+                <td>${record.num_ecs_cumulative || '0'}</td>
+                <td>${record.num_ecs_current || '0'}</td>
+                <td>${record.inside_families_cumulative || '0'}</td>
+                <td>${record.inside_families_current || '0'}</td>
+                <td>${record.inside_persons_cumulative || '0'}</td>
+                <td>${record.inside_persons_current || '0'}</td>
+                <td>${record.outside_families_cumulative || '0'}</td>
+                <td>${record.outside_families_current || '0'}</td>
+                <td>${record.outside_persons_cumulative || '0'}</td>
+                <td>${record.outside_persons_current || '0'}</td>
+                <td>${record.total_families_cumulative || '0'}</td>
+                <td>${record.total_families_current || '0'}</td>
+                <td>${record.total_persons_cumulative || '0'}</td>
+                <td>${record.total_persons_current || '0'}</td>
+                <td class="text-left">${record.remarks || ''}</td>
+            </tr>
+        `;
+    });
+
+    htmlContent += `
+                </tbody>
+            </table>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'annex2_affected_population_' + new Date().toISOString().split('T')[0] + '.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
-function confirmArchive(recordId) {
-    return confirm('Are you sure you want to archive this record? Archived records can be restored later.');
+// Export to Excel function
+function exportToExcel() {
+    const records = <?php echo json_encode($records); ?>;
+
+    let csvContent = "data:application/vnd.ms-excel;charset=utf-8,";
+
+    // Headers - matching the NDRRMC template structure
+    csvContent += "Region\tProvince\tCity/Municipality\tBarangay\t";
+    csvContent += "Affected Families (Cumulative)\tAffected Families (Current)\t";
+    csvContent += "Affected Persons (Cumulative)\tAffected Persons (Current)\t";
+    csvContent += "No. of ECs (Cumulative)\tNo. of ECs (Current)\t";
+    csvContent += "Inside ECs - Families (Cumulative)\tInside ECs - Families (Current)\t";
+    csvContent += "Inside ECs - Persons (Cumulative)\tInside ECs - Persons (Current)\t";
+    csvContent += "Outside ECs - Families (Cumulative)\tOutside ECs - Families (Current)\t";
+    csvContent += "Outside ECs - Persons (Cumulative)\tOutside ECs - Persons (Current)\t";
+    csvContent += "Total Displaced - Families (Cumulative)\tTotal Displaced - Families (Current)\t";
+    csvContent += "Total Displaced - Persons (Cumulative)\tTotal Displaced - Persons (Current)\t";
+    csvContent += "Remarks\n";
+
+    // Data
+    records.forEach(record => {
+        const row = [
+            record.region || '',
+            record.province || '',
+            record.city || '',
+            record.barangay || '',
+            record.affected_families_cumulative || '0',
+            record.affected_families_current || '0',
+            record.affected_persons_cumulative || '0',
+            record.affected_persons_current || '0',
+            record.num_ecs_cumulative || '0',
+            record.num_ecs_current || '0',
+            record.inside_families_cumulative || '0',
+            record.inside_families_current || '0',
+            record.inside_persons_cumulative || '0',
+            record.inside_persons_current || '0',
+            record.outside_families_cumulative || '0',
+            record.outside_families_current || '0',
+            record.outside_persons_cumulative || '0',
+            record.outside_persons_current || '0',
+            record.total_families_cumulative || '0',
+            record.total_families_current || '0',
+            record.total_persons_cumulative || '0',
+            record.total_persons_current || '0',
+            (record.remarks || '').replace(/\t/g, ' ').replace(/\n/g, ' ')
+        ].join('\t');
+        csvContent += row + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "annex2_affected_population_" + new Date().toISOString().split('T')[0] + ".xls");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Export to CSV function
 function exportToCSV() {
-    const table = document.getElementById('recordsTable');
-    const rows = table.querySelectorAll('tr');
-    let csv = [];
-    
-    for (let i = 0; i < rows.length; i++) {
-        const row = [], cols = rows[i].querySelectorAll('td, th');
-        
-        for (let j = 0; j < cols.length; j++) {
-            // Remove action buttons from export
-            if (j < cols.length - 1) {
-                let text = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ');
-                row.push('"' + text + '"');
-            }
-        }
-        
-        csv.push(row.join(','));
-    }
-    
-    const csvContent = "data:text/csv;charset=utf-8," + csv.join('\n');
+    const records = <?php echo json_encode($records); ?>;
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    // Headers - matching the NDRRMC template structure
+    csvContent += "Region,Province,City/Municipality,Barangay,";
+    csvContent += "Affected Families (Cumulative),Affected Families (Current),";
+    csvContent += "Affected Persons (Cumulative),Affected Persons (Current),";
+    csvContent += "No. of ECs (Cumulative),No. of ECs (Current),";
+    csvContent += "Inside ECs - Families (Cumulative),Inside ECs - Families (Current),";
+    csvContent += "Inside ECs - Persons (Cumulative),Inside ECs - Persons (Current),";
+    csvContent += "Outside ECs - Families (Cumulative),Outside ECs - Families (Current),";
+    csvContent += "Outside ECs - Persons (Cumulative),Outside ECs - Persons (Current),";
+    csvContent += "Total Displaced - Families (Cumulative),Total Displaced - Families (Current),";
+    csvContent += "Total Displaced - Persons (Cumulative),Total Displaced - Persons (Current),";
+    csvContent += "Remarks,Created By,Created At\n";
+
+    // Data
+    records.forEach(record => {
+        const row = [
+            `"${record.region || ''}"`,
+            `"${record.province || ''}"`,
+            `"${record.city || ''}"`,
+            `"${record.barangay || ''}"`,
+            `"${record.affected_families_cumulative || '0'}"`,
+            `"${record.affected_families_current || '0'}"`,
+            `"${record.affected_persons_cumulative || '0'}"`,
+            `"${record.affected_persons_current || '0'}"`,
+            `"${record.num_ecs_cumulative || '0'}"`,
+            `"${record.num_ecs_current || '0'}"`,
+            `"${record.inside_families_cumulative || '0'}"`,
+            `"${record.inside_families_current || '0'}"`,
+            `"${record.inside_persons_cumulative || '0'}"`,
+            `"${record.inside_persons_current || '0'}"`,
+            `"${record.outside_families_cumulative || '0'}"`,
+            `"${record.outside_families_current || '0'}"`,
+            `"${record.outside_persons_cumulative || '0'}"`,
+            `"${record.outside_persons_current || '0'}"`,
+            `"${record.total_families_cumulative || '0'}"`,
+            `"${record.total_families_current || '0'}"`,
+            `"${record.total_persons_cumulative || '0'}"`,
+            `"${record.total_persons_current || '0'}"`,
+            `"${(record.remarks || '').replace(/"/g, '""')}"`,
+            `"${record.full_name || 'Current User'}"`,
+            `"${record.created_at}"`
+        ].join(',');
+        csvContent += row + "\n";
+    });
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "annex2_records_" + new Date().toISOString().split('T')[0] + ".csv");
+    link.setAttribute("download", "annex2_affected_population_" + new Date().toISOString().split('T')[0] + ".csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1055,7 +937,9 @@ function exportToCSV() {
 </script>
 
 <?php
-// Get the buffered content and output it
+// Get the captured content and store it in a variable
 $content = ob_get_clean();
+
+// Now include the sidenav layout which will wrap this content
 require_once '../includes/sidenav.php';
 ?>
