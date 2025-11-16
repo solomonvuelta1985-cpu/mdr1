@@ -200,3 +200,4 @@ Stack trace:
 [16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(../includes/event_form_fields.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
 [16-Nov-2025 20:31:51 Asia/Manila] Error [2]: include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php:335
 [16-Nov-2025 20:31:51 Asia/Manila] PHP Warning:  include(): Failed opening '../includes/event_form_fields.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\mdr1\public\manage_disaster_events.php on line 335
+[16-Nov-2025 20:47:57 Asia/Manila] Rate limit warning: No valid user_id provided for action: login_attempt_7858cbcbe559d6972c29541aa723b6dd8a05b0f30016da0e74f9e5a0e4b739c9
