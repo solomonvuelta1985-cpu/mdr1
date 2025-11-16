@@ -858,33 +858,92 @@
                     ?>
 
                     <?php if ($show_notifications): ?>
-                    <div class="notification-bell-container" style="position: relative; margin-right: 15px;">
-                        <button class="btn btn-link" id="notificationBell" type="button" style="position: relative; color: var(--primary-color); font-size: 1.3rem;">
-                            <i class="bi bi-bell"></i>
-                            <span class="notification-badge" id="notificationBadge" style="display: none; position: absolute; top: -5px; right: -8px; background: #dc3545; color: white; border-radius: 10px; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; min-width: 18px; text-align: center;">0</span>
-                        </button>
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Notification Bell -->
+                        <div class="notification-bell-container" style="position: relative;">
+                            <button class="btn btn-link p-2" id="notificationBell" type="button" style="position: relative; color: #6c757d; transition: all 0.3s; background: #f8f9fa; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
+                                <span class="notification-badge" id="notificationBadge" style="display: none; position: absolute; top: 2px; right: 2px; background: #dc3545; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
+                            </button>
 
-                        <div class="notification-dropdown" id="notificationDropdown" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 10px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 400px; max-height: 500px; overflow: hidden; z-index: 1050;">
-                            <div class="notification-header" style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; background: #f9fafb;">
-                                <h6 style="margin: 0; font-size: 14px; font-weight: 600; color: #111827;">Notifications</h6>
-                                <button class="btn btn-link btn-sm" id="markAllRead" style="padding: 0; color: #0d6efd; font-size: 12px; text-decoration: none;">Mark all as read</button>
-                            </div>
-                            <div class="notification-list" id="notificationList" style="max-height: 400px; overflow-y: auto;">
-                                <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
-                                    <i class="bi bi-bell-slash" style="font-size: 3rem; margin-bottom: 12px; opacity: 0.3;"></i>
-                                    <p>No notifications</p>
+                            <div class="notification-dropdown" id="notificationDropdown" style="display: none; position: absolute; top: calc(100% + 8px); right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); width: 400px; max-height: 550px; overflow: hidden; z-index: 1050; border: 1px solid #e5e7eb;">
+                                <div class="notification-header" style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb; background: #f8f9fa;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <h6 style="margin: 0; font-size: 15px; font-weight: 600; color: #111827;">Notifications</h6>
+                                        <span id="notificationCount" style="font-size: 12px; color: #6c757d; font-weight: 500;">0 new</span>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-link btn-sm" id="markAllRead" style="padding: 4px 8px; color: #0d6efd; font-size: 12px; text-decoration: none; font-weight: 500; flex: 1; background: white; border: 1px solid #dee2e6; border-radius: 4px;">
+                                            <i class="bi bi-check-all me-1"></i>Mark all read
+                                        </button>
+                                        <button class="btn btn-link btn-sm" id="clearAllNotifications" style="padding: 4px 8px; color: #dc3545; font-size: 12px; text-decoration: none; font-weight: 500; flex: 1; background: white; border: 1px solid #dee2e6; border-radius: 4px;">
+                                            <i class="bi bi-trash me-1"></i>Clear all
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="notification-list" id="notificationList" style="max-height: 400px; overflow-y: auto;">
+                                    <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
+                                        <i class="bi bi-bell-slash" style="font-size: 3rem; margin-bottom: 12px; opacity: 0.3;"></i>
+                                        <p style="margin: 0; font-size: 14px;">No notifications</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Barangay Activity Monitor Button -->
+                        <div class="activity-monitor-container" style="position: relative;">
+                            <button class="btn btn-link p-2" id="activityMonitorBtn" type="button" data-bs-toggle="modal" data-bs-target="#activityMonitorModal" style="position: relative; color: #6c757d; transition: all 0.3s; background: #f8f9fa; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-bar-chart-line" style="font-size: 1.2rem;"></i>
+                                <span class="activity-badge" id="activityBadge" style="display: none; position: absolute; top: 2px; right: 2px; background: #f59e0b; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Barangay Activity Monitor Button -->
-                    <div class="activity-monitor-container" style="position: relative;">
-                        <button class="btn btn-link" id="activityMonitorBtn" type="button" data-bs-toggle="modal" data-bs-target="#activityMonitorModal" style="position: relative; color: var(--primary-color); font-size: 1.3rem;">
-                            <i class="bi bi-graph-up"></i>
-                            <span class="activity-badge" id="activityBadge" style="display: none; position: absolute; top: -5px; right: -8px; background: #f59e0b; color: white; border-radius: 10px; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; min-width: 18px; text-align: center;">0</span>
-                        </button>
-                    </div>
+                    <style>
+                        /* Enhanced hover effects */
+                        #notificationBell:hover,
+                        #activityMonitorBtn:hover {
+                            background: #e9ecef !important;
+                            color: #0d6efd !important;
+                            transform: translateY(-1px);
+                        }
+
+                        #notificationBell:active,
+                        #activityMonitorBtn:active {
+                            transform: translateY(0);
+                        }
+
+                        /* Badge animation */
+                        .notification-badge,
+                        .activity-badge {
+                            animation: pulse 2s infinite;
+                        }
+
+                        @keyframes pulse {
+                            0%, 100% {
+                                opacity: 1;
+                            }
+                            50% {
+                                opacity: 0.7;
+                            }
+                        }
+
+                        /* Smooth dropdown animation */
+                        .notification-dropdown {
+                            animation: slideDown 0.2s ease-out;
+                        }
+
+                        @keyframes slideDown {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-10px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                    </style>
                     <?php endif; ?>
                 </div>
             </div>
@@ -1128,7 +1187,9 @@
             const notificationDropdown = document.getElementById('notificationDropdown');
             const notificationBadge = document.getElementById('notificationBadge');
             const notificationList = document.getElementById('notificationList');
+            const notificationCount = document.getElementById('notificationCount');
             const markAllReadBtn = document.getElementById('markAllRead');
+            const clearAllBtn = document.getElementById('clearAllNotifications');
 
             if (!notificationBell) return; // Exit if elements not found
 
@@ -1180,6 +1241,15 @@
                     notificationBadge.style.display = 'block';
                 } else {
                     notificationBadge.style.display = 'none';
+                }
+
+                // Update notification count text
+                const totalCount = notifications.length;
+                const unreadCount = notifications.filter(n => !n.is_read).length;
+                if (totalCount > 0) {
+                    notificationCount.textContent = unreadCount > 0 ? `${unreadCount} new` : `${totalCount} total`;
+                } else {
+                    notificationCount.textContent = '0 new';
                 }
             }
 

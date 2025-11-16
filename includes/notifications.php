@@ -312,11 +312,17 @@ function get_barangay_activity_enhanced($hours = 3) {
 
         foreach ($all_barangays as $barangay) {
             // Get barangay user IDs
-            $user_ids = db_query("
+            $user_ids_stmt = db_query("
                 SELECT id FROM users
                 WHERE barangay = ?
                 AND user_role = 'user'
-            ", [$barangay])->fetchAll(PDO::FETCH_COLUMN);
+            ", [$barangay]);
+
+            if (!$user_ids_stmt) {
+                continue;
+            }
+
+            $user_ids = $user_ids_stmt->fetchAll(PDO::FETCH_COLUMN);
 
             if (empty($user_ids)) {
                 continue;
@@ -331,7 +337,12 @@ function get_barangay_activity_enhanced($hours = 3) {
                 AND is_active = 1
                 AND last_activity >= DATE_SUB(NOW(), INTERVAL 15 MINUTE)
             ", $user_ids);
-            $is_online = $is_online_stmt->fetch()['count'] > 0;
+
+            $is_online = false;
+            if ($is_online_stmt) {
+                $online_result = $is_online_stmt->fetch();
+                $is_online = $online_result && $online_result['count'] > 0;
+            }
 
             // Get last login time
             $last_login_stmt = db_query("
@@ -339,7 +350,12 @@ function get_barangay_activity_enhanced($hours = 3) {
                 FROM user_sessions
                 WHERE user_id IN ($placeholders)
             ", $user_ids);
-            $last_login = $last_login_stmt->fetch()['last_login'];
+
+            $last_login = null;
+            if ($last_login_stmt) {
+                $login_result = $last_login_stmt->fetch();
+                $last_login = $login_result ? $login_result['last_login'] : null;
+            }
 
             // Check last report submission across all annex tables
             $last_submission = null;
@@ -362,6 +378,11 @@ function get_barangay_activity_enhanced($hours = 3) {
                         FROM {$table}
                         WHERE barangay = ?
                     ", [$barangay]);
+
+                    // Check if query was successful before calling fetch()
+                    if ($stmt === false) {
+                        continue;
+                    }
 
                     $result = $stmt->fetch();
                     if ($result && $result['last_update']) {
